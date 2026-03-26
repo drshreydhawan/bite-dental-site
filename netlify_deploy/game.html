@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+<title>Feed the Smile! 🦷 | Bite Dental Clinic</title>
+<meta name="description" content="Play Feed the Smile — a fun dental hygiene game for kids by Bite Dental Clinic. Learn which foods are good for your teeth!"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+
+<style>
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; }
+
+/* ── VARS ── */
+:root {
+  --green:   #60BC01;
+  --green-d: #4a9100;
+  --green-l: #e8f9d0;
+  --red:     #FF4B4B;
+  --red-l:   #ffe5e5;
+  --yellow:  #FFD700;
+  --purple:  #7C3AED;
+  --bg:      #F0FBE4;
+  --card:    #FFFFFF;
+  --text:    #1a2e1a;
+  --text-2:  #4d6b4d;
+  --font:    'Nunito', sans-serif;
+  --body:    'Inter', sans-serif;
+  --r:       20px;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* ── SCREENS ── */
+.screen {
+  display: none;
+  position: fixed; inset: 0;
+  flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 20px;
+  overflow: hidden;
+}
+.screen.active { display: flex; }
+
+/* ── DECORATIVE BUBBLES ── */
+.bubble {
+  position: absolute; border-radius: 50%; opacity: 0.18; animation: float 6s ease-in-out infinite;
+}
+@keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-18px);} }
+
+/* ═══════════════ INTRO SCREEN ═══════════════ */
+#screen-intro {
+  background: linear-gradient(160deg, #e8f9d0 0%, #d0f0a0 100%);
+  text-align: center;
+}
+#screen-intro .bubble:nth-child(1) { width:180px;height:180px;background:var(--green);top:-60px;left:-60px; }
+#screen-intro .bubble:nth-child(2) { width:120px;height:120px;background:var(--yellow);bottom:40px;right:-30px;animation-delay:2s; }
+#screen-intro .bubble:nth-child(3) { width:80px;height:80px;background:var(--purple);bottom:120px;left:20px;animation-delay:4s; }
+
+.intro-logo {
+  font-size: 0.8rem; font-weight: 700; color: var(--green-d);
+  letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px;
+  display: flex; align-items: center; gap: 8px;
+}
+.intro-logo span { background: var(--green); color: #fff; border-radius: 8px; padding: 3px 10px; }
+
+.tooth-hero {
+  font-size: clamp(90px, 22vw, 130px);
+  line-height: 1;
+  margin-bottom: 12px;
+  animation: wiggle 2.5s ease-in-out infinite;
+  filter: drop-shadow(0 8px 20px rgba(96,188,1,0.25));
+}
+@keyframes wiggle {
+  0%,100%{transform:rotate(-4deg) scale(1);}
+  50%{transform:rotate(4deg) scale(1.06);}
+}
+
+.intro-title {
+  font-size: clamp(2.2rem, 9vw, 3.4rem); font-weight: 900;
+  color: var(--text); line-height: 1.05; margin-bottom: 10px;
+}
+.intro-title span { color: var(--green); }
+
+.intro-sub {
+  font-size: clamp(0.95rem, 3.5vw, 1.1rem); color: var(--text-2);
+  max-width: 36ch; margin: 0 auto 28px; line-height: 1.55;
+  font-family: var(--body);
+}
+
+.how-to {
+  display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+.how-card {
+  background: #fff; border-radius: 16px; padding: 14px 18px;
+  font-size: 0.88rem; font-weight: 700; color: var(--text-2);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08); max-width: 160px; text-align: center;
+  line-height: 1.4;
+}
+.how-card .icon { font-size: 1.8rem; display: block; margin-bottom: 6px; }
+
+.btn-start {
+  background: var(--green); color: #fff; border: none; border-radius: 18px;
+  font-family: var(--font); font-size: clamp(1.2rem, 5vw, 1.5rem); font-weight: 900;
+  padding: 18px 52px; cursor: pointer; letter-spacing: 0.02em;
+  box-shadow: 0 6px 28px rgba(96,188,1,0.4);
+  transition: transform 0.15s, box-shadow 0.15s;
+  animation: pulse-btn 2s ease-in-out infinite;
+}
+.btn-start:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 10px 36px rgba(96,188,1,0.5); }
+@keyframes pulse-btn { 0%,100%{box-shadow:0 6px 28px rgba(96,188,1,0.4);} 50%{box-shadow:0 6px 42px rgba(96,188,1,0.65);} }
+
+.bite-brand-small {
+  position: absolute; bottom: 18px;
+  font-size: 0.75rem; color: var(--text-2); font-family: var(--body);
+}
+.bite-brand-small strong { color: var(--green-d); }
+
+/* ═══════════════ GAME SCREEN ═══════════════ */
+#screen-game {
+  background: linear-gradient(180deg, #e8f9d0 0%, #f0fbe4 100%);
+  padding: 0;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* HUD */
+.hud {
+  width: 100%; display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 20px 10px;
+  background: rgba(255,255,255,0.85); backdrop-filter: blur(10px);
+  border-bottom: 2px solid rgba(96,188,1,0.15);
+  flex-shrink: 0; z-index: 10;
+}
+.hud-score {
+  font-size: clamp(1.1rem, 4vw, 1.4rem); font-weight: 900; color: var(--green-d);
+}
+.hud-score span { font-size: 0.75rem; color: var(--text-2); font-weight: 700; display: block; }
+.hud-timer {
+  display: flex; flex-direction: column; align-items: center;
+}
+.timer-ring-wrap { position: relative; width: 54px; height: 54px; }
+.timer-ring-wrap svg { position: absolute; inset: 0; transform: rotate(-90deg); }
+.timer-ring { stroke: var(--green); stroke-width: 4; fill: none; stroke-linecap: round; transition: stroke-dashoffset 1s linear, stroke 0.5s; }
+.timer-ring-bg { stroke: rgba(96,188,1,0.15); stroke-width: 4; fill: none; }
+.timer-num {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  font-size: 1.05rem; font-weight: 900; color: var(--text);
+}
+.hud-combo {
+  font-size: clamp(1rem, 3.5vw, 1.2rem); font-weight: 900; color: var(--purple);
+  text-align: right; min-width: 60px;
+}
+.hud-combo span { font-size: 0.72rem; color: var(--text-2); font-weight: 700; display: block; }
+
+/* CHARACTER AREA */
+.char-area {
+  flex: 1; display: flex; align-items: center; justify-content: center;
+  position: relative; width: 100%; overflow: hidden;
+  min-height: 0;
+}
+
+/* Falling food */
+.food-item {
+  position: absolute; top: -100px; left: 50%;
+  transform: translateX(-50%);
+  font-size: clamp(56px, 14vw, 80px);
+  line-height: 1;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.12));
+  animation: foodFall linear forwards;
+  z-index: 5;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.1s;
+}
+.food-item:active { transform: translateX(-50%) scale(0.9); }
+@keyframes foodFall {
+  from { top: -90px; }
+  to   { top: 110%; }
+}
+
+/* Tooth character */
+.tooth-char {
+  font-size: clamp(80px, 20vw, 120px);
+  line-height: 1;
+  position: relative; z-index: 2;
+  transition: transform 0.1s;
+  filter: drop-shadow(0 6px 18px rgba(96,188,1,0.2));
+}
+.tooth-char.happy {
+  animation: toothHappy 0.5s ease-out;
+}
+.tooth-char.sad {
+  animation: toothSad 0.5s ease-out;
+}
+@keyframes toothHappy { 0%{transform:scale(1);} 30%{transform:scale(1.18) rotate(6deg);} 60%{transform:scale(0.95);} 100%{transform:scale(1);} }
+@keyframes toothSad   { 0%{transform:scale(1);} 20%{transform:scale(0.88) rotate(-5deg);} 50%{transform:scale(1.05);} 100%{transform:scale(1);} }
+
+/* Flash overlays */
+.flash-good, .flash-bad {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  opacity: 0; border-radius: 0;
+}
+.flash-good { background: rgba(96,188,1,0.2); }
+.flash-bad  { background: rgba(255,75,75,0.2); }
+.flash-good.show, .flash-bad.show {
+  animation: flashAnim 0.4s ease-out forwards;
+}
+@keyframes flashAnim { 0%{opacity:1;} 100%{opacity:0;} }
+
+/* Score pop */
+.score-pop {
+  position: absolute; font-size: 1.8rem; font-weight: 900;
+  z-index: 8; pointer-events: none; left: 50%;
+  animation: scorePop 0.8s ease-out forwards;
+}
+.score-pop.good { color: var(--green); }
+.score-pop.bad  { color: var(--red); }
+@keyframes scorePop {
+  0%   { transform: translateX(-50%) translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateX(-50%) translateY(-80px) scale(0.7); opacity: 0; }
+}
+
+/* Food label */
+.food-label {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  text-align: center; padding: 8px;
+  font-size: 0.82rem; font-weight: 700; font-family: var(--body);
+  color: var(--text-2);
+}
+
+/* BUTTONS */
+.game-btns {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  padding: 10px 16px calc(16px + env(safe-area-inset-bottom));
+  width: 100%; flex-shrink: 0;
+}
+.btn-good, .btn-bad {
+  border: none; border-radius: 18px; padding: 18px 12px;
+  font-family: var(--font); font-size: clamp(1rem, 4vw, 1.2rem); font-weight: 900;
+  cursor: pointer; transition: transform 0.12s, box-shadow 0.12s;
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn-good {
+  background: var(--green); color: #fff;
+  box-shadow: 0 5px 20px rgba(96,188,1,0.35);
+}
+.btn-good:active { transform: scale(0.94); }
+.btn-bad {
+  background: var(--red); color: #fff;
+  box-shadow: 0 5px 20px rgba(255,75,75,0.35);
+}
+.btn-bad:active  { transform: scale(0.94); }
+.btn-good span, .btn-bad span { font-size: 1.6rem; display: block; }
+
+/* ═══════════════ SCORE SCREEN ═══════════════ */
+#screen-score {
+  background: linear-gradient(160deg, #e8f9d0 0%, #f0fbe4 100%);
+  text-align: center;
+}
+#screen-score .bubble:nth-child(1) { width:200px;height:200px;background:var(--yellow);top:-80px;right:-80px;animation-delay:1s; }
+#screen-score .bubble:nth-child(2) { width:100px;height:100px;background:var(--green);bottom:60px;left:-30px; }
+
+.score-trophy { font-size: clamp(60px,16vw,90px); margin-bottom: 8px; animation: trophySpin 0.8s ease-out; }
+@keyframes trophySpin { from{transform:scale(0) rotate(-20deg);} to{transform:scale(1) rotate(0);} }
+
+.score-headline {
+  font-size: clamp(1.5rem,6vw,2.2rem); font-weight: 900; margin-bottom: 6px;
+  color: var(--text);
+}
+.score-grade {
+  font-size: clamp(1rem,4vw,1.3rem); font-weight: 700; color: var(--green-d);
+  margin-bottom: 6px;
+}
+.score-big {
+  font-size: clamp(3.5rem, 14vw, 5.5rem); font-weight: 900; color: var(--green);
+  line-height: 1; margin-bottom: 4px;
+}
+.score-label {
+  font-size: 0.9rem; font-weight: 700; color: var(--text-2);
+  font-family: var(--body); margin-bottom: 16px;
+}
+
+.stars-row {
+  display: flex; justify-content: center; gap: 6px; margin-bottom: 20px; font-size: 2rem;
+}
+
+.score-msg {
+  font-size: clamp(0.9rem, 3.5vw, 1rem); color: var(--text-2);
+  max-width: 34ch; margin: 0 auto 24px; line-height: 1.55; font-family: var(--body);
+}
+
+.offer-teaser {
+  background: linear-gradient(135deg, #fff9e6, #fff3c4);
+  border: 2px dashed var(--yellow);
+  border-radius: 18px; padding: 16px 22px; margin-bottom: 24px;
+  max-width: 340px;
+}
+.offer-teaser .ot-icon { font-size: 1.8rem; margin-bottom: 6px; }
+.offer-teaser .ot-title { font-size: 1rem; font-weight: 900; color: #7a5500; margin-bottom: 4px; }
+.offer-teaser .ot-text { font-size: 0.84rem; color: #8a6500; font-family: var(--body); line-height: 1.4; }
+
+.btn-claim {
+  background: var(--green); color: #fff; border: none; border-radius: 16px;
+  font-family: var(--font); font-size: clamp(1.1rem,4.5vw,1.35rem); font-weight: 900;
+  padding: 16px 40px; cursor: pointer; width: 100%; max-width: 320px;
+  box-shadow: 0 6px 24px rgba(96,188,1,0.4);
+  transition: transform 0.15s; margin-bottom: 12px;
+}
+.btn-claim:hover { transform: translateY(-2px); }
+
+.btn-replay {
+  background: transparent; border: 2px solid rgba(96,188,1,0.4); color: var(--text-2);
+  border-radius: 16px; font-family: var(--font); font-size: 1rem; font-weight: 700;
+  padding: 12px 32px; cursor: pointer; transition: all 0.2s;
+}
+.btn-replay:hover { border-color: var(--green); color: var(--green-d); }
+
+/* ═══════════════ LEAD FORM SCREEN ═══════════════ */
+#screen-lead {
+  background: linear-gradient(160deg, #e8f9d0 0%, #f0fbe4 100%);
+  overflow-y: auto;
+}
+
+.lead-wrap {
+  background: #fff; border-radius: 28px; padding: 32px 28px;
+  width: 100%; max-width: 420px;
+  box-shadow: 0 16px 60px rgba(0,0,0,0.1);
+}
+
+.lead-icon { font-size: 2.8rem; text-align: center; margin-bottom: 10px; }
+.lead-title { font-size: clamp(1.5rem,6vw,2rem); font-weight: 900; text-align: center; margin-bottom: 6px; }
+.lead-sub {
+  font-size: 0.9rem; color: var(--text-2); font-family: var(--body);
+  text-align: center; max-width: 32ch; margin: 0 auto 22px; line-height: 1.5;
+}
+
+.offer-badge {
+  background: linear-gradient(135deg, var(--green), var(--green-d));
+  color: #fff; border-radius: 14px; padding: 14px 18px; margin-bottom: 24px;
+  display: flex; align-items: center; gap: 12px;
+}
+.offer-badge .ob-icon { font-size: 2rem; flex-shrink: 0; }
+.offer-badge .ob-title { font-size: 1.05rem; font-weight: 900; margin-bottom: 2px; }
+.offer-badge .ob-sub { font-size: 0.8rem; opacity: 0.88; font-family: var(--body); }
+
+.form-group { margin-bottom: 14px; }
+.form-group label {
+  display: block; font-size: 0.82rem; font-weight: 700;
+  color: var(--text-2); margin-bottom: 6px; font-family: var(--body);
+}
+.form-group input, .form-group select {
+  width: 100%; padding: 13px 16px; border: 2px solid rgba(96,188,1,0.2);
+  border-radius: 12px; font-family: var(--body); font-size: 0.95rem;
+  color: var(--text); background: var(--bg); outline: none;
+  transition: border-color 0.2s;
+}
+.form-group input:focus, .form-group select:focus { border-color: var(--green); }
+.form-group input::placeholder { color: #a0b8a0; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+.btn-submit {
+  width: 100%; background: var(--green); color: #fff; border: none;
+  border-radius: 14px; font-family: var(--font); font-size: 1.1rem; font-weight: 900;
+  padding: 16px; cursor: pointer; margin-top: 8px;
+  box-shadow: 0 5px 20px rgba(96,188,1,0.35);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(96,188,1,0.45); }
+.btn-submit:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+
+.privacy-note {
+  font-size: 0.73rem; color: var(--text-2); text-align: center;
+  margin-top: 12px; font-family: var(--body); line-height: 1.5;
+}
+.privacy-note a { color: var(--green-d); }
+
+.btn-skip {
+  background: none; border: none; font-family: var(--body);
+  font-size: 0.82rem; color: var(--text-2); cursor: pointer;
+  text-decoration: underline; margin-top: 10px; display: block;
+  text-align: center; width: 100%;
+}
+
+/* ═══════════════ THANK YOU SCREEN ═══════════════ */
+#screen-thanks {
+  background: linear-gradient(160deg, #e8f9d0 0%, #f0fbe4 100%);
+  text-align: center;
+}
+#screen-thanks .bubble:nth-child(1) { width:160px;height:160px;background:var(--green);top:-50px;left:-50px; }
+#screen-thanks .bubble:nth-child(2) { width:100px;height:100px;background:var(--yellow);bottom:80px;right:-20px;animation-delay:1.5s; }
+
+.thanks-icon { font-size: clamp(70px,18vw,100px); margin-bottom: 12px; animation: bounceIn 0.6s ease-out; }
+@keyframes bounceIn { 0%{transform:scale(0);} 60%{transform:scale(1.12);} 100%{transform:scale(1);} }
+
+.thanks-title { font-size: clamp(1.8rem,7vw,2.6rem); font-weight: 900; margin-bottom: 8px; }
+.thanks-sub { font-size: clamp(0.9rem,3.5vw,1.05rem); color: var(--text-2); font-family: var(--body); max-width: 32ch; margin: 0 auto 24px; line-height: 1.55; }
+
+.voucher-card {
+  background: #fff; border: 2px dashed var(--green); border-radius: 22px;
+  padding: 22px 26px; max-width: 340px; width: 100%; margin: 0 auto 24px;
+  box-shadow: 0 8px 32px rgba(96,188,1,0.12);
+}
+.voucher-brand { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green-d); margin-bottom: 10px; }
+.voucher-offer { font-size: clamp(1.4rem,5vw,1.8rem); font-weight: 900; color: var(--text); margin-bottom: 4px; line-height: 1.2; }
+.voucher-detail { font-size: 0.85rem; color: var(--text-2); font-family: var(--body); line-height: 1.4; }
+.voucher-code {
+  background: var(--green-l); border: 1px solid rgba(96,188,1,0.3);
+  border-radius: 10px; padding: 8px 16px; margin-top: 14px;
+  font-size: 1.1rem; font-weight: 900; color: var(--green-d);
+  letter-spacing: 0.12em;
+}
+.voucher-code small { display: block; font-size: 0.7rem; font-weight: 600; color: var(--text-2); letter-spacing: 0.05em; margin-bottom: 2px; }
+
+.btn-wa-claim {
+  background: #25D366; color: #fff; border: none; border-radius: 16px;
+  font-family: var(--font); font-size: clamp(1.05rem,4vw,1.2rem); font-weight: 900;
+  padding: 16px 32px; cursor: pointer; display: flex; align-items: center;
+  gap: 10px; margin: 0 auto 12px; justify-content: center; width: 100%; max-width: 320px;
+  box-shadow: 0 5px 20px rgba(37,211,102,0.4);
+  transition: transform 0.15s;
+}
+.btn-wa-claim:hover { transform: translateY(-2px); }
+
+.btn-play-again {
+  background: transparent; border: 2px solid rgba(96,188,1,0.35); color: var(--text-2);
+  border-radius: 14px; font-family: var(--font); font-size: 0.95rem; font-weight: 700;
+  padding: 11px 28px; cursor: pointer; transition: all 0.2s; display: block;
+  margin: 0 auto;
+}
+.btn-play-again:hover { border-color: var(--green); color: var(--green-d); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 400px) {
+  .how-to { flex-direction: row; gap: 8px; }
+  .how-card { font-size: 0.8rem; padding: 10px 12px; max-width: 140px; }
+  .game-btns { padding: 8px 12px 12px; gap: 8px; }
+  .btn-good, .btn-bad { padding: 14px 8px; font-size: 0.9rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     SCREEN 1: INTRO
+══════════════════════════════════════ -->
+<div id="screen-intro" class="screen active">
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+
+  <div class="intro-logo">
+    🦷 <span>Bite Dental Clinic</span>
+  </div>
+
+  <div class="tooth-hero">🦷</div>
+
+  <h1 class="intro-title">Feed the <span>Smile!</span></h1>
+  <p class="intro-sub">Help our tooth hero eat the right foods and dodge the sugar bugs! You have <strong>60 seconds</strong> — can you get a perfect score?</p>
+
+  <div class="how-to">
+    <div class="how-card">
+      <span class="icon">🍎</span>
+      Tap <strong>GOOD</strong> for healthy foods
+    </div>
+    <div class="how-card">
+      <span class="icon">🍬</span>
+      Tap <strong>BAD</strong> for sugary foods
+    </div>
+    <div class="how-card">
+      <span class="icon">⚡</span>
+      Build combos for <strong>bonus points!</strong>
+    </div>
+  </div>
+
+  <button class="btn-start" id="btnStart">Let's Play! 🎮</button>
+
+  <p class="bite-brand-small">A fun game by <strong>Bite Dental Clinic</strong> · bitedentalclinic.com</p>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     SCREEN 2: GAME
+══════════════════════════════════════ -->
+<div id="screen-game" class="screen">
+
+  <!-- HUD -->
+  <div class="hud">
+    <div class="hud-score">
+      <span>SCORE</span>
+      <span id="scoreDisplay">0</span>
+    </div>
+
+    <div class="hud-timer">
+      <div class="timer-ring-wrap">
+        <svg width="54" height="54" viewBox="0 0 54 54">
+          <circle class="timer-ring-bg" cx="27" cy="27" r="22"/>
+          <circle class="timer-ring" id="timerRing" cx="27" cy="27" r="22"
+            stroke-dasharray="138.2" stroke-dashoffset="0"/>
+        </svg>
+        <div class="timer-num" id="timerDisplay">120</div>
+      </div>
+    </div>
+
+    <div class="hud-combo">
+      <span>COMBO</span>
+      <span id="comboDisplay">×1</span>
+    </div>
+  </div>
+
+  <!-- Play area -->
+  <div class="char-area" id="charArea">
+    <div class="flash-good" id="flashGood"></div>
+    <div class="flash-bad"  id="flashBad"></div>
+    <div class="tooth-char" id="toothChar">🦷</div>
+    <div class="food-label" id="foodLabel"></div>
+  </div>
+
+  <!-- Action buttons -->
+  <div class="game-btns">
+    <button class="btn-good" id="btnGood">
+      <span>😁</span>
+      GOOD for Teeth!
+    </button>
+    <button class="btn-bad" id="btnBad">
+      <span>🙅</span>
+      BAD for Teeth!
+    </button>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     SCREEN 3: SCORE REVEAL
+══════════════════════════════════════ -->
+<div id="screen-score" class="screen">
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+
+  <div class="score-trophy" id="scoreTrophy">🏆</div>
+  <div class="score-headline" id="scoreHeadline">Amazing!</div>
+  <div class="score-grade" id="scoreGrade">Smile Champion</div>
+  <div class="score-big" id="scoreFinal">0</div>
+  <div class="score-label">points scored</div>
+
+  <div class="stars-row" id="starsRow"></div>
+
+  <p class="score-msg" id="scoreMsg"></p>
+
+  <div class="offer-teaser">
+    <div class="ot-icon">🎁</div>
+    <div class="ot-title">You've unlocked a special offer!</div>
+    <div class="ot-text">Claim a discount on preventive dental care for your child — just enter your details on the next screen.</div>
+  </div>
+
+  <button class="btn-claim" id="btnClaim">Claim My Offer →</button>
+  <button class="btn-replay" id="btnReplayScore">Play Again</button>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     SCREEN 4: LEAD CAPTURE
+══════════════════════════════════════ -->
+<div id="screen-lead" class="screen">
+  <div class="lead-wrap">
+    <div class="lead-icon">🎁</div>
+    <h2 class="lead-title">Your Free Offer!</h2>
+    <p class="lead-sub">Enter your details below to claim your child's discount at Bite Dental Clinic.</p>
+
+    <div class="offer-badge">
+      <div class="ob-icon">✨</div>
+      <div>
+        <div class="ob-title">Free Fluoride Varnish Consultation</div>
+        <div class="ob-sub">+ 20% off dental sealants for your child's first visit</div>
+      </div>
+    </div>
+
+    <form id="leadForm" novalidate>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Parent's Name *</label>
+          <input type="text" id="parentName" placeholder="Your name" required/>
+        </div>
+        <div class="form-group">
+          <label>Child's Name *</label>
+          <input type="text" id="childName" placeholder="Child's name" required/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>WhatsApp Number *</label>
+        <input type="tel" id="phone" placeholder="+91 98765 43210" required/>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Child's Age</label>
+          <select id="childAge">
+            <option value="">Select age</option>
+            <option>2–4 years</option>
+            <option>5–7 years</option>
+            <option>8–10 years</option>
+            <option>11–14 years</option>
+            <option>15+ years</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Preferred Clinic</label>
+          <select id="clinic">
+            <option value="">Either</option>
+            <option>West Delhi – Meer Bagh</option>
+            <option>Gurugram – Sector 51</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-submit" id="btnSubmit">Claim My Offer 🎉</button>
+      <p class="privacy-note">We'll WhatsApp your offer code — no spam, ever. By submitting you agree to be contacted by Bite Dental Clinic.</p>
+    </form>
+
+    <button class="btn-skip" id="btnSkip">Skip for now</button>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     SCREEN 5: THANK YOU
+══════════════════════════════════════ -->
+<div id="screen-thanks" class="screen">
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+
+  <div class="thanks-icon">🎉</div>
+  <h2 class="thanks-title">You're all set!</h2>
+  <p class="thanks-sub" id="thanksMsg">We'll WhatsApp your offer to you shortly. See you at the clinic!</p>
+
+  <div class="voucher-card">
+    <div class="voucher-brand">🦷 Bite Dental Clinic — Exclusive Offer</div>
+    <div class="voucher-offer" id="voucherOffer">Free Fluoride Varnish Consultation + 20% Off Sealants</div>
+    <div class="voucher-detail">Valid for new child patients. Mention this code when booking.</div>
+    <div class="voucher-code">
+      <small>Your code</small>
+      <span id="voucherCode">SMILE2025</span>
+    </div>
+  </div>
+
+  <button class="btn-wa-claim" id="btnWaClaim">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Send Offer to My WhatsApp
+  </button>
+
+  <button class="btn-play-again" id="btnPlayAgain">Play Again 🎮</button>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════ -->
+<script>
+/* ── FOOD DATA ── */
+const FOODS = [
+  // ── GOOD for teeth ──
+  { emoji:'🍎', name:'Apple',       good:true,  fact:'Apples scrub your teeth as you chew!' },
+  { emoji:'🥕', name:'Carrot',      good:true,  fact:'Carrots are nature\'s toothbrush!' },
+  { emoji:'🥛', name:'Milk',        good:true,  fact:'Calcium in milk builds strong enamel!' },
+  { emoji:'🧀', name:'Cheese',      good:true,  fact:'Cheese raises mouth pH — great for teeth!' },
+  { emoji:'🥦', name:'Broccoli',    good:true,  fact:'Broccoli forms a protective film on teeth!' },
+  { emoji:'💧', name:'Water',       good:true,  fact:'Water rinses away sugar and bacteria!' },
+  { emoji:'🥜', name:'Almonds',     good:true,  fact:'Almonds are low in sugar and high in calcium!' },
+  { emoji:'🍓', name:'Strawberry',  good:true,  fact:'Strawberries contain malic acid — a natural whitener!' },
+  { emoji:'🫐', name:'Blueberry',   good:true,  fact:'Blueberries have compounds that fight gum bacteria!' },
+  { emoji:'🥑', name:'Avocado',     good:true,  fact:'Avocado is low in sugar and full of vitamins!' },
+  { emoji:'🥚', name:'Egg',         good:true,  fact:'Eggs are packed with phosphorus for strong teeth!' },
+  { emoji:'🐟', name:'Salmon',      good:true,  fact:'Salmon has Vitamin D — helps absorb calcium!' },
+  { emoji:'🫚', name:'Olive Oil',   good:true,  fact:'Olive oil reduces bacteria that cause tooth decay!' },
+  { emoji:'🫛', name:'Peas',        good:true,  fact:'Peas are rich in phosphorus and low in sugar!' },
+  { emoji:'🍵', name:'Green Tea',   good:true,  fact:'Green tea has polyphenols that fight plaque!' },
+  { emoji:'🌰', name:'Walnut',      good:true,  fact:'Walnuts have calcium and potassium for enamel!' },
+  { emoji:'🍇', name:'Grapes',      good:true,  fact:'Grapes have resveratrol which fights gum bacteria!' },
+  { emoji:'🥬', name:'Spinach',     good:true,  fact:'Spinach is full of calcium and folic acid!' },
+  // ── BAD for teeth ──
+  { emoji:'🍬', name:'Candy',       good:false, fact:'Sugar feeds the bacteria that make cavities!' },
+  { emoji:'🥤', name:'Soda',        good:false, fact:'Fizzy drinks dissolve tooth enamel fast!' },
+  { emoji:'🍫', name:'Chocolate',   good:false, fact:'Too much chocolate causes sticky cavities!' },
+  { emoji:'🍰', name:'Cake',        good:false, fact:'Sugary cake clings to every corner of your teeth!' },
+  { emoji:'🍭', name:'Lollipop',    good:false, fact:'Lollipops bathe teeth in sugar for minutes!' },
+  { emoji:'🍟', name:'Fries',       good:false, fact:'Starchy fries break down into sugars fast!' },
+  { emoji:'🧃', name:'Juice',       good:false, fact:'Even fruit juice can have as much sugar as soda!' },
+  { emoji:'🍩', name:'Doughnut',    good:false, fact:'Doughnuts are a cavity\'s dream come true!' },
+  { emoji:'🍪', name:'Cookie',      good:false, fact:'Cookies stick to teeth and feed cavity bacteria!' },
+  { emoji:'🌭', name:'Hot Dog',     good:false, fact:'Processed meats are high in acids — bad for enamel!' },
+  { emoji:'🧁', name:'Cupcake',     good:false, fact:'The icing on cupcakes is almost pure sugar!' },
+  { emoji:'🍦', name:'Ice Cream',   good:false, fact:'Ice cream is high in sugar and can cause sensitivity!' },
+  { emoji:'🍕', name:'Pizza',       good:false, fact:'Pizza dough breaks into sugar and feeds bacteria!' },
+  { emoji:'🥞', name:'Pancakes',    good:false, fact:'Pancakes and syrup are a cavity double-threat!' },
+  { emoji:'🍿', name:'Popcorn',     good:false, fact:'Popcorn shells get stuck between teeth and cause decay!' },
+  { emoji:'🧋', name:'Bubble Tea',  good:false, fact:'Bubble tea is loaded with sugar and sticky tapioca!' },
+  { emoji:'🍮', name:'Custard',     good:false, fact:'Sweet custard coats teeth in sugar and cream!' },
+  { emoji:'🎂', name:'Birthday Cake', good:false, fact:'Even on your birthday, too much cake causes cavities!' },
+];
+
+/* ── STATE ── */
+let score = 0, combo = 0, timeLeft = 60, gameTimer = null;
+let currentFood = null, foodEl = null, foodFallTimer = null;
+let answering = false;
+const GAME_DURATION = 60;
+const CIRCUMFERENCE = 2 * Math.PI * 22; // r=22
+
+/* ── SCREEN MANAGEMENT ── */
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+/* ── INTRO → GAME ── */
+document.getElementById('btnStart').addEventListener('click', startGame);
+
+function startGame() {
+  score = 0; combo = 0; timeLeft = GAME_DURATION; answering = false;
+  updateHUD();
+  showScreen('screen-game');
+  document.getElementById('timerRing').style.strokeDashoffset = '0';
+  document.getElementById('timerRing').style.stroke = 'var(--green)';
+  nextFood();
+  gameTimer = setInterval(tick, 1000);
+}
+
+/* ── TIMER ── */
+function tick() {
+  timeLeft--;
+  updateTimer();
+  if (timeLeft <= 0) endGame();
+}
+
+function updateTimer() {
+  const pct = timeLeft / GAME_DURATION;
+  const offset = CIRCUMFERENCE * (1 - pct);
+  const ring = document.getElementById('timerRing');
+  ring.style.strokeDashoffset = offset;
+  document.getElementById('timerDisplay').textContent = timeLeft;
+  // Color: green → yellow → red
+  if (pct > 0.5)      ring.style.stroke = 'var(--green)';
+  else if (pct > 0.25) ring.style.stroke = '#FFB800';
+  else                  ring.style.stroke = 'var(--red)';
+}
+
+/* ── FOOD DROP ── */
+function nextFood() {
+  if (foodEl) foodEl.remove();
+  answering = false;
+
+  // Speed increases as time runs down
+  const elapsed = GAME_DURATION - timeLeft;
+  const fallDuration = Math.max(1.2, 2.8 - elapsed * 0.022); // starts quicker, ramps up faster in 60s
+
+  currentFood = FOODS[Math.floor(Math.random() * FOODS.length)];
+  foodEl = document.createElement('div');
+  foodEl.className = 'food-item';
+  foodEl.textContent = currentFood.emoji;
+  foodEl.style.animationDuration = fallDuration + 's';
+  foodEl.style.animationTimingFunction = 'linear';
+
+  // Random horizontal position
+  const leftPct = 20 + Math.random() * 60;
+  foodEl.style.left = leftPct + '%';
+  foodEl.style.transform = 'translateX(-50%)';
+
+  document.getElementById('charArea').appendChild(foodEl);
+  document.getElementById('foodLabel').textContent = currentFood.name;
+
+  // If food reaches bottom without answer → wrong
+  foodFallTimer = setTimeout(() => {
+    if (!answering) {
+      handleAnswer(null); // timeout = missed
+    }
+  }, (fallDuration * 1000) + 200);
+}
+
+/* ── ANSWER HANDLING ── */
+function handleAnswer(wasGoodBtn) {
+  if (answering || !currentFood) return;
+  answering = true;
+  clearTimeout(foodFallTimer);
+
+  const correct = (wasGoodBtn === null) ? false :
+                  (wasGoodBtn === currentFood.good);
+
+  if (correct) {
+    const pts = 10 * Math.max(1, combo);
+    score += pts;
+    combo = Math.min(combo + 1, 8);
+    showFeedback(true, '+' + pts);
+  } else {
+    score = Math.max(0, score - 5);
+    combo = 0;
+    showFeedback(false, wasGoodBtn === null ? 'Too slow!' : '-5');
+  }
+
+  updateHUD();
+
+  if (foodEl) {
+    foodEl.style.animationPlayState = 'paused';
+    foodEl.style.transition = 'opacity 0.25s';
+    foodEl.style.opacity = '0';
+  }
+
+  setTimeout(() => {
+    if (timeLeft > 0) nextFood();
+  }, 550);
+}
+
+/* ── FEEDBACK ── */
+function showFeedback(good, text) {
+  const tooth = document.getElementById('toothChar');
+  tooth.className = 'tooth-char ' + (good ? 'happy' : 'sad');
+  tooth.textContent = good ? '😄' : '😬';
+  setTimeout(() => { tooth.className = 'tooth-char'; tooth.textContent = '🦷'; }, 600);
+
+  const flash = document.getElementById(good ? 'flashGood' : 'flashBad');
+  flash.classList.remove('show');
+  void flash.offsetWidth;
+  flash.classList.add('show');
+
+  // Score pop
+  const pop = document.createElement('div');
+  pop.className = 'score-pop ' + (good ? 'good' : 'bad');
+  pop.textContent = text;
+  pop.style.top = '40%';
+  document.getElementById('charArea').appendChild(pop);
+  setTimeout(() => pop.remove(), 900);
+}
+
+/* ── HUD UPDATE ── */
+function updateHUD() {
+  document.getElementById('scoreDisplay').textContent = score;
+  const c = combo <= 1 ? '×1' : '×' + combo + ' 🔥';
+  document.getElementById('comboDisplay').textContent = c;
+}
+
+/* ── BUTTONS ── */
+document.getElementById('btnGood').addEventListener('click', () => handleAnswer(true));
+document.getElementById('btnBad').addEventListener('click',  () => handleAnswer(false));
+
+/* ── END GAME ── */
+function endGame() {
+  clearInterval(gameTimer);
+  clearTimeout(foodFallTimer);
+  if (foodEl) { foodEl.style.animationPlayState = 'paused'; foodEl.remove(); }
+  showScoreScreen();
+}
+
+function showScoreScreen() {
+  // Grade the score
+  let trophy, headline, grade, msg, stars;
+  if (score >= 150) {
+    trophy='🏆'; headline='INCREDIBLE!'; grade='Smile Champion 🦷✨';
+    msg='Wow — you\'re a dental genius! Your tooth hero would be so proud. You clearly know your healthy foods!';
+    stars=5;
+  } else if (score >= 100) {
+    trophy='🥇'; headline='Awesome!'; grade='Smile Hero 💪';
+    msg='Brilliant score! You\'re really great at spotting healthy foods. Your teeth will thank you!';
+    stars=4;
+  } else if (score >= 60) {
+    trophy='🥈'; headline='Great job!'; grade='Smile Guardian 😊';
+    msg='Good effort! You know your healthy foods pretty well. A little more practice and you\'ll be a champion!';
+    stars=3;
+  } else if (score >= 30) {
+    trophy='🥉'; headline='Good try!'; grade='Smile Learner 📚';
+    msg='You\'re learning! Knowing which foods are good for teeth is a superpower — keep practising!';
+    stars=2;
+  } else {
+    trophy='🌟'; headline='Keep going!'; grade='Smile Explorer 🌱';
+    msg='Every champion starts somewhere! Play again and learn which foods make your teeth the happiest.';
+    stars=1;
+  }
+
+  document.getElementById('scoreTrophy').textContent = trophy;
+  document.getElementById('scoreHeadline').textContent = headline;
+  document.getElementById('scoreGrade').textContent = grade;
+  document.getElementById('scoreFinal').textContent = score;
+  document.getElementById('scoreMsg').textContent = msg;
+
+  const starsEl = document.getElementById('starsRow');
+  starsEl.innerHTML = '';
+  for (let i = 0; i < 5; i++) {
+    const s = document.createElement('span');
+    s.textContent = i < stars ? '⭐' : '☆';
+    s.style.opacity = i < stars ? '1' : '0.3';
+    starsEl.appendChild(s);
+  }
+
+  showScreen('screen-score');
+}
+
+document.getElementById('btnClaim').addEventListener('click',      () => showScreen('screen-lead'));
+document.getElementById('btnReplayScore').addEventListener('click', () => startGame());
+
+/* ── LEAD FORM ── */
+document.getElementById('leadForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const parent = document.getElementById('parentName').value.trim();
+  const child  = document.getElementById('childName').value.trim();
+  const phone  = document.getElementById('phone').value.trim();
+  if (!parent || !child || !phone) {
+    alert('Please fill in your name, child\'s name and WhatsApp number.');
+    return;
+  }
+  submitLead(parent, child, phone);
+});
+
+document.getElementById('btnSkip').addEventListener('click', () => {
+  showThanks(null);
+});
+
+function submitLead(parent, child, phone) {
+  const btn = document.getElementById('btnSubmit');
+  btn.disabled = true; btn.textContent = 'Sending... 🎉';
+
+  // Generate a friendly promo code
+  const code = 'SMILE' + Math.floor(1000 + Math.random() * 9000);
+
+  // WhatsApp notification to clinic
+  const clinic = document.getElementById('clinic').value || 'Either location';
+  const age    = document.getElementById('childAge').value || 'Not specified';
+  const waMsg  = encodeURIComponent(
+    `🦷 *New Game Lead — Bite Dental Clinic*\n\n` +
+    `👨‍👧 Parent: ${parent}\n` +
+    `👶 Child: ${child} (Age: ${age})\n` +
+    `📱 Phone: ${phone}\n` +
+    `📍 Preferred clinic: ${clinic}\n` +
+    `🎯 Score: ${score} pts\n` +
+    `🎁 Offer code: ${code}\n\n` +
+    `Offer: Free Fluoride Varnish Consultation + 20% off Sealants`
+  );
+
+  // Open WhatsApp for parent to send their own details to clinic
+  // (This is a lightweight approach that doesn't require a backend)
+  setTimeout(() => {
+    showThanks({ parent, child, phone, code, waMsg });
+  }, 800);
+}
+
+function showThanks(data) {
+  if (data) {
+    document.getElementById('thanksMsg').textContent =
+      `We'll reach out to you on WhatsApp at ${data.phone} shortly. Tap below to send us your details too!`;
+    document.getElementById('voucherCode').textContent = data.code;
+
+    document.getElementById('btnWaClaim').addEventListener('click', () => {
+      window.open(`https://wa.me/919810664561?text=${data.waMsg}`, '_blank');
+    });
+  } else {
+    document.getElementById('thanksMsg').textContent =
+      'You can always come back and claim your offer later. See you at Bite Dental Clinic!';
+    document.getElementById('btnWaClaim').style.display = 'none';
+  }
+  showScreen('screen-thanks');
+}
+
+document.getElementById('btnPlayAgain').addEventListener('click', () => {
+  document.getElementById('btnWaClaim').style.display = '';
+  startGame();
+});
+
+/* ── KEYBOARD SUPPORT (desktop) ── */
+document.addEventListener('keydown', e => {
+  if (document.getElementById('screen-game').classList.contains('active')) {
+    if (e.key === 'ArrowLeft'  || e.key === 'g' || e.key === 'G') handleAnswer(true);
+    if (e.key === 'ArrowRight' || e.key === 'b' || e.key === 'B') handleAnswer(false);
+  }
+});
+
+/* ── PREVENT SCROLL ON GAME ── */
+document.addEventListener('touchmove', e => {
+  if (document.getElementById('screen-game').classList.contains('active')) {
+    e.preventDefault();
+  }
+}, { passive: false });
+</script>
+</body>
+</html>

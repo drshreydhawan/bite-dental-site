@@ -1,0 +1,28 @@
+backend:
+  name: github
+  repo: drshreydhawan/bite-dental-site
+  branch: main
+
+media_folder: "Resources/blog-images"
+public_folder: "/Resources/blog-images"
+
+collections:
+  - name: "blog"
+    label: "Blog Posts"
+    files:
+      - label: "All Blog Posts"
+        name: "blog_posts"
+        file: "content/blog-posts.json"
+        fields:
+          - label: "Posts"
+            name: "posts"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Slug (URL-friendly, e.g. understanding-cavities)", name: "slug", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Tag / Category", name: "tag", widget: "string" }
+              - { label: "Date", name: "date", widget: "datetime", format: "MMMM D, YYYY", date_format: "MMMM D, YYYY", time_format: false }
+              - { label: "Excerpt (1-2 sentences for homepage card)", name: "excerpt", widget: "text" }
+              - { label: "Cover Image URL", name: "image", widget: "string", required: false, hint: "Paste a URL, or upload via the media button" }
+              - { label: "Full Post Content", name: "content", widget: "markdown" }

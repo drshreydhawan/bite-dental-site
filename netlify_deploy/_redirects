@@ -1,0 +1,9 @@
+# Bite Dental Clinic — Netlify Redirects
+# Booking pages forward to Wix (where your booking system lives)
+
+/appointment        https://drshreydhawan.wixsite.com/website-16/appointment    301!
+/appointment/*      https://drshreydhawan.wixsite.com/website-16/appointment    301!
+/booking            https://drshreydhawan.wixsite.com/website-16/appointment    301!
+
+# Clean blog URLs: /blog/some-slug → served by /blog/post.html (client renders content)
+/blog/:slug         /blog/post.html                                              200

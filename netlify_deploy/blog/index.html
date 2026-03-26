@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dental Tips & Insights | Bite Dental Clinic Blog</title>
+  <meta name="description" content="Real dental advice from our specialist team at Bite Dental Clinic, Delhi & Gurugram. Tips on aligners, implants, kids dentistry, preventive care and more." />
+  <link rel="canonical" href="https://www.bitedentalclinic.com/blog/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green: #60BC01;
+      --dark: #080D08;
+      --dark2: #0f160f;
+      --dark3: #131a13;
+      --dark4: #1a231a;
+      --text: #e8f0e8;
+      --text-2: #b0c4b0;
+      --text-3: #788978;
+      --radius: 14px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--dark); color: var(--text); font-family: 'Inter', sans-serif; min-height: 100vh; }
+
+    /* ─── NAV ─── */
+    nav {
+      background: rgba(8,13,8,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(96,188,1,0.15);
+      padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-logo img { height: 30px; }
+    .nav-links { display: flex; gap: 24px; align-items: center; list-style: none; }
+    .nav-links a { color: var(--text-2); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--green); }
+    .btn-nav-wa {
+      background: var(--green); color: #000; font-weight: 700; font-size: 0.85rem;
+      padding: 8px 16px; border-radius: 50px; text-decoration: none;
+      display: flex; align-items: center; gap: 6px;
+      transition: opacity 0.2s;
+    }
+    .btn-nav-wa:hover { opacity: 0.88; }
+    @media (max-width: 640px) { .nav-links { display: none; } }
+
+    /* ─── HERO ─── */
+    .blog-hero {
+      padding: 80px 24px 60px;
+      text-align: center;
+      background: linear-gradient(180deg, rgba(96,188,1,0.06) 0%, transparent 100%);
+      border-bottom: 1px solid rgba(96,188,1,0.1);
+    }
+    .blog-hero .tag {
+      display: inline-block; background: rgba(96,188,1,0.15); color: var(--green);
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 50px; margin-bottom: 20px;
+    }
+    .blog-hero h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2.4rem, 6vw, 4rem); font-weight: 900;
+      line-height: 1.05; color: #fff; margin-bottom: 16px;
+    }
+    .blog-hero h1 em { color: var(--green); font-style: normal; }
+    .blog-hero p { color: var(--text-2); font-size: 1.05rem; max-width: 520px; margin: 0 auto; }
+
+    /* ─── FILTERS ─── */
+    .filter-bar {
+      display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+      padding: 32px 24px 0;
+    }
+    .filter-btn {
+      padding: 7px 18px; border-radius: 50px; border: 1px solid rgba(96,188,1,0.25);
+      background: transparent; color: var(--text-2); font-size: 0.85rem; font-weight: 600;
+      cursor: pointer; transition: all 0.2s; font-family: 'Inter', sans-serif;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--green); color: #000; border-color: var(--green);
+    }
+
+    /* ─── GRID ─── */
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+      padding: 40px 0 80px;
+    }
+    .blog-card {
+      display: flex; flex-direction: column;
+      background: var(--dark3); border-radius: var(--radius);
+      border: 1px solid rgba(96,188,1,0.08);
+      overflow: hidden; text-decoration: none;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+    .blog-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(96,188,1,0.3);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+    }
+    .blog-img {
+      width: 100%; aspect-ratio: 16/9; object-fit: cover;
+      background: var(--dark4);
+    }
+    .blog-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+    .blog-meta {
+      display: flex; gap: 10px; align-items: center; margin-bottom: 12px; flex-wrap: wrap;
+    }
+    .blog-tag {
+      background: rgba(96,188,1,0.15); color: var(--green);
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      padding: 3px 10px; border-radius: 50px;
+    }
+    .blog-date { color: var(--text-3); font-size: 0.78rem; }
+    .blog-title {
+      font-size: 1.05rem; font-weight: 700; color: #fff;
+      line-height: 1.4; margin-bottom: 10px;
+    }
+    .blog-excerpt { color: var(--text-2); font-size: 0.88rem; line-height: 1.6; flex: 1; }
+    .blog-read {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: var(--green); font-size: 0.85rem; font-weight: 600;
+      margin-top: 16px;
+    }
+
+    /* ─── SHIMMER ─── */
+    @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+    .shimmer-card { background: var(--dark3); border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(96,188,1,0.06); }
+    .shimmer-img { height: 180px; background: linear-gradient(90deg, var(--dark3) 25%, var(--dark4) 50%, var(--dark3) 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; }
+    .shimmer-body { padding: 20px; }
+    .shimmer-line { height: 12px; border-radius: 4px; background: var(--dark4); margin-bottom: 10px; }
+
+    /* ─── EMPTY STATE ─── */
+    .empty-state { text-align: center; padding: 80px 24px; color: var(--text-3); }
+    .empty-state p { font-size: 1.1rem; }
+
+    /* ─── CTA STRIP ─── */
+    .cta-strip {
+      background: var(--dark4); border-top: 1px solid rgba(96,188,1,0.12);
+      padding: 48px 24px; text-align: center;
+    }
+    .cta-strip h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.8rem; font-weight: 800; margin-bottom: 8px; }
+    .cta-strip p { color: var(--text-2); margin-bottom: 24px; }
+    .cta-strip-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-green {
+      background: var(--green); color: #000; font-weight: 800; font-size: 0.95rem;
+      padding: 13px 28px; border-radius: 50px; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px; transition: opacity 0.2s;
+    }
+    .btn-green:hover { opacity: 0.88; }
+    .btn-wa {
+      background: #25D366; color: #000; font-weight: 700; font-size: 0.9rem;
+      padding: 13px 24px; border-radius: 50px; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px; transition: opacity 0.2s;
+    }
+    .btn-wa:hover { opacity: 0.85; }
+
+    /* ─── FOOTER ─── */
+    footer { padding: 32px 24px; border-top: 1px solid rgba(96,188,1,0.1); text-align: center; }
+    footer a { color: var(--green); text-decoration: none; }
+    footer p { color: var(--text-3); font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo"><img src="/Resources/bite_logo.png" alt="Bite Dental Clinic" /></a>
+  <ul class="nav-links">
+    <li><a href="/#treatments">Treatments</a></li>
+    <li><a href="/#locations">Locations</a></li>
+    <li><a href="/blog/">Blog</a></li>
+    <li><a href="/#faq">FAQ</a></li>
+  </ul>
+  <a class="btn-nav-wa" href="https://wa.me/919810664561?text=Hi%2C%20I%27m%20considering%20aligners.%20Can%20I%20get%20a%20quick%20estimate%3F" target="_blank" rel="noopener">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    WhatsApp Us
+  </a>
+</nav>
+
+<!-- HERO -->
+<div class="blog-hero">
+  <span class="tag">Dental Tips &amp; Insights</span>
+  <h1>From Our <em>Specialist Team</em></h1>
+  <p>Real advice from our dentists — backed by science, written for you. No jargon, no scare tactics.</p>
+</div>
+
+<!-- FILTERS -->
+<div class="filter-bar" id="filterBar">
+  <button class="filter-btn active" data-tag="all">All Posts</button>
+</div>
+
+<!-- GRID -->
+<div class="container">
+  <div class="posts-grid" id="postsGrid">
+    <!-- Shimmer loading placeholders -->
+    <div class="shimmer-card"><div class="shimmer-img"></div><div class="shimmer-body"><div class="shimmer-line" style="width:40%;margin-bottom:14px;"></div><div class="shimmer-line" style="width:90%;height:16px;"></div><div class="shimmer-line" style="width:75%;margin-top:6px;"></div></div></div>
+    <div class="shimmer-card" style="opacity:0.7"><div class="shimmer-img"></div><div class="shimmer-body"><div class="shimmer-line" style="width:50%;margin-bottom:14px;"></div><div class="shimmer-line" style="width:85%;height:16px;"></div><div class="shimmer-line" style="width:70%;margin-top:6px;"></div></div></div>
+    <div class="shimmer-card" style="opacity:0.4"><div class="shimmer-img"></div><div class="shimmer-body"><div class="shimmer-line" style="width:45%;margin-bottom:14px;"></div><div class="shimmer-line" style="width:80%;height:16px;"></div><div class="shimmer-line" style="width:65%;margin-top:6px;"></div></div></div>
+  </div>
+</div>
+
+<!-- CTA STRIP -->
+<div class="cta-strip">
+  <h2>Got a dental question? Just ask. 🦷</h2>
+  <p>Our team replies on WhatsApp — usually within a few minutes.</p>
+  <div class="cta-strip-btns">
+    <a class="btn-green" href="https://www.bitedentalclinic.com/appointment" target="_blank" rel="noopener">Book Free Consultation →</a>
+    <a class="btn-wa" href="https://wa.me/919810664561?text=Hi%2C%20I%27m%20considering%20aligners.%20Can%20I%20get%20a%20quick%20estimate%3F" target="_blank" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Chat on WhatsApp
+    </a>
+  </div>
+</div>
+
+<footer>
+  <p><a href="/">← Back to Bite Dental Clinic</a> &nbsp;·&nbsp; <a href="/appointment">Book Appointment</a> &nbsp;·&nbsp; <a href="https://wa.me/919810664561" target="_blank">WhatsApp</a></p>
+</footer>
+
+<script>
+(async function() {
+  const grid = document.getElementById('postsGrid');
+  const filterBar = document.getElementById('filterBar');
+  let allPosts = [];
+
+  try {
+    const res = await fetch('/content/blog-posts.json?v=' + Date.now());
+    const data = await res.json();
+    allPosts = data.posts || [];
+  } catch(e) {
+    grid.innerHTML = '<div class="empty-state"><p>Could not load posts. Please refresh or <a href="https://wa.me/919810664561" style="color:var(--green)">WhatsApp us</a>.</p></div>';
+    return;
+  }
+
+  // Build unique tags
+  const tags = ['all', ...new Set(allPosts.map(p => p.tag).filter(Boolean))];
+  filterBar.innerHTML = tags.map((t, i) =>
+    `<button class="filter-btn${i === 0 ? ' active' : ''}" data-tag="${t}">${t === 'all' ? 'All Posts' : t}</button>`
+  ).join('');
+
+  // Filter logic
+  filterBar.addEventListener('click', e => {
+    const btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+    filterBar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const tag = btn.dataset.tag;
+    const filtered = tag === 'all' ? allPosts : allPosts.filter(p => p.tag === tag);
+    renderPosts(filtered);
+  });
+
+  renderPosts(allPosts);
+
+  function renderPosts(posts) {
+    if (!posts.length) {
+      grid.innerHTML = '<div class="empty-state"><p>No posts in this category yet.</p></div>';
+      return;
+    }
+    grid.innerHTML = posts.map(post => {
+      const img = post.image
+        ? `<img class="blog-img" src="${post.image}" alt="${escHtml(post.title)}" loading="lazy" />`
+        : `<div class="blog-img" style="background:var(--dark4);display:flex;align-items:center;justify-content:center;height:180px;"><span style="font-size:2.5rem;">🦷</span></div>`;
+      return `
+        <a class="blog-card" href="/blog/${post.slug}">
+          ${img}
+          <div class="blog-body">
+            <div class="blog-meta">
+              ${post.tag ? `<span class="blog-tag">${escHtml(post.tag)}</span>` : ''}
+              ${post.date ? `<span class="blog-date">${escHtml(post.date)}</span>` : ''}
+            </div>
+            <div class="blog-title">${escHtml(post.title)}</div>
+            <div class="blog-excerpt">${escHtml(post.excerpt || '')}</div>
+            <span class="blog-read">Read article →</span>
+          </div>
+        </a>`;
+    }).join('');
+  }
+
+  function escHtml(str) {
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+})();
+</script>
+</body>
+</html>
