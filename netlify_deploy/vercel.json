@@ -1,6 +1,6 @@
 {
   "rewrites": [
-    { "source": "/blog/:slug", "destination": "/blog/post.html" }
+    { "source": "/blog/:slug", "destination": "/api/blog-og?slug=$slug" }
   ],
   "redirects": [
     { "source": "/appointment",    "destination": "https://drshreydhawan.wixsite.com/website-16/appointment", "statusCode": 301 },
