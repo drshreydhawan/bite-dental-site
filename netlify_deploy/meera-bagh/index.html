@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="/Resources/bite_logo.png" />
+  <link rel="apple-touch-icon" href="/Resources/bite_logo.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bite Dental Clinic Meera Bagh | Best Dentist West Delhi | Aligners & Implants Near Janakpuri</title>
   <meta name="description" content="Bite Dental Clinic Meera Bagh, West Delhi — specialist dentists near Janakpuri. Invisalign® aligners, dental implants (5000+ cases), kids dentistry. 4.9★ Google · Free consultation. Call +91 98106 64561." />
@@ -162,7 +164,8 @@ section{padding-block:80px;}
 @media(max-width:520px){.doc-grid{grid-template-columns:1fr;}}
 .doc-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:28px 22px;text-align:center;transition:border-color .2s,transform .2s;}
 .doc-card:hover{border-color:var(--border-2);transform:translateY(-3px);}
-.doc-avatar{width:72px;height:72px;border-radius:50%;background:var(--green-dim);border:2px solid var(--border-2);margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:2rem;}
+.doc-avatar{width:72px;height:72px;border-radius:50%;background:var(--green-dim);border:2px solid var(--border-2);margin:0 auto 16px;overflow:hidden;}
+.doc-avatar img{width:100%;height:100%;object-fit:cover;object-position:top center;}
 .doc-name{font-family:var(--head);font-size:1.15rem;font-weight:800;color:var(--white);margin-bottom:4px;}
 .doc-role{font-size:0.8rem;color:var(--green);font-weight:600;margin-bottom:8px;}
 .doc-qual{font-size:0.78rem;color:var(--text-2);line-height:1.5;}
@@ -195,6 +198,7 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
 .wa-fab svg{width:26px;height:26px;fill:#fff;}
 .mob-cta{display:none;position:fixed;bottom:0;left:0;right:0;z-index:250;}
 @media(max-width:768px){.mob-cta{display:block;}.wa-fab{bottom:78px;}}
+.btn-nav-phone{display:none;align-items:center;gap:5px;color:var(--text-2);font-size:0.82rem;font-weight:500;padding:8px 12px;border-radius:8px;transition:color .2s;white-space:nowrap;}@media(min-width:1000px){.btn-nav-phone{display:inline-flex;}}.btn-nav-phone:hover{color:var(--white);}
 </style>
 </head>
 <body>
@@ -212,6 +216,7 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
       <li><a href="#faq">FAQ</a></li>
     </ul>
     <div class="nav-cta">
+      <a class="btn-nav-phone" href="tel:+917533951611">📞 +91 75339 51611</a>
       <a class="btn-nav-wa" href="https://wa.me/919810664561?text=Hi%20Bite%20Dental%20Meera%20Bagh%2C%20I%27d%20like%20to%20book%20a%20consultation" target="_blank" rel="noopener">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         WhatsApp
@@ -402,7 +407,7 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
           <div class="loc-detail-icon">📞</div>
           <div>
             <div class="loc-detail-label">Phone / WhatsApp</div>
-            <div class="loc-detail-value"><a href="tel:+919810664561">+91 98106 64561</a></div>
+            <div class="loc-detail-value"><a href="tel:+917533951611" style="display:block;margin-bottom:4px;">📞 Delhi: +91 75339 51611</a><a href="tel:+919810664561" style="display:block;">📞 Gurugram: +91 98106 64561</a></div>
           </div>
         </div>
         <div class="loc-detail-row">
@@ -442,19 +447,19 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
     </div>
     <div class="doc-grid">
       <div class="doc-card">
-        <div class="doc-avatar">👨‍⚕️</div>
+        <div class="doc-avatar"><img src="/Resources/Profiles/11.png" alt="Dr. Shrey Dhawan" loading="lazy" /></div>
         <div class="doc-name">Dr. Shrey Dhawan</div>
         <div class="doc-role">Founder & Endodontist</div>
         <div class="doc-qual">MDS Endodontics · Specialist in painless root canal and complex endodontic treatment. Clinic founder.</div>
       </div>
       <div class="doc-card">
-        <div class="doc-avatar">👩‍⚕️</div>
+        <div class="doc-avatar"><img src="/Resources/Profiles/13.png" alt="Dr. Shamindhi Dhawan" loading="lazy" /></div>
         <div class="doc-name">Dr. Shamindhi Dhawan</div>
         <div class="doc-role">Implant & Facial Cosmetic Surgeon</div>
-        <div class="doc-qual">MDS Oral Surgery · 5000+ implant cases · Single tooth to full-arch restorations.</div>
+        <div class="doc-qual">5000+ implant cases · Single tooth to full-arch restorations · Facial cosmetic surgery</div>
       </div>
       <div class="doc-card">
-        <div class="doc-avatar">👩‍⚕️</div>
+        <div class="doc-avatar"><img src="/Resources/Profiles/Achla_bite_profile.png" alt="Dr. Achla Goel" loading="lazy" /></div>
         <div class="doc-name">Dr. Achla Goel</div>
         <div class="doc-role">Pedodontist & Preventive Dentistry</div>
         <div class="doc-qual">MDS Pedodontics · West Delhi's favourite kids dentist. Fear-free, gentle and genuinely loved by children.</div>
@@ -496,7 +501,7 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
           <span class="faq-q-text">How experienced is your implant team?</span>
           <span class="faq-chevron">▼</span>
         </button>
-        <div class="faq-a">Dr. Shamindhi Dhawan (MDS Oral Surgery) has personally led over 5000 implant procedures with a 98% success rate. From single-tooth implants to complex full-arch cases, our track record in West Delhi speaks for itself. We use premium implant systems with long-term warranties.</div>
+        <div class="faq-a">Dr. Shamindhi Dhawan has personally led over 5000 implant procedures with a 98% success rate. From single-tooth implants to complex full-arch cases, our track record in West Delhi speaks for itself. We use premium implant systems with long-term warranties.</div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
@@ -529,7 +534,7 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
       <div class="f-brand">
         <img src="https://static.wixstatic.com/media/fe82ed_93334d8bf0274ef48b65d4f2dcf4ff69~mv2.png" alt="Bite Dental Clinic" height="34" />
         <p>Specialist-led dentistry in West Delhi & Gurugram. 5000+ implants. 250+ aligners. 98% success rate.</p>
-        <a href="tel:+919810664561">+91 98106 64561</a>
+        <a href="tel:+917533951611" style="display:block;margin-bottom:4px;">📞 Delhi: +91 75339 51611</a><a href="tel:+919810664561" style="display:block;">📞 Gurugram: +91 98106 64561</a>
       </div>
       <div class="f-col">
         <h5>Treatments</h5>

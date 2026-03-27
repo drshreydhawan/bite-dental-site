@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="/Resources/bite_logo.png" />
+  <link rel="apple-touch-icon" href="/Resources/bite_logo.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kids Dentistry Delhi & Gurugram | Paediatric Dentist | Bite Dental Clinic | First Visit Free</title>
   <meta name="description" content="Specialist kids dentistry at Bite Dental Clinic, Delhi & Gurugram. Dr. Achla Goel (MDS Pedodontics) — fear-free, gentle, child-friendly dental care. First visit free for new child patients. Book now." />
@@ -202,7 +204,8 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
 @media(max-width:820px){.achla-wrap{grid-template-columns:1fr;}}
 .achla-left{background:linear-gradient(145deg,rgba(96,188,1,0.12),rgba(96,188,1,0.04));display:flex;flex-direction:column;align-items:center;padding:44px 28px 36px;border-right:1px solid var(--border);text-align:center;}
 @media(max-width:820px){.achla-left{border-right:none;border-bottom:1px solid var(--border);padding:32px 24px;}}
-.achla-avatar{width:130px;height:130px;border-radius:50%;background:rgba(96,188,1,0.12);border:3px solid var(--border-2);display:flex;align-items:center;justify-content:center;font-size:4rem;margin:0 auto 18px;}
+.achla-avatar{width:130px;height:130px;border-radius:50%;background:rgba(96,188,1,0.12);border:3px solid var(--border-2);overflow:hidden;margin:0 auto 18px;}
+.achla-avatar img{width:100%;height:100%;object-fit:cover;object-position:top center;}
 .achla-nm{font-family:var(--head);font-size:1.55rem;font-weight:900;color:var(--white);margin-bottom:5px;}
 .achla-deg{font-size:0.78rem;color:var(--green);font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:18px;}
 .achla-left-stats{display:flex;flex-direction:column;gap:10px;width:100%;}
@@ -216,6 +219,39 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
 .achla-bio-p{font-size:0.9rem;color:var(--text-2);line-height:1.76;margin-bottom:12px;}
 .achla-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px;}
 .achla-tag{background:var(--green-dim);border:1px solid var(--green-line);border-radius:999px;padding:5px 14px;font-size:0.75rem;font-weight:600;color:var(--green);}
+.btn-nav-phone{display:none;align-items:center;gap:5px;color:var(--text-2);font-size:0.82rem;font-weight:500;padding:8px 12px;border-radius:8px;transition:color .2s;white-space:nowrap;}@media(min-width:1000px){.btn-nav-phone{display:inline-flex;}}.btn-nav-phone:hover{color:var(--white);}
+
+/* ═══ KIDS PAGE FUN ENHANCEMENTS ═══ */
+/* Playful floating bubbles in hero */
+.kids-bubbles{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;}
+.bubble{position:absolute;border-radius:50%;opacity:0.07;}
+@keyframes float-up{0%{transform:translateY(0) scale(1);}50%{transform:translateY(-18px) scale(1.04);}100%{transform:translateY(0) scale(1);}}
+.bubble:nth-child(1){width:80px;height:80px;background:#60BC01;top:15%;right:8%;animation:float-up 5s ease-in-out infinite;}
+.bubble:nth-child(2){width:52px;height:52px;background:#FF8C42;top:60%;right:15%;animation:float-up 6.5s ease-in-out infinite 0.8s;}
+.bubble:nth-child(3){width:38px;height:38px;background:#7B68EE;top:30%;right:25%;animation:float-up 4.5s ease-in-out infinite 1.5s;}
+.bubble:nth-child(4){width:64px;height:64px;background:#FFD700;top:70%;right:5%;animation:float-up 5.5s ease-in-out infinite 0.3s;}
+.bubble:nth-child(5){width:28px;height:28px;background:#60BC01;top:80%;right:35%;animation:float-up 7s ease-in-out infinite 2s;}
+
+/* Fun kids stat strip */
+.kids-stat-strip{background:linear-gradient(90deg,rgba(96,188,1,0.1) 0%,rgba(123,104,238,0.07) 50%,rgba(255,140,66,0.07) 100%);border-block:1px solid var(--border);padding:22px 0;}
+.kids-stats-row{display:flex;justify-content:center;align-items:center;gap:clamp(14px,4vw,50px);flex-wrap:wrap;}
+.kids-stat-item{display:flex;align-items:center;gap:10px;}
+.kids-stat-emoji{font-size:1.6rem;}
+.kids-stat-text .n{font-family:var(--kids);font-size:1.5rem;font-weight:900;line-height:1;}
+.kids-stat-text .l{font-size:0.72rem;color:var(--text-2);text-transform:uppercase;letter-spacing:0.07em;}
+.ksd{width:1px;height:32px;background:var(--border);}
+@media(max-width:500px){.ksd{display:none;}}
+
+/* Fun emoji heading accents on sections */
+.kids-sec-accent{display:block;font-size:2rem;margin-bottom:10px;}
+
+/* Colourful service cards */
+.srv-card.kc-1{border-top:3px solid #60BC01;}
+.srv-card.kc-2{border-top:3px solid #FF8C42;}
+.srv-card.kc-3{border-top:3px solid #FFD700;}
+.srv-card.kc-4{border-top:3px solid #7B68EE;}
+.srv-card.kc-5{border-top:3px solid #FF6B6B;}
+.srv-card.kc-6{border-top:3px solid #00BCD4;}
 </style>
 </head>
 <body>
@@ -233,6 +269,7 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
       <li><a href="/meera-bagh">Meera Bagh</a></li>
     </ul>
     <div class="nav-cta">
+      <a class="btn-nav-phone" href="tel:+917533951611">📞 +91 75339 51611</a>
       <a class="btn-nav-wa" href="https://wa.me/919810664561?text=Hi%2C%20I%27d%20like%20to%20book%20a%20kids%20dental%20appointment" target="_blank" rel="noopener">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         Book Kids Appointment
@@ -257,6 +294,10 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
 
 <section class="hero" id="top">
   <div class="hero-bg"></div>
+  <div class="kids-bubbles">
+    <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
+    <div class="bubble"></div><div class="bubble"></div>
+  </div>
   <div class="container">
     <div class="hero-grid">
       <div>
@@ -299,17 +340,19 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
   </div>
 </section>
 
-<div class="trust-bar">
-  <div class="container trust-bar-i">
-    <div class="tstat"><div class="num">Free</div><div class="lbl">First Visit</div></div>
-    <div class="tdiv"></div>
-    <div class="tstat"><div class="num">MDS</div><div class="lbl">Pedodontist</div></div>
-    <div class="tdiv"></div>
-    <div class="tstat"><div class="num">4.9★</div><div class="lbl">Google Rating</div></div>
-    <div class="tdiv"></div>
-    <div class="tstat"><div class="num">0–17</div><div class="lbl">All Ages</div></div>
-    <div class="tdiv"></div>
-    <div class="tstat"><div class="num">2</div><div class="lbl">Delhi NCR Locations</div></div>
+<div class="kids-stat-strip">
+  <div class="container kids-stats-row">
+    <div class="kids-stat-item"><span class="kids-stat-emoji">🎉</span><div class="kids-stat-text"><div class="n" style="color:#60BC01;">FREE</div><div class="l">First Visit</div></div></div>
+    <div class="ksd"></div>
+    <div class="kids-stat-item"><span class="kids-stat-emoji">👩‍⚕️</span><div class="kids-stat-text"><div class="n" style="color:#7B68EE;">MDS</div><div class="l">Pedodontist</div></div></div>
+    <div class="ksd"></div>
+    <div class="kids-stat-item"><span class="kids-stat-emoji">⭐</span><div class="kids-stat-text"><div class="n" style="color:#FFD700;">4.9★</div><div class="l">Google</div></div></div>
+    <div class="ksd"></div>
+    <div class="kids-stat-item"><span class="kids-stat-emoji">🧒</span><div class="kids-stat-text"><div class="n" style="color:#FF8C42;">0–17</div><div class="l">All Ages</div></div></div>
+    <div class="ksd"></div>
+    <div class="kids-stat-item"><span class="kids-stat-emoji">😊</span><div class="kids-stat-text"><div class="n" style="color:#60BC01;">Fear-Free</div><div class="l">Guaranteed</div></div></div>
+    <div class="ksd"></div>
+    <div class="kids-stat-item"><span class="kids-stat-emoji">📍</span><div class="kids-stat-text"><div class="n" style="color:#60BC01;">2</div><div class="l">Delhi NCR Clinics</div></div></div>
   </div>
 </div>
 
@@ -322,34 +365,34 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
       <p class="sub">From the first baby tooth to teenage orthodontics — comprehensive specialist care at every stage.</p>
     </div>
     <div class="srv-grid">
-      <div class="srv-card">
+      <div class="srv-card kc-1">
         <div class="srv-icon">🔍</div>
         <div class="srv-name">Check-Up & Cleaning</div>
         <div class="srv-desc">Regular dental check-ups and professional cleaning help catch issues early and establish a healthy routine. First visit is always free for new child patients.</div>
       </div>
-      <div class="srv-card">
+      <div class="srv-card kc-2">
         <div class="srv-icon">🛡️</div>
         <div class="srv-name">Dental Sealants</div>
         <div class="srv-desc">Protective coatings applied to the grooves of back teeth — highly effective at preventing cavities in children. Painless, quick and one of the best investments in your child's dental health.</div>
       </div>
-      <div class="srv-card">
+      <div class="srv-card kc-3">
         <div class="srv-icon">💧</div>
         <div class="srv-name">Fluoride Treatment</div>
         <div class="srv-desc">Professional fluoride applications strengthen enamel and dramatically reduce cavity risk. Recommended at every 6-month check-up for children at all ages.</div>
       </div>
-      <div class="srv-card">
+      <div class="srv-card kc-4">
         <div class="srv-icon">🦷</div>
         <div class="srv-name">Cavity Treatment (Fillings)</div>
         <div class="srv-desc">Gentle cavity treatment with tooth-coloured composite fillings. Our specialist team is experienced in treating children with minimal anxiety and maximum comfort.</div>
       </div>
-      <div class="srv-card">
+      <div class="srv-card kc-5">
         <div class="srv-icon">😬</div>
         <div class="srv-name">Interceptive Orthodontics</div>
         <div class="srv-desc">Early treatment during mixed dentition (ages 6–12) can guide jaw growth and prevent severe crowding. Dr. Achla Goel identifies orthodontic issues early, when they're easiest and cheapest to correct.</div>
       </div>
-      <div class="srv-card">
+      <div class="srv-card kc-6">
         <div class="srv-icon">🎮</div>
-        <div class="srv-name">Dental Anxiety Management</div>
+        <div class="srv-name" style="font-family:var(--kids);">Dental Anxiety Management</div>
         <div class="srv-desc">Specialised behaviour management techniques for anxious children — Tell-Show-Do, distraction therapy and a calm, child-designed environment. No child is rushed, ever.</div>
       </div>
     </div>
@@ -457,7 +500,7 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
     </div>
     <div class="achla-wrap">
       <div class="achla-left">
-        <div class="achla-avatar">👩‍⚕️</div>
+        <div class="achla-avatar"><img src="/Resources/Profiles/Achla_bite_profile.png" alt="Dr. Achla Goel – Pedodontist" loading="lazy" /></div>
         <div class="achla-nm">Dr. Achla Goel</div>
         <div class="achla-deg">MDS Pedodontics &amp; Preventive Dentistry</div>
         <div class="achla-left-stats">
@@ -558,7 +601,7 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
       <div class="f-brand">
         <img src="https://static.wixstatic.com/media/fe82ed_93334d8bf0274ef48b65d4f2dcf4ff69~mv2.png" alt="Bite Dental Clinic" height="34" />
         <p>Specialist paediatric dentistry — fear-free & gentle. First visit free. Delhi & Gurugram.</p>
-        <a href="tel:+919810664561">+91 98106 64561</a>
+        <a href="tel:+917533951611" style="display:block;margin-bottom:4px;">📞 Delhi: +91 75339 51611</a><a href="tel:+919810664561" style="display:block;">📞 Gurugram: +91 98106 64561</a>
       </div>
       <div class="f-col">
         <h5>Treatments</h5>
