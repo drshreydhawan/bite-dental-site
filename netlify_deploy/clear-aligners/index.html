@@ -149,12 +149,33 @@ section{padding-block:80px;}
 /* BRANDS */
 .brands-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
 @media(max-width:700px){.brands-grid{grid-template-columns:1fr;}}
-.brand-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:32px 26px;transition:border-color .25s,transform .2s;}
+.brand-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:28px 22px;transition:border-color .25s,transform .2s;position:relative;overflow:hidden;}
 .brand-card:hover{border-color:var(--border-2);transform:translateY(-3px);}
-.brand-name{font-family:var(--head);font-size:1.5rem;font-weight:900;color:var(--white);margin-bottom:8px;}
-.brand-tag-line{font-size:0.8rem;color:var(--green);font-weight:600;margin-bottom:14px;text-transform:uppercase;letter-spacing:0.08em;}
-.brand-desc{font-size:0.86rem;color:var(--text-2);line-height:1.6;}
+.brand-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.brand-card.inv::before{background:linear-gradient(90deg,#00ADEF,#0070C0);}
+.brand-card.spark::before{background:linear-gradient(90deg,#C49A00,#F2C200);}
+.brand-card.damon::before{background:linear-gradient(90deg,#2C2C2C,#555);}
+.brand-card.clarity::before{background:linear-gradient(90deg,#CC0000,#FF0000);}
+.brand-logo-wrap{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.brand-logo-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:900;flex-shrink:0;}
+.brand-card.inv .brand-logo-icon{background:rgba(0,173,239,0.12);color:#00ADEF;}
+.brand-card.spark .brand-logo-icon{background:rgba(196,154,0,0.12);color:#C49A00;}
+.brand-card.damon .brand-logo-icon{background:rgba(80,80,80,0.15);color:#aaa;}
+.brand-card.clarity .brand-logo-icon{background:rgba(204,0,0,0.1);color:#CC0000;}
+.brand-name{font-family:var(--head);font-size:1.4rem;font-weight:900;color:var(--white);margin-bottom:0;}
+.brand-tag-line{font-size:0.78rem;color:var(--green);font-weight:600;margin-bottom:12px;text-transform:uppercase;letter-spacing:0.08em;}
+.brand-desc{font-size:0.84rem;color:var(--text-2);line-height:1.6;}
 .brand-pill{display:inline-block;background:var(--green-dim);border:1px solid var(--green-line);border-radius:999px;padding:3px 10px;font-size:0.72rem;font-weight:700;color:var(--green);margin-top:12px;}
+/* Gallery */
+.story-gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px;}
+@media(max-width:900px){.story-gallery{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:500px){.story-gallery{grid-template-columns:1fr 1fr;}}
+.story-thumb{border-radius:12px;overflow:hidden;border:1px solid var(--border);transition:transform .3s,box-shadow .3s;}
+.story-thumb:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,0.4);}
+.story-thumb img{width:100%;display:block;aspect-ratio:1/1;object-fit:cover;}
+/* Delhi cheapest badge */
+.cheapest-badge{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(96,188,1,0.15),rgba(96,188,1,0.06));border:1px solid var(--border-2);border-radius:999px;padding:8px 20px;font-size:0.85rem;font-weight:700;color:var(--green);margin-bottom:24px;}
+
 
 /* PRICING */
 .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
@@ -350,31 +371,67 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
   </div>
 </section>
 
-<!-- BRANDS -->
+<!-- BEFORE / AFTER GALLERY -->
 <section style="background:var(--bg);">
   <div class="container">
     <div class="sec-head center">
-      <span class="tag">Authorised Aligner Brands</span>
-      <h2 class="sh">Three world-class systems. <span>One expert team.</span></h2>
-      <p class="sub">We'll recommend the right brand for your case, budget and lifestyle — not the most expensive option.</p>
+      <span class="tag">Real Patient Results</span>
+      <h2 class="sh">250+ smiles <span>transformed.</span></h2>
+      <p class="sub">These are real before & after cases from our clinic — photographed with patient consent.</p>
     </div>
-    <div class="brands-grid">
-      <div class="brand-card">
-        <div class="brand-name">Invisalign®</div>
-        <div class="brand-tag-line">World #1 · Platinum Elite Certified</div>
-        <div class="brand-desc">The gold standard in clear aligners. Used in 100+ countries, with the most advanced SmartTrack® material and ClinCheck® 3D simulation. We're a Platinum Elite provider — one of the highest certification tiers available in India.</div>
+    <div class="story-gallery">
+      <div class="story-thumb"><img src="/Resources/smile-stories/Bite_Website_resources/story-01.png" alt="Clear aligner result – smile transformation" loading="lazy" /></div>
+      <div class="story-thumb"><img src="/Resources/smile-stories/Bite_Website_resources/story-02.png" alt="Overjet correction with aligners" loading="lazy" /></div>
+      <div class="story-thumb"><img src="/Resources/smile-stories/Bite_Website_resources/story-03.png" alt="Crowding correction with clear aligners" loading="lazy" /></div>
+      <div class="story-thumb"><img src="/Resources/smile-stories/Bite_Website_resources/story-05.png" alt="Smile design veneer transformation" loading="lazy" /></div>
+    </div>
+    <p style="text-align:center;margin-top:18px;font-size:0.82rem;color:var(--text-3);">Results vary by individual case. Book a free consultation for a 3D preview of your expected outcome.</p>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<section style="background:var(--bg-2);">
+  <div class="container">
+    <div class="sec-head center">
+      <span class="tag">Authorised Aligner Brands</span>
+      <h2 class="sh">Four world-class systems. <span>One expert team.</span></h2>
+      <p class="sub">We offer every leading orthodontic solution — and recommend the right one for your case and budget, not the most expensive.</p>
+    </div>
+    <div class="brands-grid" style="grid-template-columns:repeat(4,1fr);">
+      <div class="brand-card inv">
+        <div class="brand-logo-wrap">
+          <div class="brand-logo-icon">I</div>
+          <div class="brand-name">Invisalign®</div>
+        </div>
+        <div class="brand-tag-line">World #1 · Platinum Elite</div>
+        <div class="brand-desc">The global gold standard. ClinCheck® 3D simulation, SmartTrack® material. Platinum Elite certified — one of India's highest tiers.</div>
         <span class="brand-pill">Platinum Elite Provider</span>
       </div>
-      <div class="brand-card">
-        <div class="brand-name">Spark™</div>
-        <div class="brand-tag-line">TruGEN™ Material · High Clarity</div>
-        <div class="brand-desc">Made with TruGEN™ — the clearest, most stain-resistant aligner material on the market. An excellent choice for patients who prioritise aesthetics and want aligners that remain virtually invisible throughout treatment.</div>
+      <div class="brand-card spark">
+        <div class="brand-logo-wrap">
+          <div class="brand-logo-icon">S</div>
+          <div class="brand-name">Spark™</div>
+        </div>
+        <div class="brand-tag-line">TruGEN™ · Clearest Material</div>
+        <div class="brand-desc">TruGEN™ material — the clearest, most stain-resistant aligner available. Ideal for patients prioritising invisible aesthetics throughout treatment.</div>
         <span class="brand-pill">Certified Provider</span>
       </div>
-      <div class="brand-card">
-        <div class="brand-name">3M Clarity™</div>
+      <div class="brand-card damon">
+        <div class="brand-logo-wrap">
+          <div class="brand-logo-icon">D</div>
+          <div class="brand-name">Damon™</div>
+        </div>
+        <div class="brand-tag-line">Self-Ligating · Low Friction</div>
+        <div class="brand-desc">Damon Clear self-ligating brackets move teeth with less friction and pressure, often reducing treatment time and the need for extractions in complex cases.</div>
+        <span class="brand-pill">Authorised Provider</span>
+      </div>
+      <div class="brand-card clarity">
+        <div class="brand-logo-wrap">
+          <div class="brand-logo-icon">3M</div>
+          <div class="brand-name">3M Clarity™</div>
+        </div>
         <div class="brand-tag-line">3M Precision · Trusted Globally</div>
-        <div class="brand-desc">Backed by 3M's global precision engineering. Known for comfortable fit and reliable tooth movement. An excellent value-for-money option for straightforward to moderate orthodontic cases.</div>
+        <div class="brand-desc">3M's global engineering heritage. Reliable, comfortable and an excellent value option for mild to moderate orthodontic corrections.</div>
         <span class="brand-pill">Authorised Provider</span>
       </div>
     </div>
@@ -386,34 +443,36 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
   <div class="container">
     <div class="sec-head center">
       <span class="tag">Investment · Transparent Pricing</span>
+      <div class="cheapest-badge">🏆 Among the most competitive prices in Delhi-NCR</div>
       <h2 class="sh">No surprise fees. <span>Just honest numbers.</span></h2>
-      <p class="sub">Prices vary by complexity. Your exact quote comes after the free consultation — but here's a realistic range.</p>
+      <p class="sub">Full price ranges shown below — your exact quote is after the free consultation. 0% EMI available on all plans.</p>
     </div>
     <div class="pricing-grid">
       <div class="price-card">
         <div class="price-label">For mild cases</div>
         <div class="price-name">Lite Plan</div>
-        <div class="price-from">Starting from</div>
-        <div class="price-val">₹60,000</div>
+        <div class="price-from">Price range</div>
+        <div class="price-val" style="font-size:1.5rem;">₹60,000 – ₹1,20,000</div>
         <ul class="price-features">
           <li>Mild crowding or spacing</li>
           <li>Up to 14 aligner sets</li>
           <li>4–6 month treatment</li>
-          <li>3D simulation included</li>
+          <li>Free 3D simulation</li>
           <li>Retainers included</li>
+          <li>0% EMI available</li>
         </ul>
       </div>
       <div class="price-card featured">
         <div class="best-value">Most Popular</div>
-        <div class="price-label">For teens & moderate cases</div>
-        <div class="price-name">Teen / Moderate Plan</div>
-        <div class="price-from">Starting from</div>
-        <div class="price-val">₹90,000</div>
+        <div class="price-label">For moderate cases</div>
+        <div class="price-name">Moderate Plan</div>
+        <div class="price-from">Price range</div>
+        <div class="price-val" style="font-size:1.5rem;">₹80,000 – ₹1,50,000</div>
         <ul class="price-features">
           <li>Moderate crowding & bite issues</li>
           <li>Unlimited refinements</li>
           <li>8–14 month treatment</li>
-          <li>3D simulation + progress tracking</li>
+          <li>Free 3D simulation + tracking</li>
           <li>Retainers included</li>
           <li>0% EMI available</li>
         </ul>
@@ -421,8 +480,8 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
       <div class="price-card">
         <div class="price-label">For complex cases</div>
         <div class="price-name">Comprehensive Plan</div>
-        <div class="price-from">Starting from</div>
-        <div class="price-val">₹1,20,000</div>
+        <div class="price-from">Price range</div>
+        <div class="price-val" style="font-size:1.5rem;">₹1,25,000 – ₹1,80,000</div>
         <ul class="price-features">
           <li>Complex crowding, overjet, overbite</li>
           <li>Full arch correction</li>
@@ -433,7 +492,7 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
         </ul>
       </div>
     </div>
-    <p style="text-align:center;margin-top:28px;font-size:0.84rem;color:var(--text-3);">All prices are indicative. Your exact quote is provided after a free consultation. 0% EMI available on all plans.</p>
+    <p style="text-align:center;margin-top:28px;font-size:0.84rem;color:var(--text-3);">All price ranges are indicative and depend on case complexity and brand chosen. Exact quote provided at your free consultation. 0% EMI available on all plans.</p>
   </div>
 </section>
 
@@ -450,7 +509,7 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
           <span class="faq-q-text">How much do aligners cost in Delhi?</span>
           <span class="faq-chevron">▼</span>
         </button>
-        <div class="faq-a">Clear aligners at Bite Dental start from ₹60,000 for Lite plans, ₹90,000–1.8L for Teen/Moderate plans, and ₹1.2L–2.4L for Comprehensive full-arch correction. 0% EMI is available on all plans. Your exact quote is given at the free consultation — based on your specific case, not a generic estimate.</div>
+        <div class="faq-a">Clear aligners at Bite Dental range from ₹60,000–1,20,000 for Lite (mild) plans, ₹80,000–1,50,000 for Moderate plans, and ₹1,25,000–1,80,000 for Comprehensive full-arch corrections. We offer some of the most competitive aligner prices in Delhi-NCR. 0% EMI is available on all plans. Your exact quote is at the free consultation — based on your specific case.</div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">

@@ -181,6 +181,41 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
 .wa-fab svg{width:26px;height:26px;fill:#fff;}
 .mob-cta{display:none;position:fixed;bottom:0;left:0;right:0;z-index:250;}
 @media(max-width:768px){.mob-cta{display:block;}.wa-fab{bottom:78px;}}
+
+/* Age card accent colors per stage */
+.age-grid .age-card:nth-child(1){border-top-color:#FF8C42;}
+.age-grid .age-card:nth-child(1) .age-range{color:#FF8C42;}
+.age-grid .age-card:nth-child(3){border-top-color:#7B68EE;}
+.age-grid .age-card:nth-child(3) .age-range{color:#7B68EE;}
+
+/* Our Promise section */
+.promise-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+@media(max-width:820px){.promise-grid{grid-template-columns:repeat(2,1fr);}}
+.promise-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:28px 20px;text-align:center;transition:transform .2s,border-color .2s;}
+.promise-card:hover{transform:translateY(-3px);border-color:var(--border-2);}
+.promise-emoji{font-size:2.4rem;margin-bottom:12px;}
+.promise-title{font-family:var(--kids);font-size:1rem;font-weight:800;color:var(--white);margin-bottom:6px;}
+.promise-text{font-size:0.82rem;color:var(--text-2);line-height:1.55;}
+
+/* Dr. Achla full prominent profile */
+.achla-wrap{background:var(--card);border:1px solid var(--border-2);border-radius:var(--r-lg);overflow:hidden;display:grid;grid-template-columns:280px 1fr;}
+@media(max-width:820px){.achla-wrap{grid-template-columns:1fr;}}
+.achla-left{background:linear-gradient(145deg,rgba(96,188,1,0.12),rgba(96,188,1,0.04));display:flex;flex-direction:column;align-items:center;padding:44px 28px 36px;border-right:1px solid var(--border);text-align:center;}
+@media(max-width:820px){.achla-left{border-right:none;border-bottom:1px solid var(--border);padding:32px 24px;}}
+.achla-avatar{width:130px;height:130px;border-radius:50%;background:rgba(96,188,1,0.12);border:3px solid var(--border-2);display:flex;align-items:center;justify-content:center;font-size:4rem;margin:0 auto 18px;}
+.achla-nm{font-family:var(--head);font-size:1.55rem;font-weight:900;color:var(--white);margin-bottom:5px;}
+.achla-deg{font-size:0.78rem;color:var(--green);font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:18px;}
+.achla-left-stats{display:flex;flex-direction:column;gap:10px;width:100%;}
+.achla-stat-mini{background:rgba(96,188,1,0.07);border:1px solid var(--border);border-radius:10px;padding:10px 14px;text-align:center;}
+.achla-stat-mini .n{font-family:var(--head);font-size:1.4rem;font-weight:900;color:var(--green);}
+.achla-stat-mini .l{font-size:0.73rem;color:var(--text-2);margin-top:2px;}
+.achla-right{padding:44px 40px;}
+@media(max-width:820px){.achla-right{padding:32px 24px;}}
+.achla-hl{font-family:var(--head);font-size:clamp(1.6rem,3vw,2.3rem);font-weight:900;color:var(--white);line-height:1.05;margin-bottom:18px;}
+.achla-hl span{color:var(--green);}
+.achla-bio-p{font-size:0.9rem;color:var(--text-2);line-height:1.76;margin-bottom:12px;}
+.achla-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px;}
+.achla-tag{background:var(--green-dim);border:1px solid var(--green-line);border-radius:999px;padding:5px 14px;font-size:0.75rem;font-weight:600;color:var(--green);}
 </style>
 </head>
 <body>
@@ -330,6 +365,39 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
   </div>
 </section>
 
+<!-- OUR PROMISE -->
+<section style="background:var(--bg);">
+  <div class="container">
+    <div class="sec-head center">
+      <span class="tag">Our Promise to Every Child</span>
+      <h2 class="sh">A visit they'll <span>actually enjoy.</span></h2>
+      <p class="sub">We've built every part of our kids dental experience around one goal — making children feel safe, happy and proud of their healthy smile.</p>
+    </div>
+    <div class="promise-grid">
+      <div class="promise-card">
+        <div class="promise-emoji">🎉</div>
+        <div class="promise-title">No Scary Surprises</div>
+        <div class="promise-text">We explain everything in a fun, age-appropriate way before we do anything. No surprises, ever.</div>
+      </div>
+      <div class="promise-card">
+        <div class="promise-emoji">⏸️</div>
+        <div class="promise-title">Stop-Anytime Signal</div>
+        <div class="promise-text">Every child gets a "stop" signal. We pause immediately — always working at your child's pace.</div>
+      </div>
+      <div class="promise-card">
+        <div class="promise-emoji">🏆</div>
+        <div class="promise-title">Celebrate Every Visit</div>
+        <div class="promise-text">Every brave visit deserves a celebration. Kids leave feeling proud and accomplished — not dreading the next one.</div>
+      </div>
+      <div class="promise-card">
+        <div class="promise-emoji">👨‍👩‍👧</div>
+        <div class="promise-title">Parents Always Welcome</div>
+        <div class="promise-text">Parents stay with their child throughout — no separation anxiety, no closed doors, ever.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- BY AGE -->
 <section style="background:var(--bg);">
   <div class="container">
@@ -381,21 +449,35 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
 
 <!-- DOCTOR -->
 <section style="background:var(--bg-2);">
-  <div class="container" style="max-width:720px;">
+  <div class="container">
     <div class="sec-head center">
-      <span class="tag">Your Child's Doctor</span>
-      <h2 class="sh">Dr. Achla Goel — <span>MDS Pedodontics</span></h2>
+      <span class="tag">Meet Your Child's Specialist</span>
+      <h2 class="sh">The dentist kids <span>actually love.</span></h2>
+      <p class="sub">Dr. Achla Goel has dedicated her entire career to one mission — making children feel genuinely safe, comfortable and excited about their dental health.</p>
     </div>
-    <div style="background:var(--card);border:1px solid var(--border-2);border-radius:var(--r-lg);padding:36px 32px;display:flex;gap:28px;align-items:flex-start;">
-      <div style="width:80px;height:80px;border-radius:50%;background:var(--green-dim);border:2px solid var(--border-2);display:flex;align-items:center;justify-content:center;font-size:2.5rem;flex-shrink:0;">👩‍⚕️</div>
-      <div>
-        <div style="font-family:var(--head);font-size:1.5rem;font-weight:900;color:var(--white);margin-bottom:4px;">Dr. Achla Goel</div>
-        <div style="font-size:0.82rem;color:var(--green);font-weight:600;margin-bottom:14px;text-transform:uppercase;letter-spacing:0.07em;">MDS Pedodontics & Preventive Dentistry</div>
-        <p style="font-size:0.9rem;color:var(--text-2);line-height:1.7;">Dr. Achla Goel is a specialist pedodontist with a Master's in Pedodontics and Preventive Dentistry — a degree earned through clinical training exclusively focused on children's dental health. She is genuinely loved by her young patients, known for her patience, warmth and ability to transform even the most anxious child into a confident dental visitor. Under her care, your child doesn't just get healthy teeth — they build a positive relationship with oral health that lasts a lifetime.</p>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;">
-          <span style="background:var(--green-dim);border:1px solid var(--green-line);border-radius:999px;padding:4px 12px;font-size:0.75rem;font-weight:600;color:var(--green);">MDS Pedodontics</span>
-          <span style="background:var(--green-dim);border:1px solid var(--green-line);border-radius:999px;padding:4px 12px;font-size:0.75rem;font-weight:600;color:var(--green);">Preventive Dentistry</span>
-          <span style="background:var(--green-dim);border:1px solid var(--green-line);border-radius:999px;padding:4px 12px;font-size:0.75rem;font-weight:600;color:var(--green);">Interceptive Orthodontics</span>
+    <div class="achla-wrap">
+      <div class="achla-left">
+        <div class="achla-avatar">👩‍⚕️</div>
+        <div class="achla-nm">Dr. Achla Goel</div>
+        <div class="achla-deg">MDS Pedodontics &amp; Preventive Dentistry</div>
+        <div class="achla-left-stats">
+          <div class="achla-stat-mini"><div class="n">MDS</div><div class="l">Specialist Degree</div></div>
+          <div class="achla-stat-mini"><div class="n">0–17</div><div class="l">All Ages Treated</div></div>
+          <div class="achla-stat-mini"><div class="n">Delhi + Gurgaon</div><div class="l">Both Clinics</div></div>
+        </div>
+      </div>
+      <div class="achla-right">
+        <h3 class="achla-hl">Specialist-trained. <span>Gentle by nature.</span></h3>
+        <p class="achla-bio-p">Dr. Achla Goel holds a Master's degree in Pedodontics and Preventive Dentistry — a postgraduate specialisation that goes far beyond what a general dentist learns. Her entire training was focused on one thing: understanding how children's minds, mouths and emotions work together when it comes to dental care.</p>
+        <p class="achla-bio-p">What makes Dr. Achla truly exceptional is her ability to connect with children on their level. She is known across both our clinics for her patience, warmth and remarkable gift for turning even the most anxious, reluctant child into a confident, smiling patient — often within a single visit. Parents regularly tell us their child actually looks forward to their appointments now.</p>
+        <p class="achla-bio-p">Her clinical expertise spans the full scope of paediatric dentistry — from guiding baby teeth in toddlers to managing dental anxiety and interceptive orthodontics in teenagers. She uses a Tell-Show-Do approach and never rushes a child, always working entirely at the child's own pace with parents present throughout.</p>
+        <div class="achla-tags">
+          <span class="achla-tag">MDS Pedodontics</span>
+          <span class="achla-tag">Preventive Dentistry</span>
+          <span class="achla-tag">Interceptive Orthodontics</span>
+          <span class="achla-tag">Behaviour Management</span>
+          <span class="achla-tag">Tell-Show-Do</span>
+          <span class="achla-tag">Dental Anxiety Specialist</span>
         </div>
       </div>
     </div>
