@@ -187,8 +187,8 @@ section{padding-block:80px;}
 .nearby-chip{background:var(--card-2);border:1px solid var(--border);border-radius:999px;padding:4px 12px;font-size:0.78rem;color:var(--text-2);}
 
 /* DOCTORS */
-.doc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
-@media(max-width:820px){.doc-grid{grid-template-columns:1fr 1fr;}}
+.doc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+@media(max-width:900px){.doc-grid{grid-template-columns:1fr 1fr;}}
 @media(max-width:520px){.doc-grid{grid-template-columns:1fr;}}
 .doc-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:28px 22px;text-align:center;transition:border-color .2s,transform .2s;}
 .doc-card:hover{border-color:var(--border-2);transform:translateY(-3px);}
@@ -407,7 +407,7 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
       </div>
       <div class="why-card">
         <div class="why-icon">👨‍⚕️</div>
-        <div><div class="why-title">All Specialists, No Generalists</div><div class="why-text">8 MDS-qualified specialists on the team. Your aligner case goes to an orthodontist. Your implant to an oral surgeon. The right hands, every time.</div></div>
+        <div><div class="why-title">All Specialists, No Generalists</div><div class="why-text">8 MDS-qualified specialists on the team. Your aligner case goes to an orthodontist. Your implant to a specialist implant surgeon. The right hands, every time.</div></div>
       </div>
       <div class="why-card">
         <div class="why-icon">💳</div>
@@ -489,16 +489,16 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
 <section style="background:var(--bg);">
   <div class="container">
     <div class="sec-head center">
-      <span class="tag">Our Specialists</span>
-      <h2 class="sh">MDS-qualified. <span>Every one.</span></h2>
-      <p class="sub">Not general dentists — actual specialists in their field. That's the Bite Dental difference.</p>
+      <span class="tag">Our Doctors</span>
+      <h2 class="sh">Team Bite Dental <span>Gurugram.</span></h2>
+      <p class="sub">Experienced specialists and senior clinicians, all working under one roof at Medharbour Sector 31.</p>
     </div>
     <div class="doc-grid">
       <div class="doc-card">
         <div class="doc-avatar"><img src="/Resources/Profiles/11.png" alt="Dr. Shrey Dhawan" loading="lazy" /></div>
         <div class="doc-name">Dr. Shrey Dhawan</div>
         <div class="doc-role">Founder & Endodontist</div>
-        <div class="doc-qual">MDS Endodontics · Specialist in root canal, complex endodontic cases & clinic leadership.</div>
+        <div class="doc-qual">Specialist in root canal, complex endodontic cases & clinic leadership.</div>
       </div>
       <div class="doc-card">
         <div class="doc-avatar"><img src="/Resources/Profiles/13.png" alt="Dr. Shamindhi Dhawan" loading="lazy" /></div>
@@ -510,7 +510,14 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
         <div class="doc-avatar"><img src="/Resources/Profiles/Aman_bite_profile.png" alt="Dr. Aman Sachdev" loading="lazy" /></div>
         <div class="doc-name">Dr. Aman Sachdev</div>
         <div class="doc-role">Orthodontist · Invisalign Platinum Elite</div>
-        <div class="doc-qual">MDS Orthodontics · One of Delhi-NCR's few Invisalign Platinum Elite providers.</div>
+        <div class="doc-qual">One of Delhi-NCR's few Invisalign Platinum Elite providers · 250+ aligner cases.</div>
+      </div>
+      <div class="doc-card">
+        <!-- TODO: Add Dr. Shipra's photo to /Resources/Profiles/ and replace the placeholder below -->
+        <div class="doc-avatar" style="font-size:2rem;display:flex;align-items:center;justify-content:center;">👩‍⚕️</div>
+        <div class="doc-name">Dr. Shipra</div>
+        <div class="doc-role">Senior Dentist</div>
+        <div class="doc-qual">10 years experience · Former Senior Consultant, Max Hospital · Comprehensive dental care.</div>
       </div>
     </div>
   </div>
