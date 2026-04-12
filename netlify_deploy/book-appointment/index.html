@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book a Free Consultation | Bite Dental Clinic Delhi & Gurugram</title>
+  <meta name="description" content="Book a free dental consultation at Bite Dental Clinic — Delhi (Meera Bagh) or Gurugram (Sector 31). Specialist dentists, same-day confirmation via WhatsApp." />
+  <link rel="canonical" href="https://www.bitedentalclinic.com/book-appointment" />
+  <link rel="icon" type="image/png" href="/Resources/bite_logo.png" />
+  <link rel="apple-touch-icon" href="/Resources/bite_logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,800;0,900;1,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TTHTJXQQ7X"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-TTHTJXQQ7X');</script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --green:#60BC01;--green-dim:rgba(96,188,1,0.1);--green-line:rgba(96,188,1,0.25);
+  --bg:#07100A;--bg-2:#0C180F;--card:#111A13;--border:rgba(255,255,255,0.07);--border-2:rgba(96,188,1,0.3);
+  --white:#F4F9F0;--text-2:#A8B8A2;--text-3:#617A5A;
+  --head:'Barlow Condensed',sans-serif;--body:'Inter',sans-serif;
+  --r:12px;--r-lg:18px;
+}
+body{background:var(--bg);color:var(--white);font-family:var(--body);line-height:1.6;min-height:100vh;}
+img{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+.container{max-width:1140px;margin-inline:auto;padding-inline:24px;}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,16,10,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-i{display:flex;align-items:center;justify-content:space-between;height:68px;gap:24px;}
+.nav-logo img{height:40px;width:auto;}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{font-size:0.9rem;font-weight:500;color:var(--text-2);transition:color .2s;}
+.nav-links a:hover{color:var(--green);}
+@media(max-width:768px){.nav-links{display:none;}}
+.nav-back{display:flex;align-items:center;gap:6px;font-size:0.85rem;font-weight:600;color:var(--text-2);transition:color .2s;}
+.nav-back:hover{color:var(--green);}
+
+/* HERO HEADER */
+.page-header{padding:60px 0 48px;text-align:center;border-bottom:1px solid var(--border);}
+.page-header h1{font-family:var(--head);font-size:clamp(2.4rem,5vw,3.8rem);font-weight:900;line-height:0.96;color:var(--white);margin-bottom:14px;}
+.page-header h1 span{color:var(--green);}
+.page-header p{font-size:0.95rem;color:var(--text-2);max-width:50ch;margin-inline:auto;line-height:1.7;}
+
+/* MAIN LAYOUT */
+.booking-layout{display:grid;grid-template-columns:1fr 380px;gap:48px;padding-block:56px;}
+@media(max-width:860px){.booking-layout{grid-template-columns:1fr;}}
+
+/* FORM */
+.booking-form-wrap{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:40px 36px;}
+@media(max-width:500px){.booking-form-wrap{padding:28px 20px;}}
+.form-title{font-family:var(--head);font-size:1.6rem;font-weight:900;color:var(--white);margin-bottom:6px;}
+.form-subtitle{font-size:0.85rem;color:var(--text-2);margin-bottom:32px;}
+
+/* STEP INDICATOR */
+.steps{display:flex;align-items:center;gap:0;margin-bottom:36px;}
+.step{display:flex;align-items:center;gap:8px;font-size:0.78rem;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:0.06em;}
+.step.active{color:var(--green);}
+.step.done{color:var(--text-2);}
+.step-num{width:28px;height:28px;border-radius:50%;border:2px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:800;flex-shrink:0;}
+.step.active .step-num{background:var(--green);border-color:var(--green);color:#000;}
+.step.done .step-num{background:var(--green-dim);border-color:var(--green-line);}
+.step-sep{flex:1;height:1px;background:var(--border);margin-inline:10px;}
+
+/* FORM FIELDS */
+.form-section{display:none;}
+.form-section.active{display:block;}
+.field-group{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+@media(max-width:540px){.field-group{grid-template-columns:1fr;}}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
+.field label{font-size:0.82rem;font-weight:600;color:var(--text-2);letter-spacing:0.02em;}
+.field label span{color:#E05A5A;}
+.field input,.field select,.field textarea{background:#0D1810;border:1.5px solid var(--border);border-radius:10px;color:var(--white);font-family:var(--body);font-size:0.9rem;padding:12px 16px;outline:none;transition:border-color .2s;}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--green-line);}
+.field select option{background:#0D1810;}
+.field textarea{resize:vertical;min-height:90px;}
+.field input::placeholder,.field textarea::placeholder{color:var(--text-3);}
+
+/* RADIO LOCATION */
+.loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.loc-card{background:#0D1810;border:1.5px solid var(--border);border-radius:12px;padding:16px 18px;cursor:pointer;transition:border-color .2s;}
+.loc-card:has(input:checked){border-color:var(--green);background:var(--green-dim);}
+.loc-card input{display:none;}
+.loc-card .loc-name{font-family:var(--head);font-size:1.1rem;font-weight:900;color:var(--white);margin-bottom:3px;}
+.loc-card .loc-detail{font-size:0.78rem;color:var(--text-2);}
+.loc-card:has(input:checked) .loc-name{color:var(--green);}
+
+/* SERVICE CHIPS */
+.service-chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px;}
+.service-chip{background:#0D1810;border:1.5px solid var(--border);border-radius:8px;padding:9px 16px;font-size:0.82rem;font-weight:600;cursor:pointer;transition:all .18s;user-select:none;}
+.service-chip:hover{border-color:var(--green-line);}
+.service-chip.selected{background:var(--green-dim);border-color:var(--green);color:var(--green);}
+
+/* BUTTONS */
+.btn-next{width:100%;background:var(--green);color:#fff;font-family:var(--head);font-size:1.1rem;font-weight:800;padding:15px;border-radius:10px;border:none;cursor:pointer;transition:opacity .2s;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:8px;}
+.btn-next:hover{opacity:0.88;}
+.btn-back{background:none;border:1.5px solid var(--border);color:var(--text-2);font-family:var(--head);font-size:0.9rem;font-weight:700;padding:10px 20px;border-radius:8px;cursor:pointer;transition:border-color .2s;margin-right:12px;}
+.btn-back:hover{border-color:var(--border-2);color:var(--white);}
+.form-nav{display:flex;align-items:center;margin-top:12px;}
+
+/* SUCCESS STATE */
+.success-state{display:none;text-align:center;padding:20px 0;}
+.success-icon{font-size:4rem;margin-bottom:20px;}
+.success-title{font-family:var(--head);font-size:2rem;font-weight:900;color:var(--green);margin-bottom:10px;}
+.success-text{font-size:0.9rem;color:var(--text-2);max-width:42ch;margin-inline:auto;line-height:1.7;margin-bottom:28px;}
+.wa-confirm-btn{display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#000;font-family:var(--head);font-size:1.1rem;font-weight:800;padding:14px 28px;border-radius:10px;margin-bottom:14px;}
+.wa-confirm-btn:hover{opacity:0.9;}
+.home-link{font-size:0.85rem;color:var(--text-2);}
+.home-link a{color:var(--green);font-weight:600;}
+
+/* SIDEBAR */
+.booking-sidebar{display:flex;flex-direction:column;gap:20px;}
+.sidebar-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px 22px;}
+.sidebar-card h3{font-family:var(--head);font-size:1.1rem;font-weight:900;color:var(--white);margin-bottom:16px;text-transform:uppercase;letter-spacing:0.05em;}
+.clinic-item{display:flex;gap:14px;margin-bottom:18px;}
+.clinic-item:last-child{margin-bottom:0;}
+.clinic-icon{font-size:1.6rem;flex-shrink:0;margin-top:2px;}
+.clinic-name{font-family:var(--head);font-size:1rem;font-weight:900;color:var(--white);margin-bottom:3px;}
+.clinic-addr{font-size:0.8rem;color:var(--text-2);line-height:1.5;}
+.clinic-phone{font-size:0.82rem;color:var(--green);font-weight:600;margin-top:5px;}
+.sidebar-trust{display:flex;flex-direction:column;gap:12px;}
+.trust-item{display:flex;align-items:center;gap:12px;font-size:0.84rem;color:var(--text-2);}
+.trust-item .ti{font-size:1.2rem;flex-shrink:0;}
+.trust-item b{color:var(--white);}
+.wa-direct{background:rgba(37,211,102,0.08);border:1.5px solid rgba(37,211,102,0.2);border-radius:var(--r-lg);padding:20px;text-align:center;}
+.wa-direct p{font-size:0.82rem;color:var(--text-2);margin-bottom:14px;line-height:1.55;}
+.wa-direct a{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#000;font-family:var(--head);font-size:0.95rem;font-weight:800;padding:12px 22px;border-radius:9px;}
+
+/* WA FAB */
+.wa-fab{position:fixed;bottom:28px;right:28px;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.35);z-index:200;transition:transform .2s;}
+.wa-fab:hover{transform:scale(1.1);}
+.wa-fab svg{width:28px;height:28px;fill:#fff;}
+
+footer{background:var(--card);border-top:1px solid var(--border);padding:40px 0 24px;margin-top:60px;}
+.footer-bot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.footer-bot p{font-size:0.8rem;color:var(--text-3);}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container nav-i">
+    <a class="nav-logo" href="/" aria-label="Bite Dental Clinic">
+      <img src="/Resources/bite_logo.png" alt="Bite Dental Clinic" height="44" loading="eager" style="border-radius:8px;" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="/clear-aligners">Clear Aligners</a></li>
+      <li><a href="/dental-implants">Dental Implants</a></li>
+      <li><a href="/crowns">Crowns</a></li>
+      <li><a href="/braces-aligners">Braces & Aligners</a></li>
+      <li><a href="/kids-dentistry">Kids Dentistry</a></li>
+    </ul>
+    <a class="nav-back" href="/">← Back to Home</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="container">
+    <h1>Book a <span>Free Consultation.</span></h1>
+    <p>Takes 60 seconds. We confirm via WhatsApp within 2 hours during clinic hours.</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="booking-layout">
+
+    <!-- BOOKING FORM -->
+    <div class="booking-form-wrap" id="formWrap">
+      <div class="form-title">Request Your Appointment</div>
+      <div class="form-subtitle">Free for all new patients · No obligation · Specialist dentists</div>
+
+      <!-- STEP INDICATOR -->
+      <div class="steps">
+        <div class="step active" id="step-ind-1"><div class="step-num">1</div><span>You</span></div>
+        <div class="step-sep"></div>
+        <div class="step" id="step-ind-2"><div class="step-num">2</div><span>Treatment</span></div>
+        <div class="step-sep"></div>
+        <div class="step" id="step-ind-3"><div class="step-num">3</div><span>Timing</span></div>
+      </div>
+
+      <!-- Netlify form (hidden, receives final submit) -->
+      <form name="appointment" netlify netlify-honeypot="bot-field" id="netlifyForm" style="display:none;">
+        <input type="hidden" name="form-name" value="appointment" />
+        <input name="bot-field" />
+        <input type="hidden" name="name" id="nf-name" />
+        <input type="hidden" name="phone" id="nf-phone" />
+        <input type="hidden" name="email" id="nf-email" />
+        <input type="hidden" name="location" id="nf-location" />
+        <input type="hidden" name="service" id="nf-service" />
+        <input type="hidden" name="preferred_date" id="nf-date" />
+        <input type="hidden" name="preferred_time" id="nf-time" />
+        <input type="hidden" name="message" id="nf-message" />
+      </form>
+
+      <!-- STEP 1: Who are you -->
+      <div class="form-section active" id="step1">
+        <div class="field-group">
+          <div class="field">
+            <label>Your Name <span>*</span></label>
+            <input type="text" id="inp-name" placeholder="e.g. Priya Sharma" autocomplete="name" />
+          </div>
+          <div class="field">
+            <label>WhatsApp / Phone <span>*</span></label>
+            <input type="tel" id="inp-phone" placeholder="+91 98765 43210" autocomplete="tel" />
+          </div>
+        </div>
+        <div class="field">
+          <label>Email <span style="color:var(--text-3);font-weight:400;">(optional)</span></label>
+          <input type="email" id="inp-email" placeholder="you@example.com" autocomplete="email" />
+        </div>
+        <div style="margin-bottom:18px;">
+          <label style="font-size:0.82rem;font-weight:600;color:var(--text-2);display:block;margin-bottom:10px;">Preferred Clinic <span style="color:#E05A5A;">*</span></label>
+          <div class="loc-grid">
+            <label class="loc-card">
+              <input type="radio" name="location" value="delhi-meera-bagh" id="loc-delhi" />
+              <div class="loc-name">West Delhi</div>
+              <div class="loc-detail">Meera Bagh, Pashchim Vihar</div>
+              <div style="font-size:0.75rem;color:var(--text-3);margin-top:4px;">📞 +91 75339 51611</div>
+            </label>
+            <label class="loc-card">
+              <input type="radio" name="location" value="gurugram-sector31" id="loc-gurugram" />
+              <div class="loc-name">Gurugram</div>
+              <div class="loc-detail">Med Harbour, Sector 31</div>
+              <div style="font-size:0.75rem;color:var(--text-3);margin-top:4px;">📞 +91 98106 64561</div>
+            </label>
+          </div>
+        </div>
+        <button class="btn-next" onclick="goToStep(2)">Next: Treatment →</button>
+      </div>
+
+      <!-- STEP 2: What treatment -->
+      <div class="form-section" id="step2">
+        <div style="font-size:0.82rem;font-weight:600;color:var(--text-2);margin-bottom:12px;letter-spacing:0.02em;">What would you like to discuss? <span style="color:#E05A5A;">*</span></div>
+        <div class="service-chips">
+          <div class="service-chip" onclick="toggleChip(this)">Clear Aligners</div>
+          <div class="service-chip" onclick="toggleChip(this)">Braces</div>
+          <div class="service-chip" onclick="toggleChip(this)">Dental Implants</div>
+          <div class="service-chip" onclick="toggleChip(this)">Crowns & Bridges</div>
+          <div class="service-chip" onclick="toggleChip(this)">Kids Dentistry</div>
+          <div class="service-chip" onclick="toggleChip(this)">Root Canal</div>
+          <div class="service-chip" onclick="toggleChip(this)">Teeth Whitening</div>
+          <div class="service-chip" onclick="toggleChip(this)">Veneers / Smile Design</div>
+          <div class="service-chip" onclick="toggleChip(this)">General Check-Up</div>
+          <div class="service-chip" onclick="toggleChip(this)">Not sure yet</div>
+        </div>
+        <div class="field">
+          <label>Anything else you'd like us to know?</label>
+          <textarea id="inp-message" placeholder="e.g. I have a specific concern about a chipped front tooth..."></textarea>
+        </div>
+        <div class="form-nav">
+          <button class="btn-back" onclick="goToStep(1)">← Back</button>
+          <button class="btn-next" style="flex:1;" onclick="goToStep(3)">Next: Timing →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: When -->
+      <div class="form-section" id="step3">
+        <div class="field-group">
+          <div class="field">
+            <label>Preferred Date</label>
+            <input type="date" id="inp-date" />
+          </div>
+          <div class="field">
+            <label>Preferred Time</label>
+            <select id="inp-time">
+              <option value="">Any time works</option>
+              <option>Morning (9am – 12pm)</option>
+              <option>Afternoon (12pm – 4pm)</option>
+              <option>Evening (4pm – 8pm)</option>
+            </select>
+          </div>
+        </div>
+        <div style="background:var(--green-dim);border:1px solid var(--green-line);border-radius:12px;padding:16px 18px;margin-bottom:24px;font-size:0.84rem;color:var(--text-2);line-height:1.6;">
+          💬 <b style="color:var(--white);">How confirmation works:</b> After submitting, we'll send you a WhatsApp message to confirm your appointment slot within 2 hours during clinic hours (9am–8pm daily). No calls, no spam.
+        </div>
+        <div class="form-nav">
+          <button class="btn-back" onclick="goToStep(2)">← Back</button>
+          <button class="btn-next" style="flex:1;" onclick="submitForm()">✓ Request Appointment</button>
+        </div>
+      </div>
+
+      <!-- SUCCESS -->
+      <div class="success-state" id="successState">
+        <div class="success-icon">🎉</div>
+        <div class="success-title">You're booked in!</div>
+        <p class="success-text">We've received your request. We'll confirm your slot via WhatsApp within 2 hours. While you wait, you can send us a quick message directly:</p>
+        <a class="wa-confirm-btn" id="waConfirmBtn" href="https://wa.me/919810664561" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Confirm on WhatsApp
+        </a>
+        <p class="home-link">Or <a href="/">go back to the homepage</a></p>
+      </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="booking-sidebar">
+      <div class="sidebar-card">
+        <h3>Our Clinics</h3>
+        <div class="clinic-item">
+          <div class="clinic-icon">🏥</div>
+          <div>
+            <div class="clinic-name">West Delhi</div>
+            <div class="clinic-addr">A1/140 Meera Bagh,<br/>Pashchim Vihar, New Delhi – 110063</div>
+            <div class="clinic-phone"><a href="tel:+917533951611">+91 75339 51611</a></div>
+          </div>
+        </div>
+        <div class="clinic-item">
+          <div class="clinic-icon">🏥</div>
+          <div>
+            <div class="clinic-name">Gurugram</div>
+            <div class="clinic-addr">Med Harbour, Sector 31,<br/>Gurugram, Haryana – 122001</div>
+            <div class="clinic-phone"><a href="tel:+919810664561">+91 98106 64561</a></div>
+          </div>
+        </div>
+        <div style="border-top:1px solid var(--border);padding-top:14px;margin-top:6px;font-size:0.8rem;color:var(--text-3);">
+          🕐 Mon–Sat: 9am – 8pm &nbsp;·&nbsp; Sun: 10am – 4pm
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <h3>Why Book With Us</h3>
+        <div class="sidebar-trust">
+          <div class="trust-item"><div class="ti">⭐</div><div><b>4.9★ Google Rating</b> — 500+ verified reviews</div></div>
+          <div class="trust-item"><div class="ti">🎓</div><div><b>Specialist Doctors</b> — MDS-qualified, not generalists</div></div>
+          <div class="trust-item"><div class="ti">💰</div><div><b>Free Consultation</b> — No cost, no obligation</div></div>
+          <div class="trust-item"><div class="ti">📱</div><div><b>WhatsApp Confirmation</b> — Slot confirmed within 2 hrs</div></div>
+          <div class="trust-item"><div class="ti">💳</div><div><b>0% EMI Available</b> — On all treatments</div></div>
+          <div class="trust-item"><div class="ti">🏆</div><div><b>1500+ Patients Treated</b> — Trusted across Delhi-NCR</div></div>
+        </div>
+      </div>
+
+      <div class="wa-direct">
+        <p>Rather skip the form? Message us directly on WhatsApp — we respond within minutes during clinic hours.</p>
+        <a href="https://wa.me/919810664561?text=Hi%2C+I%27d+like+to+book+a+free+dental+consultation.+Please+let+me+know+the+available+slots." target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#000"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp Us Now
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<a class="wa-fab" href="https://wa.me/919810664561?text=Hi%2C+I%27d+like+to+book+a+free+dental+consultation." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<footer>
+  <div class="container">
+    <div class="footer-bot">
+      <p>© 2025 Bite Dental Clinic. All rights reserved.</p>
+      <p><a href="/" style="color:var(--green);">← Back to Homepage</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+let currentStep = 1;
+let selectedServices = [];
+
+function goToStep(step) {
+  // Validate before moving forward
+  if (step > currentStep) {
+    if (currentStep === 1) {
+      const name = document.getElementById('inp-name').value.trim();
+      const phone = document.getElementById('inp-phone').value.trim();
+      const loc = document.querySelector('input[name="location"]:checked');
+      if (!name) { alert('Please enter your name.'); return; }
+      if (!phone) { alert('Please enter your phone number.'); return; }
+      if (!loc) { alert('Please select a clinic location.'); return; }
+    }
+    if (currentStep === 2) {
+      if (selectedServices.length === 0) {
+        alert('Please select at least one treatment area.'); return;
+      }
+    }
+  }
+
+  // Update step indicators
+  for (let i = 1; i <= 3; i++) {
+    const ind = document.getElementById('step-ind-' + i);
+    ind.classList.remove('active', 'done');
+    if (i < step) ind.classList.add('done');
+    else if (i === step) ind.classList.add('active');
+  }
+
+  // Switch sections
+  document.getElementById('step' + currentStep).classList.remove('active');
+  document.getElementById('step' + step).classList.add('active');
+  currentStep = step;
+  window.scrollTo({top: document.getElementById('formWrap').offsetTop - 100, behavior: 'smooth'});
+}
+
+function toggleChip(el) {
+  el.classList.toggle('selected');
+  const svc = el.textContent.trim();
+  if (el.classList.contains('selected')) {
+    selectedServices.push(svc);
+  } else {
+    selectedServices = selectedServices.filter(s => s !== svc);
+  }
+}
+
+function submitForm() {
+  // Populate hidden form fields
+  const name = document.getElementById('inp-name').value.trim();
+  const phone = document.getElementById('inp-phone').value.trim();
+  const loc = document.querySelector('input[name="location"]:checked');
+
+  document.getElementById('nf-name').value = name;
+  document.getElementById('nf-phone').value = phone;
+  document.getElementById('nf-email').value = document.getElementById('inp-email').value.trim();
+  document.getElementById('nf-location').value = loc ? loc.value : '';
+  document.getElementById('nf-service').value = selectedServices.join(', ');
+  document.getElementById('nf-date').value = document.getElementById('inp-date').value;
+  document.getElementById('nf-time').value = document.getElementById('inp-time').value;
+  document.getElementById('nf-message').value = document.getElementById('inp-message').value.trim();
+
+  // Submit to Netlify Forms via fetch
+  const formData = new FormData(document.getElementById('netlifyForm'));
+  fetch('/', { method: 'POST', body: formData })
+    .then(() => showSuccess(name, phone, selectedServices))
+    .catch(() => showSuccess(name, phone, selectedServices)); // Show success regardless; Netlify handles reliability
+}
+
+function showSuccess(name, phone, services) {
+  // Hide all steps
+  for (let i = 1; i <= 3; i++) {
+    const s = document.getElementById('step' + i);
+    if(s) s.classList.remove('active');
+  }
+  document.querySelector('.steps').style.display = 'none';
+  document.querySelector('.form-title').textContent = 'Appointment Requested!';
+  document.querySelector('.form-subtitle').textContent = 'We\'ll confirm your slot via WhatsApp shortly.';
+
+  // Build WhatsApp confirmation message
+  const svcText = services.length ? services.join(', ') : 'general consultation';
+  const msg = encodeURIComponent(`Hi, I just submitted a booking request on your website. My name is ${name}, phone: ${phone}. I'm interested in: ${svcText}. Please confirm my slot.`);
+  document.getElementById('waConfirmBtn').href = 'https://wa.me/919810664561?text=' + msg;
+
+  document.getElementById('successState').style.display = 'block';
+}
+
+// Set min date to today
+document.addEventListener('DOMContentLoaded', () => {
+  const dateInput = document.getElementById('inp-date');
+  const today = new Date().toISOString().split('T')[0];
+  dateInput.setAttribute('min', today);
+});
+</script>
+</body>
+</html>

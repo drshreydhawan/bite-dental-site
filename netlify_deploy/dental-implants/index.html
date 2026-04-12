@@ -197,6 +197,26 @@ section{padding-block:80px;}
 .faq-item.open .faq-chevron{transform:rotate(180deg);color:var(--green);}
 .faq-a{display:none;padding:0 22px 20px;font-size:0.88rem;color:var(--text-2);line-height:1.65;}
 .faq-item.open .faq-a{display:block;}
+/* Implant gallery */
+.imp-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+@media(max-width:820px){.imp-gallery{grid-template-columns:1fr 1fr;}}
+@media(max-width:500px){.imp-gallery{grid-template-columns:1fr;}}
+.imp-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;transition:border-color .25s,transform .2s;}
+.imp-card:hover{border-color:var(--border-2);transform:translateY(-3px);}
+.imp-img-wrap{background:#040C06;}
+.imp-img-wrap img{width:100%;height:auto;display:block;object-fit:contain;}
+.imp-info{padding:14px 18px 18px;}
+.imp-type-pill{display:inline-block;border-radius:999px;padding:3px 11px;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;background:rgba(96,188,1,0.15);color:var(--green);margin-bottom:8px;}
+.imp-title{font-family:var(--head);font-size:1rem;font-weight:800;color:var(--white);margin-bottom:4px;}
+.imp-desc{font-size:0.8rem;color:var(--text-2);line-height:1.5;}
+.imp-smile-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;display:flex;align-items:center;gap:0;}
+.imp-smile-img{width:50%;flex-shrink:0;}
+.imp-smile-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.imp-smile-body{padding:24px 22px;}
+.imp-smile-pill{display:inline-block;border-radius:999px;padding:3px 11px;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;background:rgba(96,188,1,0.15);color:var(--green);margin-bottom:10px;}
+.imp-smile-title{font-family:var(--head);font-size:1.2rem;font-weight:900;color:var(--white);margin-bottom:8px;}
+.imp-smile-desc{font-size:0.84rem;color:var(--text-2);line-height:1.6;}
+@media(max-width:600px){.imp-smile-card{flex-direction:column;}.imp-smile-img{width:100%;height:220px;}}
 .cta-band{background:linear-gradient(135deg,rgba(96,188,1,0.1) 0%,rgba(96,188,1,0.04) 100%);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:70px 0;}
 .cta-inner{text-align:center;max-width:640px;margin-inline:auto;}
 .cta-actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:32px;}
@@ -232,6 +252,7 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
       <li><a href="/clear-aligners">Clear Aligners</a></li>
       <li><a href="/dental-implants" class="active">Dental Implants</a></li>
       <li><a href="/crowns">Crowns</a></li>
+      <li><a href="/braces-aligners">Braces & Aligners</a></li>
       <li><a href="/kids-dentistry">Kids Dentistry</a></li>
       <li><a href="/gurugram">Gurugram</a></li>
       <li><a href="/meera-bagh">Meera Bagh</a></li>
@@ -242,7 +263,7 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
         <svg width="14" height="14" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         Ask About Implants
       </a>
-      <a class="btn-nav-book" href="https://www.bitedentalclinic.com/appointment" target="_blank" rel="noopener">Free Consultation →</a>
+      <a class="btn-nav-book" href="/book-appointment" target="_blank" rel="noopener">Free Consultation →</a>
     </div>
   </div>
 </nav>
@@ -272,7 +293,7 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
         <h1 class="hero-h1">Dental Implants.<br/><em>5000 Cases. 98% Success.</em><br/>The Gold Standard.</h1>
         <p class="hero-sub">Dr. Shamindhi Dhawan has personally led over 5000 dental implant procedures with a 98% success rate. From single-tooth replacements to full-arch restorations — the most complex cases are exactly where we thrive.</p>
         <div class="hero-actions">
-          <a class="btn-green" href="https://www.bitedentalclinic.com/appointment" target="_blank" rel="noopener">Book Free Assessment →</a>
+          <a class="btn-green" href="/book-appointment" target="_blank" rel="noopener">Book Free Assessment →</a>
           <a class="btn-outline" href="https://wa.me/919810664561?text=Hi%2C%20I%27m%20interested%20in%20dental%20implants.%20What%27s%20the%20cost%3F" target="_blank" rel="noopener">💬 Ask About Cost</a>
         </div>
         <div class="hero-trust">
@@ -529,8 +550,88 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
   </div>
 </section>
 
+<!-- PATIENT GALLERY -->
+<section style="background:var(--bg);">
+  <div class="container">
+    <div class="sec-head center">
+      <span class="tag">Real Patients · Real Results</span>
+      <h2 class="sh">Cases from our <span>implant clinic.</span></h2>
+      <p class="sub">Every case here was planned and placed by Dr. Shamindhi Dhawan at our Delhi or Gurugram clinic.</p>
+    </div>
+
+    <!-- Hero case: patient portrait -->
+    <div class="imp-smile-card" style="margin-bottom:20px;">
+      <div class="imp-smile-img">
+        <img src="/Resources/implants/sarika-garg-smile.jpeg" alt="Sarika Garg smiling after dental implant at Bite Dental Clinic" loading="lazy" />
+      </div>
+      <div class="imp-smile-body">
+        <div class="imp-smile-pill">Single Tooth Implant · Healed & Happy</div>
+        <div class="imp-smile-title">"I forgot I was ever missing a tooth."</div>
+        <p class="imp-smile-desc">Sarika came to us after a failed extraction left her with a missing upper premolar. Single Osstem implant placed, healed beautifully. She was back to eating normally within 10 days. The crown? Indistinguishable from her natural teeth.</p>
+        <a href="https://wa.me/919810664561?text=Hi%2C+I%27d+like+to+know+more+about+dental+implants.+Please+share+details." target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;margin-top:16px;background:var(--green);color:#fff;font-weight:700;font-size:0.85rem;padding:10px 20px;border-radius:8px;text-decoration:none;">Am I a candidate? Ask us →</a>
+      </div>
+    </div>
+
+    <!-- Gallery grid -->
+    <div class="imp-gallery">
+      <div class="imp-card">
+        <div class="imp-img-wrap">
+          <img src="/Resources/implants/anterior-implant-ba.jpeg" alt="Single anterior dental implant before and after" loading="lazy" />
+        </div>
+        <div class="imp-info">
+          <div class="imp-type-pill">Single Tooth · Anterior</div>
+          <div class="imp-title">Missing upper front tooth replaced.</div>
+          <div class="imp-desc">Single implant + zirconia crown restoring both function and a natural smile line.</div>
+        </div>
+      </div>
+      <div class="imp-card">
+        <div class="imp-img-wrap">
+          <img src="/Resources/implants/anterior-implant-smile.jpeg" alt="Patient smiling after anterior dental implant" loading="lazy" />
+        </div>
+        <div class="imp-info">
+          <div class="imp-type-pill">Single Tooth · Before & After</div>
+          <div class="imp-title">From gap to natural smile.</div>
+          <div class="imp-desc">Missing front tooth restored — patient can now smile without covering her mouth.</div>
+        </div>
+      </div>
+      <div class="imp-card">
+        <div class="imp-img-wrap">
+          <img src="/Resources/implants/immediate-implant-baljeet.jpeg" alt="Immediate dental implant placed same day as extraction" loading="lazy" />
+        </div>
+        <div class="imp-info">
+          <div class="imp-type-pill">Immediate Implant Protocol</div>
+          <div class="imp-title">Implant placed the same day.</div>
+          <div class="imp-desc">Immediate implant protocol — tooth extracted and implant placed in a single visit, final crown later.</div>
+        </div>
+      </div>
+      <div class="imp-card">
+        <div class="imp-img-wrap">
+          <img src="/Resources/implants/fullmouth-implants-ba.jpeg" alt="Full arch implant rehabilitation before and after" loading="lazy" />
+        </div>
+        <div class="imp-info">
+          <div class="imp-type-pill">Full Arch · All-on-Implants</div>
+          <div class="imp-title">Complete upper arch rebuilt.</div>
+          <div class="imp-desc">Multiple failing teeth replaced with an implant-supported full arch reconstruction. Life-changing result.</div>
+        </div>
+      </div>
+      <div class="imp-card" style="grid-column:span 2;" >
+        <div style="display:flex;align-items:center;gap:0;">
+          <div style="flex:0 0 45%;overflow:hidden;background:#040C06;">
+            <img src="/Resources/implants/rabinder-singh-smile.jpeg" alt="Rabinder Singh and wife smiling after full mouth implants" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          </div>
+          <div style="padding:28px 26px;">
+            <div class="imp-type-pill">Full Mouth Rehabilitation</div>
+            <div class="imp-title" style="font-size:1.15rem;">Rabinder Singh — 68 years old. Full-mouth implants.</div>
+            <p class="imp-desc" style="margin-top:8px;font-size:0.88rem;">After years of dentures that shifted during meals, Rabinder opted for implant-supported restorations across both arches. Came with his wife. Went home smiling.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FAQ -->
-<section style="background:var(--bg);" id="faq">
+<section style="background:var(--bg-2);" id="faq">
   <div class="container">
     <div class="sec-head center">
       <span class="tag">Frequently Asked</span>
@@ -583,7 +684,7 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
       <h2 class="sh">5000+ patients trusted us <span>with their smile.</span></h2>
       <p class="sub" style="margin-inline:auto;">Book a free implant consultation. We'll assess your case, show you your options and give you a full quote — no pressure, no obligation.</p>
       <div class="cta-actions">
-        <a class="btn-green" href="https://www.bitedentalclinic.com/appointment" target="_blank" rel="noopener">Book Free Assessment →</a>
+        <a class="btn-green" href="/book-appointment" target="_blank" rel="noopener">Book Free Assessment →</a>
         <a class="btn-outline" href="https://wa.me/919810664561?text=Hi%2C%20I%27m%20interested%20in%20dental%20implants.%20Can%20I%20get%20a%20free%20consultation%3F" target="_blank" rel="noopener">💬 WhatsApp Us</a>
       </div>
     </div>
@@ -619,7 +720,7 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
       <div class="f-col">
         <h5>Connect</h5>
         <ul>
-          <li><a href="https://www.bitedentalclinic.com/appointment" target="_blank">Book Free Consultation</a></li>
+          <li><a href="/book-appointment" target="_blank">Book Free Consultation</a></li>
           <li><a href="https://wa.me/919810664561" target="_blank">WhatsApp Us</a></li>
           <li><a href="https://www.instagram.com/bitedentalclinics" target="_blank">Instagram</a></li>
         </ul>
