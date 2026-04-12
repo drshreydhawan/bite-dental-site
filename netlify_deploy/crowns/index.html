@@ -125,7 +125,7 @@ section{padding-block:80px;}
 
 /* Hero visual panel */
 .hero-vis{background:var(--card);border:1px solid var(--border-2);border-radius:var(--r-lg);overflow:hidden;}
-.hero-vis-img{width:100%;height:240px;object-fit:cover;object-position:center;}
+.hero-vis-img{width:100%;height:auto;display:block;object-fit:contain;background:#040C06;}
 .hero-vis-body{padding:24px 26px;}
 .hero-vis-label{font-size:0.72rem;color:var(--green);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;}
 .hero-vis-title{font-family:var(--head);font-size:1.4rem;font-weight:900;color:var(--white);margin-bottom:6px;}
@@ -199,9 +199,9 @@ section{padding-block:80px;}
 .case-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;transition:border-color .25s,transform .2s;}
 .case-card:hover{border-color:var(--border-2);transform:translateY(-3px);}
 .case-card.hidden{display:none;}
-.case-img-wrap{position:relative;height:220px;overflow:hidden;}
-.case-img-wrap img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform .35s;}
-.case-card:hover .case-img-wrap img{transform:scale(1.04);}
+.case-img-wrap{position:relative;background:#040C06;overflow:hidden;}
+.case-img-wrap img{width:100%;height:auto;display:block;object-fit:contain;transition:transform .3s;}
+.case-card:hover .case-img-wrap img{transform:scale(1.02);}
 .case-type-pill{position:absolute;top:12px;left:12px;border-radius:999px;padding:3px 11px;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;}
 .pill-zirconia{background:rgba(96,188,1,0.85);color:#fff;}
 .pill-pfm{background:rgba(196,154,0,0.9);color:#000;}
@@ -320,11 +320,11 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
         </div>
       </div>
       <div class="hero-vis">
-        <img class="hero-vis-img" src="/Resources/crowns/harjinder-upper-makeover.jpg" alt="Before and after dental crown transformation at Bite Dental Clinic" loading="eager" />
+        <img class="hero-vis-img" src="/Resources/smile-stories/smile-story-diastema-crown.jpeg" alt="Before and after dental crown transformation at Bite Dental Clinic" loading="eager" />
         <div class="hero-vis-body">
-          <div class="hero-vis-label">Real Patient · Zirconia Crowns</div>
-          <div class="hero-vis-title">From severely decayed to a complete smile.</div>
-          <div class="hero-vis-desc">Upper anterior full-arch zirconia restoration. 6 units. Completed across 2 visits at our Delhi clinic.</div>
+          <div class="hero-vis-label">Real Patient · Zirconia Crown</div>
+          <div class="hero-vis-title">One missing tooth. One crown. One perfect smile.</div>
+          <div class="hero-vis-desc">Single-unit zirconia crown replacing a damaged front tooth — shade-matched, CAD/CAM milled, done in 2 visits.</div>
         </div>
       </div>
     </div>
