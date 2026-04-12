@@ -252,6 +252,27 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
 .srv-card.kc-4{border-top:3px solid #7B68EE;}
 .srv-card.kc-5{border-top:3px solid #FF6B6B;}
 .srv-card.kc-6{border-top:3px solid #00BCD4;}
+
+/* ─── Parent Guide Download ─── */
+.guide-section{background:linear-gradient(135deg,rgba(96,188,1,0.09) 0%,rgba(96,188,1,0.03) 60%,rgba(123,104,238,0.05) 100%);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.guide-card{display:grid;grid-template-columns:auto 1fr auto;gap:32px;align-items:center;background:var(--card);border:1px solid var(--border-2);border-radius:var(--r-lg);padding:36px 40px;position:relative;overflow:hidden;}
+.guide-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#60BC01,#7B68EE,#FF8C42);}
+@media(max-width:820px){.guide-card{grid-template-columns:1fr;gap:20px;padding:28px 24px;}.guide-dl-btn{justify-self:start;}}
+@media(max-width:500px){.guide-dl-btn{width:100%;justify-content:center;}}
+.guide-icon-wrap{width:80px;height:80px;background:var(--green-dim);border:1px solid var(--border-2);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:2.6rem;flex-shrink:0;}
+@media(max-width:820px){.guide-icon-wrap{width:60px;height:60px;font-size:2rem;border-radius:14px;}}
+.guide-eyebrow{font-size:0.72rem;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:var(--green);margin-bottom:7px;}
+.guide-title{font-family:var(--head);font-size:clamp(1.4rem,3vw,2rem);font-weight:900;color:var(--white);line-height:1.05;margin-bottom:8px;}
+.guide-desc{font-size:0.9rem;color:var(--text-2);line-height:1.65;max-width:52ch;}
+.guide-pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
+.guide-pill{background:rgba(96,188,1,0.08);border:1px solid var(--border);border-radius:999px;padding:3px 12px;font-size:0.73rem;font-weight:600;color:var(--text-2);}
+.guide-dl-btn{display:inline-flex;align-items:center;gap:9px;background:var(--green);color:#fff;font-family:var(--head);font-size:1.05rem;font-weight:700;padding:16px 28px;border-radius:14px;border:none;box-shadow:0 0 30px rgba(96,188,1,0.25);transition:background .2s,transform .15s;text-decoration:none;white-space:nowrap;flex-shrink:0;}
+.guide-dl-btn:hover{background:#6fd000;transform:translateY(-2px);}
+.guide-dl-btn svg{width:20px;height:20px;fill:#fff;flex-shrink:0;}
+.guide-share-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:18px;}
+.guide-share-label{font-size:0.8rem;color:var(--text-3);}
+.guide-share-wa{display:inline-flex;align-items:center;gap:6px;background:rgba(37,211,102,0.1);border:1px solid rgba(37,211,102,0.2);border-radius:999px;padding:5px 14px;font-size:0.8rem;font-weight:600;color:#25D366;transition:background .2s;}
+.guide-share-wa:hover{background:rgba(37,211,102,0.18);}
 </style>
 </head>
 <body>
@@ -355,6 +376,39 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
     <div class="kids-stat-item"><span class="kids-stat-emoji">📍</span><div class="kids-stat-text"><div class="n" style="color:#60BC01;">2</div><div class="l">Delhi NCR Clinics</div></div></div>
   </div>
 </div>
+
+<!-- PARENT GUIDE DOWNLOAD -->
+<section class="guide-section" id="parent-guide">
+  <div class="container" style="padding-block:60px;">
+    <div class="guide-card">
+      <div class="guide-icon-wrap">📋</div>
+      <div>
+        <div class="guide-eyebrow">Free Parent Resource · 40 Pages</div>
+        <div class="guide-title">The Complete Guide to Your Child's Teeth &amp; Oral Health</div>
+        <div class="guide-desc">Everything a parent needs to know — from the first baby tooth to teenage orthodontics. Tooth eruption timelines, cavity prevention, what to do in a dental emergency, age-wise brushing techniques, diet tips and more. Written by our specialist pedodontist Dr. Achla Goel.</div>
+        <div class="guide-pills">
+          <span class="guide-pill">📅 Tooth eruption chart</span>
+          <span class="guide-pill">🛡️ Cavity prevention</span>
+          <span class="guide-pill">🚨 Dental emergencies</span>
+          <span class="guide-pill">🪥 Brushing guides by age</span>
+          <span class="guide-pill">🥗 Diet &amp; nutrition tips</span>
+          <span class="guide-pill">😰 Managing dental anxiety</span>
+        </div>
+        <div class="guide-share-row">
+          <span class="guide-share-label">Share this guide:</span>
+          <a class="guide-share-wa" href="https://wa.me/?text=Here%27s%20a%20free%20guide%20from%20Bite%20Dental%20Clinic%20on%20everything%20you%20need%20to%20know%20about%20your%20child%27s%20teeth%20%F0%9F%A6%B7%0Ahttps%3A%2F%2Fwww.bitedentalclinic.com%2Fkids-dentistry%23parent-guide" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Share on WhatsApp
+          </a>
+        </div>
+      </div>
+      <a class="guide-dl-btn" href="/Resources/Pedodontic_Cheatsheet.pdf" download="Bite_Dental_Kids_Guide.pdf">
+        <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+        Download Free
+      </a>
+    </div>
+  </div>
+</section>
 
 <!-- SERVICES -->
 <section style="background:var(--bg-2);">
