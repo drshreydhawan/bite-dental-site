@@ -227,7 +227,9 @@
   let allPosts = [];
 
   try {
-    const res = await fetch('/content/blog-posts.json?v=' + Date.now());
+    // Fetch from GitHub raw — works on any device without a server
+    const POSTS_URL = 'https://raw.githubusercontent.com/drshreydhawan/bite-dental-site/main/netlify_deploy/content/blog-posts.json';
+    const res = await fetch(POSTS_URL + '?v=' + Date.now());
     const data = await res.json();
     allPosts = data.posts || [];
   } catch(e) {

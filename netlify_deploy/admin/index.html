@@ -318,17 +318,32 @@ body{background:var(--bg);color:var(--white);font-family:var(--body);min-height:
         <!-- HOW TO PUBLISH -->
         <div class="editor-panel" style="margin-top:20px;background:rgba(96,188,1,0.04);border-color:var(--green-line);">
           <h3 style="color:var(--green);">How Publishing Works</h3>
-          <ol style="font-size:0.85rem;color:var(--text-2);line-height:2;padding-left:18px;margin-top:8px;">
-            <li>Write your post above and click <b style="color:var(--white);">"Add to Blog JSON"</b></li>
-            <li>The updated <code style="background:#0D1810;padding:2px 6px;border-radius:4px;color:var(--green);">blog-posts.json</code> downloads automatically</li>
-            <li>Replace the file in your project folder: <code style="background:#0D1810;padding:2px 6px;border-radius:4px;color:var(--green);">netlify_deploy/content/</code></li>
-            <li>Open Terminal and run:<br/>
-              <code style="background:#0D1810;padding:4px 10px;border-radius:6px;color:var(--green);display:block;margin-top:4px;">cd /Users/shreydhawan/Desktop/Bite_rebrand<br/>git add -p && git commit -m "Add blog post" && git push</code>
-            </li>
-            <li>Netlify auto-deploys in ~30 seconds. Post goes live ✓</li>
-          </ol>
+
+          <!-- Option A: Content team via GitHub web -->
+          <div style="margin-top:12px;">
+            <div style="font-size:0.78rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--green);margin-bottom:6px;">Option A — Content team (no Terminal needed)</div>
+            <ol style="font-size:0.85rem;color:var(--text-2);line-height:2;padding-left:18px;">
+              <li>Write post above → click <b style="color:#fff;">"Add to Blog JSON"</b> → file downloads</li>
+              <li>Go to <a href="https://github.com/drshreydhawan/bite-dental-site/blob/main/netlify_deploy/content/blog-posts.json" target="_blank" style="color:var(--green);">github.com → bite-dental-site → blog-posts.json ↗</a></li>
+              <li>Click the <b style="color:#fff;">pencil ✏️ icon</b> (top right of file view)</li>
+              <li>Select all text → paste in the downloaded JSON</li>
+              <li>Click <b style="color:#fff;">"Commit changes"</b> → blog updates in ~2 min ✓</li>
+            </ol>
+          </div>
+
+          <!-- Option B: Dr Shrey via Terminal -->
+          <div style="margin-top:18px;padding-top:18px;border-top:1px solid rgba(96,188,1,0.1);">
+            <div style="font-size:0.78rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-3);margin-bottom:6px;">Option B — Dr. Shrey via Terminal (Mac)</div>
+            <ol style="font-size:0.85rem;color:var(--text-2);line-height:2;padding-left:18px;">
+              <li>Download JSON → replace <code style="background:#0D1810;padding:2px 6px;border-radius:4px;color:var(--green);">netlify_deploy/content/blog-posts.json</code></li>
+              <li>Run:<br/>
+                <code style="background:#0D1810;padding:4px 10px;border-radius:6px;color:var(--green);display:block;margin-top:4px;">cd /Users/shreydhawan/Desktop/Bite_rebrand<br/>git add netlify_deploy/content/blog-posts.json<br/>git commit -m "Add blog post" && git push</code>
+              </li>
+            </ol>
+          </div>
+
           <div style="background:#0D1810;border-radius:10px;padding:14px;margin-top:16px;font-size:0.8rem;color:var(--text-3);">
-            💡 <b style="color:var(--text-2);">Tip:</b> Once you've pushed a couple of times and are comfortable, ask to set up the Decap CMS for direct in-browser publishing with no terminal needed.
+            💡 The blog reads directly from GitHub, so it works on <b style="color:var(--text-2);">any device</b> — no server needed. Either method above updates the live blog within ~2 minutes.
           </div>
         </div>
       </div>
