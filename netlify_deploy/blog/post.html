@@ -202,7 +202,8 @@
   }
 
   try {
-    const res = await fetch('/content/blog-posts.json?v=' + Date.now());
+    const POSTS_URL = 'https://raw.githubusercontent.com/drshreydhawan/bite-dental-site/main/netlify_deploy/content/blog-posts.json';
+    const res = await fetch(POSTS_URL + '?v=' + Date.now());
     const data = await res.json();
     const posts = data.posts || [];
     const post = posts.find(p => p.slug === slug);
@@ -257,7 +258,7 @@
       others.forEach(p => {
         const a = document.createElement('a');
         a.className = 'more-card';
-        a.href = '/blog/' + p.slug;
+        a.href = '/blog/post.html?slug=' + p.slug;
         a.innerHTML = `
           <div class="more-card-img" style="background-image:url('${p.image || ''}')"></div>
           <div class="more-card-body">
