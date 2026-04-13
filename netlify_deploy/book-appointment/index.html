@@ -276,7 +276,7 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:40px 0 
           </div>
         </div>
         <div style="background:var(--green-dim);border:1px solid var(--green-line);border-radius:12px;padding:16px 18px;margin-bottom:24px;font-size:0.84rem;color:var(--text-2);line-height:1.6;">
-          💬 <b style="color:var(--white);">How confirmation works:</b> After submitting, we'll send you a WhatsApp message to confirm your appointment slot within 2 hours during clinic hours (9am–8pm daily). No calls, no spam.
+          💬 <b style="color:var(--white);">How it works:</b> After submitting, WhatsApp opens automatically with your details sent to the clinic. We confirm your slot within 2 hours. No calls, no spam.
         </div>
         <div class="form-nav">
           <button class="btn-back" onclick="goToStep(2)">← Back</button>
@@ -286,12 +286,12 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:40px 0 
 
       <!-- SUCCESS -->
       <div class="success-state" id="successState">
-        <div class="success-icon">🎉</div>
-        <div class="success-title">You're booked in!</div>
-        <p class="success-text">We've received your request. We'll confirm your slot via WhatsApp within 2 hours. While you wait, you can send us a quick message directly:</p>
+        <div class="success-icon">✅</div>
+        <div class="success-title">Clinic notified!</div>
+        <p class="success-text">WhatsApp opened automatically with your full details sent to the clinic. We'll confirm your slot within 2 hours. If WhatsApp didn't open, tap below:</p>
         <a class="wa-confirm-btn" id="waConfirmBtn" href="https://wa.me/919810664561" target="_blank" rel="noopener">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Confirm on WhatsApp
+          Re-send on WhatsApp
         </a>
         <p class="home-link">Or <a href="/">go back to the homepage</a></p>
       </div>
@@ -362,8 +362,14 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:40px 0 
 let currentStep = 1;
 let selectedServices = [];
 
+// Clinic WhatsApp numbers by location
+const CLINIC_WA = {
+  'delhi-meera-bagh':     '917533951611',
+  'gurugram-sector31':    '919810664561',
+  'default':              '919810664561'
+};
+
 function goToStep(step) {
-  // Validate before moving forward
   if (step > currentStep) {
     if (currentStep === 1) {
       const name = document.getElementById('inp-name').value.trim();
@@ -379,16 +385,12 @@ function goToStep(step) {
       }
     }
   }
-
-  // Update step indicators
   for (let i = 1; i <= 3; i++) {
     const ind = document.getElementById('step-ind-' + i);
     ind.classList.remove('active', 'done');
     if (i < step) ind.classList.add('done');
     else if (i === step) ind.classList.add('active');
   }
-
-  // Switch sections
   document.getElementById('step' + currentStep).classList.remove('active');
   document.getElementById('step' + step).classList.add('active');
   currentStep = step;
@@ -398,58 +400,92 @@ function goToStep(step) {
 function toggleChip(el) {
   el.classList.toggle('selected');
   const svc = el.textContent.trim();
-  if (el.classList.contains('selected')) {
-    selectedServices.push(svc);
-  } else {
-    selectedServices = selectedServices.filter(s => s !== svc);
-  }
+  if (el.classList.contains('selected')) selectedServices.push(svc);
+  else selectedServices = selectedServices.filter(s => s !== svc);
 }
 
 function submitForm() {
-  // Populate hidden form fields
-  const name = document.getElementById('inp-name').value.trim();
-  const phone = document.getElementById('inp-phone').value.trim();
-  const loc = document.querySelector('input[name="location"]:checked');
+  const name     = document.getElementById('inp-name').value.trim();
+  const phone    = document.getElementById('inp-phone').value.trim();
+  const email    = document.getElementById('inp-email').value.trim();
+  const locEl    = document.querySelector('input[name="location"]:checked');
+  const location = locEl ? locEl.value : 'default';
+  const svcText  = selectedServices.length ? selectedServices.join(', ') : 'General Consultation';
+  const date     = document.getElementById('inp-date').value;
+  const time     = document.getElementById('inp-time').value || 'Any time';
+  const message  = document.getElementById('inp-message').value.trim();
 
-  document.getElementById('nf-name').value = name;
-  document.getElementById('nf-phone').value = phone;
-  document.getElementById('nf-email').value = document.getElementById('inp-email').value.trim();
-  document.getElementById('nf-location').value = loc ? loc.value : '';
-  document.getElementById('nf-service').value = selectedServices.join(', ');
-  document.getElementById('nf-date').value = document.getElementById('inp-date').value;
-  document.getElementById('nf-time').value = document.getElementById('inp-time').value;
-  document.getElementById('nf-message').value = document.getElementById('inp-message').value.trim();
+  // Populate Netlify hidden fields
+  document.getElementById('nf-name').value     = name;
+  document.getElementById('nf-phone').value    = phone;
+  document.getElementById('nf-email').value    = email;
+  document.getElementById('nf-location').value = location;
+  document.getElementById('nf-service').value  = svcText;
+  document.getElementById('nf-date').value     = date;
+  document.getElementById('nf-time').value     = time;
+  document.getElementById('nf-message').value  = message;
 
-  // Submit to Netlify Forms via fetch
+  // --- CLINIC WHATSAPP NOTIFICATION (auto-opens on submit) ---
+  const clinicNumber = CLINIC_WA[location] || CLINIC_WA.default;
+  const locLabel = location === 'delhi-meera-bagh' ? 'Delhi (Meera Bagh)' : 'Gurugram (Sector 31)';
+  const dateLabel = date ? new Date(date).toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short'}) : 'Flexible';
+  const clinicMsg = [
+    `🦷 *New Appointment Request*`,
+    ``,
+    `*Name:* ${name}`,
+    `*Phone:* ${phone}`,
+    `*Clinic:* ${locLabel}`,
+    `*Treatment:* ${svcText}`,
+    `*Preferred Date:* ${dateLabel}`,
+    `*Preferred Time:* ${time}`,
+    message ? `*Note:* ${message}` : '',
+    ``,
+    `_(Submitted via bitedentalclinic.com)_`
+  ].filter(Boolean).join('\n');
+
+  // Open clinic WhatsApp in new tab — auto-fires immediately
+  window.open('https://wa.me/' + clinicNumber + '?text=' + encodeURIComponent(clinicMsg), '_blank');
+
+  // --- SAVE TO LOCALSTORAGE (admin table backup) ---
+  try {
+    const appts = JSON.parse(localStorage.getItem('bite_appointments') || '[]');
+    appts.unshift({
+      id: Date.now(),
+      submittedAt: new Date().toISOString(),
+      name, phone, email, location: locLabel, service: svcText, date, time, message,
+      status: 'new'
+    });
+    localStorage.setItem('bite_appointments', JSON.stringify(appts.slice(0, 200)));
+  } catch(e) {}
+
+  // --- NETLIFY FORMS (reliable backend backup) ---
   const formData = new FormData(document.getElementById('netlifyForm'));
-  fetch('/', { method: 'POST', body: formData })
-    .then(() => showSuccess(name, phone, selectedServices))
-    .catch(() => showSuccess(name, phone, selectedServices)); // Show success regardless; Netlify handles reliability
+  fetch('/', { method: 'POST', body: formData }).catch(() => {});
+
+  showSuccess(name, phone, location);
 }
 
-function showSuccess(name, phone, services) {
-  // Hide all steps
+function showSuccess(name, phone, location) {
   for (let i = 1; i <= 3; i++) {
     const s = document.getElementById('step' + i);
-    if(s) s.classList.remove('active');
+    if (s) s.classList.remove('active');
   }
   document.querySelector('.steps').style.display = 'none';
-  document.querySelector('.form-title').textContent = 'Appointment Requested!';
-  document.querySelector('.form-subtitle').textContent = 'We\'ll confirm your slot via WhatsApp shortly.';
+  document.querySelector('.form-title').textContent = 'Done! Clinic notified ✓';
+  document.querySelector('.form-subtitle').textContent = 'WhatsApp opened with your details. We\'ll confirm your slot within 2 hours.';
 
-  // Build WhatsApp confirmation message
-  const svcText = services.length ? services.join(', ') : 'general consultation';
-  const msg = encodeURIComponent(`Hi, I just submitted a booking request on your website. My name is ${name}, phone: ${phone}. I'm interested in: ${svcText}. Please confirm my slot.`);
-  document.getElementById('waConfirmBtn').href = 'https://wa.me/919810664561?text=' + msg;
+  // Patient confirmation WhatsApp (optional — patient can message clinic directly)
+  const clinicNumber = CLINIC_WA[location] || CLINIC_WA.default;
+  const patientMsg = `Hi, I just booked via your website. My name is ${name} (${phone}). Looking forward to confirming my appointment!`;
+  document.getElementById('waConfirmBtn').href = 'https://wa.me/' + clinicNumber + '?text=' + encodeURIComponent(patientMsg);
 
   document.getElementById('successState').style.display = 'block';
 }
 
 // Set min date to today
 document.addEventListener('DOMContentLoaded', () => {
-  const dateInput = document.getElementById('inp-date');
-  const today = new Date().toISOString().split('T')[0];
-  dateInput.setAttribute('min', today);
+  const d = document.getElementById('inp-date');
+  d.setAttribute('min', new Date().toISOString().split('T')[0]);
 });
 </script>
 </body>

@@ -3,12 +3,585 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blog Admin — Bite Dental Clinic</title>
-  <style>
-    body { margin: 0; font-family: sans-serif; background: #080D08; color: #fff; }
-  </style>
+  <title>Admin — Bite Dental Clinic</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="/Resources/bite_logo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- Marked.js for markdown preview -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --green:#60BC01;--green-dim:rgba(96,188,1,0.1);--green-line:rgba(96,188,1,0.25);
+  --bg:#07100A;--bg-2:#0C180F;--card:#111A13;--border:rgba(255,255,255,0.08);--border-2:rgba(96,188,1,0.3);
+  --white:#F4F9F0;--text-2:#A8B8A2;--text-3:#617A5A;
+  --red:#E05A5A;--yellow:#F0C040;
+  --head:'Barlow Condensed',sans-serif;--body:'Inter',sans-serif;
+}
+body{background:var(--bg);color:var(--white);font-family:var(--body);min-height:100vh;}
+
+/* ── LOGIN SCREEN ── */
+#loginScreen{position:fixed;inset:0;background:var(--bg);z-index:999;display:flex;align-items:center;justify-content:center;}
+.login-box{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:48px 40px;max-width:400px;width:90%;text-align:center;}
+.login-logo{height:44px;margin-bottom:24px;border-radius:8px;}
+.login-title{font-family:var(--head);font-size:2rem;font-weight:900;margin-bottom:8px;}
+.login-sub{font-size:0.85rem;color:var(--text-2);margin-bottom:28px;}
+.login-input{width:100%;background:#0D1810;border:1.5px solid var(--border);border-radius:10px;color:var(--white);font-size:1rem;padding:13px 16px;outline:none;text-align:center;letter-spacing:0.15em;margin-bottom:14px;}
+.login-input:focus{border-color:var(--green-line);}
+.login-btn{width:100%;background:var(--green);color:#fff;font-family:var(--head);font-size:1.1rem;font-weight:800;padding:14px;border-radius:10px;border:none;cursor:pointer;}
+.login-btn:hover{opacity:.88;}
+.login-err{color:var(--red);font-size:0.82rem;margin-top:10px;display:none;}
+
+/* ── LAYOUT ── */
+#adminApp{display:none;}
+.admin-nav{background:var(--card);border-bottom:1px solid var(--border);padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100;}
+.admin-nav-logo{display:flex;align-items:center;gap:10px;font-family:var(--head);font-size:1.1rem;font-weight:900;color:var(--green);}
+.admin-nav-logo img{height:32px;border-radius:6px;}
+.admin-tabs{display:flex;gap:4px;}
+.tab-btn{background:none;border:none;color:var(--text-2);font-family:var(--body);font-size:0.88rem;font-weight:600;padding:8px 18px;border-radius:8px;cursor:pointer;transition:all .18s;}
+.tab-btn:hover{background:var(--green-dim);color:var(--white);}
+.tab-btn.active{background:var(--green-dim);color:var(--green);border:1px solid var(--green-line);}
+.logout-btn{background:none;border:1px solid var(--border);color:var(--text-3);font-size:0.8rem;padding:6px 14px;border-radius:6px;cursor:pointer;}
+.logout-btn:hover{border-color:var(--red);color:var(--red);}
+
+.tab-content{display:none;padding:32px 28px;}
+.tab-content.active{display:block;}
+
+/* ── SECTION HEADERS ── */
+.sec-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px;}
+.sec-title{font-family:var(--head);font-size:1.8rem;font-weight:900;color:var(--white);}
+.sec-sub{font-size:0.85rem;color:var(--text-2);margin-top:4px;}
+
+/* ── STAT PILLS ── */
+.stat-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px;}
+.stat-pill{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 20px;min-width:120px;}
+.stat-num{font-family:var(--head);font-size:1.6rem;font-weight:900;color:var(--green);}
+.stat-lbl{font-size:0.75rem;color:var(--text-2);text-transform:uppercase;letter-spacing:.06em;margin-top:2px;}
+
+/* ── APPOINTMENTS TABLE ── */
+.table-wrap{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
+.table-controls{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.search-input{background:#0D1810;border:1px solid var(--border);border-radius:8px;color:var(--white);font-size:0.85rem;padding:8px 14px;width:240px;outline:none;}
+.search-input:focus{border-color:var(--green-line);}
+.filter-select{background:#0D1810;border:1px solid var(--border);border-radius:8px;color:var(--white);font-size:0.85rem;padding:8px 14px;outline:none;}
+.export-btn{margin-left:auto;background:var(--green-dim);border:1px solid var(--green-line);color:var(--green);font-size:0.82rem;font-weight:700;padding:8px 16px;border-radius:8px;cursor:pointer;transition:background .18s;}
+.export-btn:hover{background:rgba(96,188,1,0.18);}
+.appt-table{width:100%;border-collapse:collapse;}
+.appt-table th{background:#0D1810;padding:12px 16px;text-align:left;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text-3);border-bottom:1px solid var(--border);white-space:nowrap;}
+.appt-table td{padding:13px 16px;border-bottom:1px solid var(--border);font-size:0.84rem;color:var(--text-2);vertical-align:middle;}
+.appt-table tr:last-child td{border-bottom:none;}
+.appt-table tr:hover td{background:rgba(255,255,255,0.02);}
+.appt-name{color:var(--white);font-weight:600;}
+.status-badge{display:inline-block;border-radius:999px;padding:3px 10px;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;}
+.status-new{background:rgba(96,188,1,0.15);color:var(--green);}
+.status-confirmed{background:rgba(60,180,255,0.12);color:#60CCFF;}
+.status-done{background:rgba(255,255,255,0.06);color:var(--text-2);}
+.appt-actions{display:flex;gap:6px;}
+.act-btn{background:none;border:1px solid var(--border);border-radius:6px;color:var(--text-2);font-size:0.75rem;padding:4px 10px;cursor:pointer;transition:all .18s;}
+.act-btn:hover{border-color:var(--green-line);color:var(--green);}
+.act-btn.wa{border-color:rgba(37,211,102,0.3);color:#25D366;}
+.act-btn.wa:hover{background:rgba(37,211,102,0.08);}
+.act-btn.del{border-color:rgba(224,90,90,0.2);color:var(--red);}
+.act-btn.del:hover{background:rgba(224,90,90,0.08);}
+.empty-msg{text-align:center;padding:48px 24px;color:var(--text-3);font-size:0.9rem;}
+@media(max-width:700px){.appt-table{font-size:0.75rem;}.appt-table td,.appt-table th{padding:8px 10px;}}
+
+/* ── NETLIFY FORMS LINK ── */
+.netlify-banner{background:var(--green-dim);border:1px solid var(--green-line);border-radius:12px;padding:16px 20px;margin-bottom:24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.netlify-banner p{font-size:0.84rem;color:var(--text-2);flex:1;}
+.netlify-banner a{background:var(--green);color:#fff;font-weight:700;font-size:0.82rem;padding:8px 16px;border-radius:8px;text-decoration:none;white-space:nowrap;}
+.netlify-banner a:hover{opacity:.88;}
+
+/* ── BLOG EDITOR ── */
+.blog-editor-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+@media(max-width:900px){.blog-editor-grid{grid-template-columns:1fr;}}
+.editor-panel{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;}
+.editor-panel h3{font-family:var(--head);font-size:1.2rem;font-weight:900;color:var(--white);margin-bottom:20px;text-transform:uppercase;letter-spacing:.05em;}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
+.field label{font-size:0.8rem;font-weight:600;color:var(--text-2);letter-spacing:.02em;}
+.field input,.field select,.field textarea{background:#0D1810;border:1.5px solid var(--border);border-radius:10px;color:var(--white);font-family:var(--body);font-size:0.88rem;padding:10px 14px;outline:none;transition:border-color .2s;}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--green-line);}
+.field textarea{resize:vertical;min-height:120px;line-height:1.6;}
+.content-area{background:#060E07;border:1.5px solid var(--border);border-radius:10px;color:var(--white);font-family:monospace;font-size:0.84rem;padding:14px;outline:none;width:100%;resize:vertical;min-height:320px;line-height:1.7;}
+.content-area:focus{border-color:var(--green-line);}
+.char-count{font-size:0.72rem;color:var(--text-3);text-align:right;margin-top:4px;}
+.md-tips{font-size:0.75rem;color:var(--text-3);margin-top:6px;line-height:1.8;}
+.md-tips code{background:#0D1810;padding:1px 5px;border-radius:4px;font-size:0.72rem;color:var(--green);}
+.publish-btn{width:100%;background:var(--green);color:#fff;font-family:var(--head);font-size:1.15rem;font-weight:800;padding:15px;border-radius:10px;border:none;cursor:pointer;transition:opacity .2s;margin-top:4px;}
+.publish-btn:hover{opacity:.88;}
+.preview-panel{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;overflow-y:auto;max-height:700px;}
+.preview-panel h3{font-family:var(--head);font-size:1.2rem;font-weight:900;color:var(--white);margin-bottom:20px;text-transform:uppercase;letter-spacing:.05em;}
+.preview-content{font-size:0.9rem;color:var(--text-2);line-height:1.75;}
+.preview-content h1,.preview-content h2,.preview-content h3{color:var(--white);font-family:var(--head);font-weight:900;margin:20px 0 10px;}
+.preview-content h2{font-size:1.4rem;}
+.preview-content h3{font-size:1.15rem;}
+.preview-content p{margin-bottom:14px;}
+.preview-content ul,.preview-content ol{margin:0 0 14px 20px;}
+.preview-content li{margin-bottom:6px;}
+.preview-content strong{color:var(--white);}
+.preview-content code{background:#0D1810;padding:2px 6px;border-radius:4px;font-size:0.82rem;color:var(--green);}
+.preview-content blockquote{border-left:3px solid var(--green);padding-left:14px;color:var(--text-2);margin:14px 0;}
+.preview-content hr{border:none;border-top:1px solid var(--border);margin:20px 0;}
+.preview-content table{width:100%;border-collapse:collapse;margin-bottom:14px;}
+.preview-content table th{background:#0D1810;padding:8px 12px;text-align:left;font-size:0.8rem;font-weight:700;color:var(--text-3);border:1px solid var(--border);}
+.preview-content table td{padding:8px 12px;border:1px solid var(--border);font-size:0.85rem;}
+
+/* SUCCESS TOAST */
+.toast{position:fixed;bottom:28px;right:28px;background:var(--green);color:#000;font-family:var(--head);font-size:1rem;font-weight:800;padding:14px 22px;border-radius:12px;z-index:500;display:none;align-items:center;gap:8px;box-shadow:0 4px 20px rgba(96,188,1,0.3);}
+.toast.show{display:flex;animation:slideUp .3s ease;}
+@keyframes slideUp{from{transform:translateY(20px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+
+/* EXISTING POSTS */
+.posts-list{display:flex;flex-direction:column;gap:12px;margin-top:24px;}
+.post-item{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:16px;}
+.post-item:hover{border-color:var(--border-2);}
+.post-tag{display:inline-block;background:var(--green-dim);border:1px solid var(--green-line);color:var(--green);font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:2px 9px;border-radius:999px;flex-shrink:0;}
+.post-title{font-weight:600;color:var(--white);font-size:0.9rem;flex:1;}
+.post-date{font-size:0.75rem;color:var(--text-3);flex-shrink:0;}
+.post-link{font-size:0.75rem;color:var(--green);text-decoration:none;flex-shrink:0;}
+.post-link:hover{text-decoration:underline;}
+</style>
 </head>
 <body>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+<!-- LOGIN -->
+<div id="loginScreen">
+  <div class="login-box">
+    <img src="/Resources/bite_logo.png" class="login-logo" alt="Bite Dental" />
+    <div class="login-title">Admin Panel</div>
+    <div class="login-sub">Bite Dental Clinic · Internal Use Only</div>
+    <input type="password" class="login-input" id="passwordInput" placeholder="Enter password" onkeydown="if(event.key==='Enter')tryLogin()" />
+    <button class="login-btn" onclick="tryLogin()">Sign In →</button>
+    <div class="login-err" id="loginErr">Incorrect password. Try again.</div>
+  </div>
+</div>
+
+<!-- ADMIN APP -->
+<div id="adminApp">
+  <nav class="admin-nav">
+    <div class="admin-nav-logo">
+      <img src="/Resources/bite_logo.png" alt="Bite Dental" />
+      Admin
+    </div>
+    <div class="admin-tabs">
+      <button class="tab-btn active" onclick="switchTab('appointments', this)">📋 Appointments</button>
+      <button class="tab-btn" onclick="switchTab('blog', this)">✍️ Blog</button>
+    </div>
+    <button class="logout-btn" onclick="logout()">Sign Out</button>
+  </nav>
+
+  <!-- ─── APPOINTMENTS TAB ─── -->
+  <div class="tab-content active" id="tab-appointments">
+    <div class="sec-bar">
+      <div>
+        <div class="sec-title">Appointments</div>
+        <div class="sec-sub">All booking requests submitted via the website. Captured automatically on form submission.</div>
+      </div>
+    </div>
+
+    <div id="statRow" class="stat-row">
+      <div class="stat-pill"><div class="stat-num" id="stat-total">0</div><div class="stat-lbl">Total</div></div>
+      <div class="stat-pill"><div class="stat-num" id="stat-new">0</div><div class="stat-lbl">New</div></div>
+      <div class="stat-pill"><div class="stat-num" id="stat-today">0</div><div class="stat-lbl">Today</div></div>
+    </div>
+
+    <!-- Netlify backup link -->
+    <div class="netlify-banner">
+      <p>💾 <b>All submissions are also backed up to Netlify Forms.</b> If this device wasn't used for some bookings, check the Netlify dashboard for the complete list.</p>
+      <a href="https://app.netlify.com" target="_blank">Open Netlify Dashboard ↗</a>
+    </div>
+
+    <div class="table-wrap">
+      <div class="table-controls">
+        <input class="search-input" type="text" placeholder="Search by name, phone, service..." oninput="filterTable()" id="searchInput" />
+        <select class="filter-select" onchange="filterTable()" id="filterStatus">
+          <option value="">All statuses</option>
+          <option value="new">New</option>
+          <option value="confirmed">Confirmed</option>
+          <option value="done">Done</option>
+        </select>
+        <select class="filter-select" onchange="filterTable()" id="filterLocation">
+          <option value="">All clinics</option>
+          <option value="Delhi">Delhi</option>
+          <option value="Gurugram">Gurugram</option>
+        </select>
+        <button class="export-btn" onclick="exportCSV()">⬇ Export CSV</button>
+      </div>
+      <div style="overflow-x:auto;">
+        <table class="appt-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Date Received</th>
+              <th>Name</th>
+              <th>Phone</th>
+              <th>Clinic</th>
+              <th>Treatment</th>
+              <th>Appt Date</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="apptTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── BLOG TAB ─── -->
+  <div class="tab-content" id="tab-blog">
+    <div class="sec-bar">
+      <div>
+        <div class="sec-title">Blog Posts</div>
+        <div class="sec-sub">Write and publish posts to bitedentalclinic.com/blog — changes go live in ~30 seconds after pushing to GitHub.</div>
+      </div>
+    </div>
+
+    <div class="blog-editor-grid">
+      <!-- EDITOR -->
+      <div>
+        <div class="editor-panel">
+          <h3>New Post</h3>
+          <div class="field">
+            <label>Title *</label>
+            <input type="text" id="post-title" placeholder="e.g. Why Clear Aligners Changed My Life" oninput="updateSlug();updatePreview()" />
+          </div>
+          <div class="field">
+            <label>Slug (URL) *</label>
+            <input type="text" id="post-slug" placeholder="auto-generated from title" />
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div class="field">
+              <label>Category Tag</label>
+              <select id="post-tag" onchange="updatePreview()">
+                <option>General</option>
+                <option>Orthodontics</option>
+                <option>Dental Implants</option>
+                <option>Crowns</option>
+                <option>Kids Dentistry</option>
+                <option>Preventive Care</option>
+                <option>Root Canal</option>
+                <option>Cosmetic</option>
+                <option>Clear Aligners</option>
+                <option>Braces</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Publish Date</label>
+              <input type="text" id="post-date" placeholder="e.g. April 13, 2026" />
+            </div>
+          </div>
+          <div class="field">
+            <label>Cover Image URL (optional)</label>
+            <input type="text" id="post-image" placeholder="https://... or leave blank for default dental icon" />
+          </div>
+          <div class="field">
+            <label>Excerpt (1–2 sentences for card preview) *</label>
+            <textarea id="post-excerpt" rows="2" placeholder="A short, enticing description of the post..." oninput="updatePreview()"></textarea>
+          </div>
+          <div class="field">
+            <label>Content (Markdown) *</label>
+            <div class="md-tips">
+              <code>## Heading</code> &nbsp; <code>**bold**</code> &nbsp; <code>*italic*</code> &nbsp;
+              <code>- list item</code> &nbsp; <code>[link](url)</code> &nbsp; <code>---</code> for divider
+            </div>
+            <textarea class="content-area" id="post-content" placeholder="Write your post in Markdown...&#10;&#10;## Introduction&#10;Start here..." oninput="updatePreview()"></textarea>
+            <div class="char-count" id="charCount">0 characters</div>
+          </div>
+          <button class="publish-btn" onclick="publishPost()">✓ Add to Blog JSON</button>
+        </div>
+
+        <!-- EXISTING POSTS -->
+        <div class="editor-panel" style="margin-top:20px;">
+          <h3>Published Posts <span id="postCountBadge" style="font-size:1rem;color:var(--text-2);font-weight:400;"></span></h3>
+          <div class="posts-list" id="existingPostsList">
+            <div style="color:var(--text-3);font-size:0.85rem;">Loading posts...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PREVIEW -->
+      <div>
+        <div class="preview-panel" style="position:sticky;top:76px;">
+          <h3>Live Preview</h3>
+          <div style="margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--border);">
+            <div id="preview-tag" style="font-size:0.7rem;color:var(--green);font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;">Category</div>
+            <div id="preview-title" style="font-family:var(--head);font-size:1.8rem;font-weight:900;color:var(--white);line-height:1;margin-bottom:8px;">Your post title</div>
+            <div id="preview-date" style="font-size:0.78rem;color:var(--text-3);">Date</div>
+          </div>
+          <div class="preview-content" id="preview-content" style="color:var(--text-2);">
+            Start writing to see a live preview...
+          </div>
+        </div>
+
+        <!-- HOW TO PUBLISH -->
+        <div class="editor-panel" style="margin-top:20px;background:rgba(96,188,1,0.04);border-color:var(--green-line);">
+          <h3 style="color:var(--green);">How Publishing Works</h3>
+          <ol style="font-size:0.85rem;color:var(--text-2);line-height:2;padding-left:18px;margin-top:8px;">
+            <li>Write your post above and click <b style="color:var(--white);">"Add to Blog JSON"</b></li>
+            <li>The updated <code style="background:#0D1810;padding:2px 6px;border-radius:4px;color:var(--green);">blog-posts.json</code> downloads automatically</li>
+            <li>Replace the file in your project folder: <code style="background:#0D1810;padding:2px 6px;border-radius:4px;color:var(--green);">netlify_deploy/content/</code></li>
+            <li>Open Terminal and run:<br/>
+              <code style="background:#0D1810;padding:4px 10px;border-radius:6px;color:var(--green);display:block;margin-top:4px;">cd /Users/shreydhawan/Desktop/Bite_rebrand<br/>git add -p && git commit -m "Add blog post" && git push</code>
+            </li>
+            <li>Netlify auto-deploys in ~30 seconds. Post goes live ✓</li>
+          </ol>
+          <div style="background:#0D1810;border-radius:10px;padding:14px;margin-top:16px;font-size:0.8rem;color:var(--text-3);">
+            💡 <b style="color:var(--text-2);">Tip:</b> Once you've pushed a couple of times and are comfortable, ask to set up the Decap CMS for direct in-browser publishing with no terminal needed.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✓ <span id="toastMsg">Done!</span></div>
+
+<script>
+// ─── PASSWORD ───────────────────────────────────────────
+const ADMIN_PASS = 'bite2025'; // change this in production
+
+function tryLogin() {
+  const val = document.getElementById('passwordInput').value;
+  if (val === ADMIN_PASS) {
+    sessionStorage.setItem('bite_admin', '1');
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('adminApp').style.display = 'block';
+    initAdmin();
+  } else {
+    document.getElementById('loginErr').style.display = 'block';
+    document.getElementById('passwordInput').value = '';
+  }
+}
+
+function logout() {
+  sessionStorage.removeItem('bite_admin');
+  location.reload();
+}
+
+// Auto-login if session exists
+if (sessionStorage.getItem('bite_admin') === '1') {
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('adminApp').style.display = 'block';
+}
+
+// ─── TABS ────────────────────────────────────────────────
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ─── TOAST ───────────────────────────────────────────────
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ─── APPOINTMENTS ─────────────────────────────────────────
+let allAppts = [];
+
+function loadAppointments() {
+  try {
+    allAppts = JSON.parse(localStorage.getItem('bite_appointments') || '[]');
+  } catch(e) { allAppts = []; }
+  updateStats();
+  renderTable(allAppts);
+}
+
+function updateStats() {
+  const today = new Date().toDateString();
+  const newCount = allAppts.filter(a => a.status === 'new').length;
+  const todayCount = allAppts.filter(a => new Date(a.submittedAt).toDateString() === today).length;
+  document.getElementById('stat-total').textContent = allAppts.length;
+  document.getElementById('stat-new').textContent = newCount;
+  document.getElementById('stat-today').textContent = todayCount;
+}
+
+function renderTable(data) {
+  const tbody = document.getElementById('apptTableBody');
+  if (!data.length) {
+    tbody.innerHTML = '<tr><td colspan="9"><div class="empty-msg">No appointments yet. Bookings submitted via the website will appear here automatically.</div></td></tr>';
+    return;
+  }
+  tbody.innerHTML = data.map((a, i) => {
+    const dt = new Date(a.submittedAt);
+    const dtStr = dt.toLocaleDateString('en-IN', {day:'numeric',month:'short',year:'2-digit',hour:'2-digit',minute:'2-digit'});
+    const apptDate = a.date ? new Date(a.date).toLocaleDateString('en-IN',{day:'numeric',month:'short'}) : '—';
+    const status = a.status || 'new';
+    const statusBadge = `<span class="status-badge status-${status}">${status}</span>`;
+    const waNum = a.location && a.location.includes('Gurugram') ? '919810664561' : '917533951611';
+    const waMsg = encodeURIComponent(`Hi ${a.name}, your appointment at Bite Dental ${a.location || ''} has been confirmed. See you soon!`);
+    return `<tr>
+      <td>${allAppts.length - i}</td>
+      <td style="white-space:nowrap;">${dtStr}</td>
+      <td><div class="appt-name">${a.name}</div></td>
+      <td><a href="tel:${a.phone}" style="color:var(--green);">${a.phone}</a></td>
+      <td>${a.location || '—'}</td>
+      <td style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${a.service}">${a.service || '—'}</td>
+      <td>${apptDate}</td>
+      <td>${statusBadge}</td>
+      <td>
+        <div class="appt-actions">
+          <a href="https://wa.me/${waNum}?text=${waMsg}" target="_blank" class="act-btn wa">💬 WA</a>
+          <button class="act-btn" onclick="setStatus(${a.id},'confirmed')">✓ Confirm</button>
+          <button class="act-btn" onclick="setStatus(${a.id},'done')">Done</button>
+          <button class="act-btn del" onclick="deleteAppt(${a.id})">✕</button>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function setStatus(id, status) {
+  allAppts = allAppts.map(a => a.id === id ? {...a, status} : a);
+  localStorage.setItem('bite_appointments', JSON.stringify(allAppts));
+  filterTable();
+  updateStats();
+  showToast('Status updated to ' + status);
+}
+
+function deleteAppt(id) {
+  if (!confirm('Remove this appointment from the table?')) return;
+  allAppts = allAppts.filter(a => a.id !== id);
+  localStorage.setItem('bite_appointments', JSON.stringify(allAppts));
+  filterTable();
+  updateStats();
+}
+
+function filterTable() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  const st = document.getElementById('filterStatus').value;
+  const loc = document.getElementById('filterLocation').value;
+  let data = allAppts.filter(a => {
+    const matchQ = !q || [a.name,a.phone,a.service,a.location].some(v => v && v.toLowerCase().includes(q));
+    const matchSt = !st || a.status === st;
+    const matchLoc = !loc || (a.location && a.location.includes(loc));
+    return matchQ && matchSt && matchLoc;
+  });
+  renderTable(data);
+}
+
+function exportCSV() {
+  const headers = ['#','Received','Name','Phone','Email','Clinic','Treatment','Appt Date','Time','Status','Notes'];
+  const rows = allAppts.map((a, i) => [
+    allAppts.length - i,
+    new Date(a.submittedAt).toLocaleString('en-IN'),
+    a.name, a.phone, a.email||'', a.location||'',
+    a.service||'', a.date||'', a.time||'',
+    a.status||'new', a.message||''
+  ].map(v => `"${String(v).replace(/"/g,'""')}"`).join(','));
+  const csv = [headers.join(','), ...rows].join('\n');
+  const blob = new Blob([csv], {type:'text/csv'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'bite-appointments-' + new Date().toISOString().split('T')[0] + '.csv';
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast('CSV exported!');
+}
+
+// ─── BLOG EDITOR ──────────────────────────────────────────
+let existingPosts = [];
+
+async function loadExistingPosts() {
+  try {
+    const res = await fetch('/content/blog-posts.json?v=' + Date.now());
+    const data = await res.json();
+    existingPosts = data.posts || [];
+    document.getElementById('postCountBadge').textContent = '(' + existingPosts.length + ')';
+    renderExistingPosts();
+  } catch(e) {
+    document.getElementById('existingPostsList').innerHTML = '<div style="color:var(--text-3);font-size:0.85rem;">Could not load existing posts.</div>';
+  }
+}
+
+function renderExistingPosts() {
+  const list = document.getElementById('existingPostsList');
+  if (!existingPosts.length) { list.innerHTML = '<div style="color:var(--text-3);">No posts yet.</div>'; return; }
+  list.innerHTML = existingPosts.map(p => `
+    <div class="post-item">
+      <span class="post-tag">${p.tag || 'General'}</span>
+      <span class="post-title">${p.title}</span>
+      <span class="post-date">${p.date || ''}</span>
+      <a class="post-link" href="/blog/${p.slug}" target="_blank">View ↗</a>
+    </div>
+  `).join('');
+}
+
+function updateSlug() {
+  const title = document.getElementById('post-title').value;
+  const slug = title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+  document.getElementById('post-slug').value = slug;
+}
+
+function updatePreview() {
+  const title = document.getElementById('post-title').value || 'Your post title';
+  const tag = document.getElementById('post-tag').value || 'Category';
+  const date = document.getElementById('post-date').value || new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+  const content = document.getElementById('post-content').value;
+  document.getElementById('preview-title').textContent = title;
+  document.getElementById('preview-tag').textContent = tag;
+  document.getElementById('preview-date').textContent = date;
+  document.getElementById('preview-content').innerHTML = content ? marked.parse(content) : '<em style="color:var(--text-3)">Start writing to see preview...</em>';
+  document.getElementById('charCount').textContent = content.length.toLocaleString() + ' characters';
+}
+
+function publishPost() {
+  const title   = document.getElementById('post-title').value.trim();
+  const slug    = document.getElementById('post-slug').value.trim();
+  const tag     = document.getElementById('post-tag').value;
+  const date    = document.getElementById('post-date').value.trim() || new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+  const image   = document.getElementById('post-image').value.trim();
+  const excerpt = document.getElementById('post-excerpt').value.trim();
+  const content = document.getElementById('post-content').value.trim();
+
+  if (!title || !slug || !excerpt || !content) {
+    alert('Please fill in: Title, Excerpt, and Content at minimum.'); return;
+  }
+
+  const newPost = { slug, title, tag, date, excerpt, image, content };
+
+  // Prepend to existing posts (newest first)
+  const updatedPosts = { posts: [newPost, ...existingPosts] };
+  const json = JSON.stringify(updatedPosts, null, 2);
+
+  // Download the updated JSON
+  const blob = new Blob([json], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'blog-posts.json';
+  a.click();
+  URL.revokeObjectURL(url);
+
+  showToast('blog-posts.json downloaded! Replace the file then git push.');
+
+  // Clear form
+  ['post-title','post-slug','post-excerpt','post-content','post-image','post-date'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  updatePreview();
+}
+
+// ─── INIT ─────────────────────────────────────────────────
+function initAdmin() {
+  loadAppointments();
+  loadExistingPosts();
+
+  // Set today as default post date
+  document.getElementById('post-date').value = new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+  updatePreview();
+}
+
+// Auto-init if already logged in
+if (sessionStorage.getItem('bite_admin') === '1') initAdmin();
+</script>
 </body>
 </html>
