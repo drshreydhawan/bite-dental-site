@@ -183,10 +183,11 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:40px 0 
         <div class="step" id="step-ind-3"><div class="step-num">3</div><span>Timing</span></div>
       </div>
 
-      <!-- Netlify form (hidden, receives final submit) -->
-      <form name="appointment" netlify netlify-honeypot="bot-field" id="netlifyForm" style="display:none;">
-        <input type="hidden" name="form-name" value="appointment" />
-        <input name="bot-field" />
+      <!-- Web3Forms hidden form (backup submission — replace YOUR_ACCESS_KEY) -->
+      <form id="w3form" style="display:none;">
+        <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY" />
+        <input type="hidden" name="subject" value="New Appointment Request — Bite Dental" />
+        <input type="hidden" name="from_name" value="Bite Dental Website" />
         <input type="hidden" name="name" id="nf-name" />
         <input type="hidden" name="phone" id="nf-phone" />
         <input type="hidden" name="email" id="nf-email" />
@@ -195,6 +196,7 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:40px 0 
         <input type="hidden" name="preferred_date" id="nf-date" />
         <input type="hidden" name="preferred_time" id="nf-time" />
         <input type="hidden" name="message" id="nf-message" />
+        <input type="checkbox" name="botcheck" style="display:none;" />
       </form>
 
       <!-- STEP 1: Who are you -->
@@ -458,9 +460,20 @@ function submitForm() {
     localStorage.setItem('bite_appointments', JSON.stringify(appts.slice(0, 200)));
   } catch(e) {}
 
-  // --- NETLIFY FORMS (reliable backend backup) ---
-  const formData = new FormData(document.getElementById('netlifyForm'));
-  fetch('/', { method: 'POST', body: formData }).catch(() => {});
+  // --- WEB3FORMS (email backup — fires silently) ---
+  try {
+    const w3data = new FormData(document.getElementById('w3form'));
+    // Populate fields
+    w3data.set('name', name);
+    w3data.set('phone', phone);
+    w3data.set('email', email || 'not provided');
+    w3data.set('location', locLabel);
+    w3data.set('service', svcText);
+    w3data.set('preferred_date', dateLabel);
+    w3data.set('preferred_time', time);
+    w3data.set('message', message || '');
+    fetch('https://api.web3forms.com/submit', { method: 'POST', body: w3data }).catch(() => {});
+  } catch(e) {}
 
   showSuccess(name, phone, location);
 }
