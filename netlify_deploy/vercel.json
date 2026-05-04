@@ -1,11 +1,10 @@
 {
-  "rewrites": [
-    { "source": "/blog/:slug", "destination": "/api/blog-og?slug=$slug" }
-  ],
+  "cleanUrls": true,
+  "trailingSlash": false,
   "redirects": [
-    { "source": "/appointment",    "destination": "https://drshreydhawan.wixsite.com/website-16/appointment", "statusCode": 301 },
-    { "source": "/appointment/(.*)", "destination": "https://drshreydhawan.wixsite.com/website-16/appointment", "statusCode": 301 },
-    { "source": "/booking",        "destination": "https://drshreydhawan.wixsite.com/website-16/appointment", "statusCode": 301 }
+    { "source": "/appointment",      "destination": "/book-appointment", "statusCode": 301 },
+    { "source": "/appointment/(.*)", "destination": "/book-appointment", "statusCode": 301 },
+    { "source": "/booking",          "destination": "/book-appointment", "statusCode": 301 }
   ],
   "headers": [
     {
