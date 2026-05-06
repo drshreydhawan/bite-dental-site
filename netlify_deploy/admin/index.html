@@ -141,6 +141,15 @@ body{background:var(--bg);color:var(--white);font-family:var(--body);min-height:
 .post-date{font-size:0.75rem;color:var(--text-3);flex-shrink:0;}
 .post-link{font-size:0.75rem;color:var(--green);text-decoration:none;flex-shrink:0;}
 .post-link:hover{text-decoration:underline;}
+.post-act{display:flex;gap:6px;flex-shrink:0;}
+.post-edit-btn{background:var(--green-dim);border:1px solid var(--green-line);color:var(--green);font-size:0.72rem;font-weight:700;padding:4px 11px;border-radius:6px;cursor:pointer;transition:all .18s;}
+.post-edit-btn:hover{background:rgba(96,188,1,0.2);}
+.post-del-btn{background:rgba(224,90,90,0.07);border:1px solid rgba(224,90,90,0.2);color:var(--red);font-size:0.72rem;font-weight:700;padding:4px 11px;border-radius:6px;cursor:pointer;transition:all .18s;}
+.post-del-btn:hover{background:rgba(224,90,90,0.14);}
+.edit-mode-bar{background:rgba(96,188,1,0.08);border:1px solid var(--green-line);border-radius:10px;padding:10px 14px;margin-bottom:16px;display:none;align-items:center;justify-content:space-between;gap:12px;font-size:0.83rem;color:var(--green);}
+.edit-mode-bar.show{display:flex;}
+.new-post-btn{background:none;border:1px solid var(--green-line);color:var(--green);font-size:0.8rem;font-weight:700;padding:6px 14px;border-radius:7px;cursor:pointer;}
+.new-post-btn:hover{background:var(--green-dim);}
 </style>
 </head>
 <body>
@@ -247,7 +256,11 @@ body{background:var(--bg);color:var(--white);font-family:var(--body);min-height:
       <!-- EDITOR -->
       <div>
         <div class="editor-panel">
-          <h3>New Post</h3>
+          <div class="edit-mode-bar" id="editModeBar">
+            <span>✏️ Editing: <b id="editModeTitle"></b></span>
+            <button class="new-post-btn" onclick="clearForm()">+ New Post</button>
+          </div>
+          <h3 id="editorHeading">New Post</h3>
           <div class="field">
             <label>Title *</label>
             <input type="text" id="post-title" placeholder="e.g. Why Clear Aligners Changed My Life" oninput="updateSlug();updatePreview()" />
@@ -294,7 +307,7 @@ body{background:var(--bg);color:var(--white);font-family:var(--body);min-height:
             <textarea class="content-area" id="post-content" placeholder="Write your post in Markdown...&#10;&#10;## Introduction&#10;Start here..." oninput="updatePreview()"></textarea>
             <div class="char-count" id="charCount">0 characters</div>
           </div>
-          <button class="publish-btn" onclick="publishPost()">✓ Add to Blog JSON</button>
+          <button class="publish-btn" id="publishBtn" onclick="publishPost()">✓ Add to Blog JSON</button>
         </div>
 
         <!-- EXISTING POSTS -->
@@ -509,6 +522,7 @@ function exportCSV() {
 
 // ─── BLOG EDITOR ──────────────────────────────────────────
 let existingPosts = [];
+let editingSlug = null;
 
 async function loadExistingPosts() {
   try {
@@ -526,13 +540,71 @@ function renderExistingPosts() {
   const list = document.getElementById('existingPostsList');
   if (!existingPosts.length) { list.innerHTML = '<div style="color:var(--text-3);">No posts yet.</div>'; return; }
   list.innerHTML = existingPosts.map(p => `
-    <div class="post-item">
+    <div class="post-item" id="post-item-${p.slug}">
       <span class="post-tag">${p.tag || 'General'}</span>
       <span class="post-title">${p.title}</span>
       <span class="post-date">${p.date || ''}</span>
-      <a class="post-link" href="/blog/${p.slug}" target="_blank">View ↗</a>
+      <div class="post-act">
+        <a class="post-link" href="/blog/post.html?slug=${p.slug}" target="_blank">View ↗</a>
+        <button class="post-edit-btn" onclick="editPost('${p.slug}')">Edit</button>
+        <button class="post-del-btn" onclick="deletePost('${p.slug}')">Delete</button>
+      </div>
     </div>
   `).join('');
+}
+
+function editPost(slug) {
+  const p = existingPosts.find(x => x.slug === slug);
+  if (!p) return;
+  editingSlug = slug;
+  document.getElementById('post-title').value   = p.title || '';
+  document.getElementById('post-slug').value    = p.slug  || '';
+  document.getElementById('post-tag').value     = p.tag   || 'General';
+  document.getElementById('post-date').value    = p.date  || '';
+  document.getElementById('post-image').value   = p.image || '';
+  document.getElementById('post-excerpt').value = p.excerpt || '';
+  document.getElementById('post-content').value = p.content || '';
+  // UI feedback
+  document.getElementById('editorHeading').textContent = 'Edit Post';
+  document.getElementById('editModeTitle').textContent  = p.title;
+  document.getElementById('editModeBar').classList.add('show');
+  document.getElementById('publishBtn').textContent = '✓ Save Changes & Download JSON';
+  updatePreview();
+  // Scroll to editor
+  document.getElementById('post-title').scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+function deletePost(slug) {
+  const p = existingPosts.find(x => x.slug === slug);
+  if (!p) return;
+  if (!confirm(`Delete "${p.title}"?\n\nThis will generate a new blog-posts.json without this post. You'll need to upload it to GitHub to make the change live.`)) return;
+  existingPosts = existingPosts.filter(x => x.slug !== slug);
+  document.getElementById('postCountBadge').textContent = '(' + existingPosts.length + ')';
+  renderExistingPosts();
+  downloadJSON(existingPosts, 'Blog post deleted. Upload blog-posts.json to GitHub to go live.');
+}
+
+function clearForm() {
+  editingSlug = null;
+  ['post-title','post-slug','post-excerpt','post-content','post-image'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  document.getElementById('post-date').value = new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+  document.getElementById('post-tag').value = 'General';
+  document.getElementById('editorHeading').textContent = 'New Post';
+  document.getElementById('editModeBar').classList.remove('show');
+  document.getElementById('publishBtn').textContent = '✓ Add to Blog JSON';
+  updatePreview();
+}
+
+function downloadJSON(posts, toastMsg) {
+  const json = JSON.stringify({posts}, null, 2);
+  const blob = new Blob([json], {type:'application/json'});
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href = url; a.download = 'blog-posts.json'; a.click();
+  URL.revokeObjectURL(url);
+  showToast(toastMsg || 'blog-posts.json downloaded!');
 }
 
 function updateSlug() {
@@ -566,28 +638,27 @@ function publishPost() {
     alert('Please fill in: Title, Excerpt, and Content at minimum.'); return;
   }
 
-  const newPost = { slug, title, tag, date, excerpt, image, content };
+  const postObj = { slug, title, tag, date, excerpt, image, content };
+  let updatedList;
 
-  // Prepend to existing posts (newest first)
-  const updatedPosts = { posts: [newPost, ...existingPosts] };
-  const json = JSON.stringify(updatedPosts, null, 2);
-
-  // Download the updated JSON
-  const blob = new Blob([json], {type:'application/json'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'blog-posts.json';
-  a.click();
-  URL.revokeObjectURL(url);
-
-  showToast('blog-posts.json downloaded! Replace the file then git push.');
-
-  // Clear form
-  ['post-title','post-slug','post-excerpt','post-content','post-image','post-date'].forEach(id => {
-    document.getElementById(id).value = '';
-  });
-  updatePreview();
+  if (editingSlug) {
+    // Replace the existing post in-place (keep its position in the list)
+    updatedList = existingPosts.map(p => p.slug === editingSlug ? postObj : p);
+    // If slug changed, update editingSlug reference
+    existingPosts = updatedList;
+    clearForm();
+    downloadJSON(updatedList, 'Changes saved! Upload blog-posts.json to GitHub to go live.');
+  } else {
+    // New post — prepend (newest first)
+    updatedList = [postObj, ...existingPosts];
+    existingPosts = updatedList;
+    document.getElementById('postCountBadge').textContent = '(' + existingPosts.length + ')';
+    renderExistingPosts();
+    clearForm();
+    downloadJSON(updatedList, 'New post added! Upload blog-posts.json to GitHub.');
+  }
+  document.getElementById('postCountBadge').textContent = '(' + existingPosts.length + ')';
+  renderExistingPosts();
 }
 
 // ─── INIT ─────────────────────────────────────────────────
