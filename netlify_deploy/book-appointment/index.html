@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Book a Free Consultation | Bite Dental Clinic Delhi & Gurugram</title>
-  <meta name="description" content="Book a free dental consultation at Bite Dental Clinic — Delhi (Meera Bagh) or Gurugram (Sector 31). Specialist dentists, same-day confirmation via WhatsApp." />
+  <meta name="description" content="Book a free dental consultation at Bite Dental Clinic — Delhi (Meera Bagh) or Gurugram (Sector 51). Specialist dentists, same-day confirmation via WhatsApp." />
   <link rel="canonical" href="https://www.bitedentalclinic.com/book-appointment" />
   <link rel="icon" type="image/png" href="/Resources/bite_logo.png" />
   <link rel="apple-touch-icon" href="/Resources/bite_logo.png" />
@@ -221,13 +221,13 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:40px 0 
             <label class="loc-card">
               <input type="radio" name="location" value="delhi-meera-bagh" id="loc-delhi" />
               <div class="loc-name">West Delhi</div>
-              <div class="loc-detail">Meera Bagh, Pashchim Vihar</div>
+              <div class="loc-detail">A52 Meera Bagh, A Block</div>
               <div style="font-size:0.75rem;color:var(--text-3);margin-top:4px;">📞 +91 75339 51611</div>
             </label>
             <label class="loc-card">
               <input type="radio" name="location" value="gurugram-sector31" id="loc-gurugram" />
               <div class="loc-name">Gurugram</div>
-              <div class="loc-detail">Med Harbour, Sector 31</div>
+              <div class="loc-detail">222, Sector 51</div>
               <div style="font-size:0.75rem;color:var(--text-3);margin-top:4px;">📞 +91 98106 64561</div>
             </label>
           </div>
@@ -307,7 +307,7 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:40px 0 
           <div class="clinic-icon">🏥</div>
           <div>
             <div class="clinic-name">West Delhi</div>
-            <div class="clinic-addr">A1/140 Meera Bagh,<br/>Pashchim Vihar, New Delhi – 110063</div>
+            <div class="clinic-addr">A52 Meera Bagh (A Block),<br/>New Delhi – 110063</div>
             <div class="clinic-phone"><a href="tel:+917533951611">+91 75339 51611</a></div>
           </div>
         </div>
@@ -315,7 +315,7 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:40px 0 
           <div class="clinic-icon">🏥</div>
           <div>
             <div class="clinic-name">Gurugram</div>
-            <div class="clinic-addr">Med Harbour, Sector 31,<br/>Gurugram, Haryana – 122001</div>
+            <div class="clinic-addr">222, Sector 51,<br/>Gurugram, Haryana – 122001</div>
             <div class="clinic-phone"><a href="tel:+919810664561">+91 98106 64561</a></div>
           </div>
         </div>
@@ -429,7 +429,7 @@ function submitForm() {
 
   // --- CLINIC WHATSAPP NOTIFICATION (auto-opens on submit) ---
   const clinicNumber = CLINIC_WA[location] || CLINIC_WA.default;
-  const locLabel = location === 'delhi-meera-bagh' ? 'Delhi (Meera Bagh)' : 'Gurugram (Sector 31)';
+  const locLabel = location === 'delhi-meera-bagh' ? 'Delhi (Meera Bagh)' : 'Gurugram (Sector 51)';
   const dateLabel = date ? new Date(date).toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short'}) : 'Flexible';
   const clinicMsg = [
     `🦷 *New Appointment Request*`,
