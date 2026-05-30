@@ -302,17 +302,22 @@ section { padding-block: 90px; }
 .nav-dropdown { position: relative; }
 .nav-drop-toggle { display: flex; align-items: center; gap: 4px; cursor: pointer; }
 .nav-drop-menu {
-  position: absolute; top: calc(100% + 10px); left: 50%;
+  position: absolute; top: 100%; left: 50%;
   transform: translateX(-50%) translateY(-6px);
   background: #0d1f11; border: 1px solid rgba(96,188,1,0.22);
-  border-radius: 12px; padding: 6px; list-style: none; min-width: 190px;
+  border-radius: 12px; padding: 6px; padding-top: 14px; list-style: none; min-width: 190px;
   opacity: 0; visibility: hidden; pointer-events: none;
-  transition: opacity .18s, transform .18s;
+  transition: opacity .22s, transform .22s;
   box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+  margin-top: 0;
 }
 .nav-dropdown:hover .nav-drop-menu {
   opacity: 1; visibility: visible; pointer-events: auto;
   transform: translateX(-50%) translateY(0);
+}
+/* invisible bridge so mouse can travel from toggle into menu without losing hover */
+.nav-dropdown::after {
+  content: ''; position: absolute; top: 100%; left: -20px; right: -20px; height: 16px;
 }
 .nav-drop-menu li a {
   display: block; padding: 9px 14px; font-size: 0.875rem; color: var(--text-2);
