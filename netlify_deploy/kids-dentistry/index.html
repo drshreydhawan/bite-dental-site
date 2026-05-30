@@ -637,6 +637,244 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
   </div>
 </section>
 
+<!-- ─── BITESHIELD WIZARD ─── -->
+<section id="biteshield" style="background:var(--bg-2);position:relative;overflow:hidden;">
+  <div style="position:absolute;top:-60px;right:-80px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(96,188,1,0.07) 0%,transparent 70%);pointer-events:none;"></div>
+  <div class="container">
+    <div class="sec-head center" style="text-align:center;">
+      <span class="tag" style="background:rgba(96,188,1,0.15);color:var(--green);">BiteShield™</span>
+      <h2 class="sh">Find your child's <span>cavity risk in 60 seconds.</span></h2>
+      <p class="sub" style="margin-inline:auto;">Answer 5 quick questions — we'll calculate their personal risk score and build a prevention plan made just for them. Free, instant, no sign-up.</p>
+    </div>
+    <div id="bs-wizard" style="max-width:680px;margin:0 auto;">
+      <div id="bs-steps" style="display:flex;gap:6px;justify-content:center;margin-bottom:32px;">
+        <div class="bs-dot active" id="dot-1"></div><div class="bs-dot" id="dot-2"></div><div class="bs-dot" id="dot-3"></div><div class="bs-dot" id="dot-4"></div><div class="bs-dot" id="dot-5"></div>
+      </div>
+      <!-- Q1 -->
+      <div class="bs-card" id="bs-q1">
+        <div class="bs-q-num">Question 1 of 5</div>
+        <h3 class="bs-q-title">What's your child's name and age?</h3>
+        <p class="bs-q-sub">We'll personalise their prevention plan using their name — it makes a real difference.</p>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;">
+          <div style="flex:1;min-width:160px;"><label class="bs-label">Child's first name</label><input class="bs-input" id="bs-name" type="text" placeholder="e.g. Aanya" autocomplete="off"/></div>
+          <div style="flex:1;min-width:120px;"><label class="bs-label">Age (years)</label><select class="bs-input" id="bs-age"><option value="">Select…</option><option value="0">Under 1</option><option value="1">1–2</option><option value="3">3–5</option><option value="6">6–8</option><option value="9">9–12</option><option value="13">13–17</option></select></div>
+        </div>
+        <button class="bs-next-btn" onclick="bsNext(1)">Continue →</button>
+      </div>
+      <!-- Q2 -->
+      <div class="bs-card" id="bs-q2" style="display:none;">
+        <div class="bs-q-num">Question 2 of 5</div>
+        <h3 class="bs-q-title">How does brushing go in your home?</h3>
+        <p class="bs-q-sub">Be honest — we're not judging. This helps us get the plan right.</p>
+        <div class="bs-opts" id="bs-brushing">
+          <button class="bs-opt" onclick="bsSelect('brushing',0,this)">😇 Twice a day, no complaints</button>
+          <button class="bs-opt" onclick="bsSelect('brushing',1,this)">🙂 Usually once, sometimes twice</button>
+          <button class="bs-opt" onclick="bsSelect('brushing',2,this)">😅 It's a battle most nights</button>
+          <button class="bs-opt" onclick="bsSelect('brushing',3,this)">😬 Rarely happens without a fight</button>
+        </div>
+        <button class="bs-next-btn" onclick="bsNext(2)" style="margin-top:8px;">Continue →</button>
+      </div>
+      <!-- Q3 -->
+      <div class="bs-card" id="bs-q3" style="display:none;">
+        <div class="bs-q-num">Question 3 of 5</div>
+        <h3 class="bs-q-title">How often does your child have sugary snacks or drinks?</h3>
+        <p class="bs-q-sub">Frequency matters more than quantity — every sugar hit triggers an acid attack.</p>
+        <div class="bs-opts" id="bs-sugar">
+          <button class="bs-opt" onclick="bsSelect('sugar',0,this)">🥦 Rarely — mostly home food</button>
+          <button class="bs-opt" onclick="bsSelect('sugar',1,this)">🍎 Once a day (biscuits, juice)</button>
+          <button class="bs-opt" onclick="bsSelect('sugar',2,this)">🍫 2–3 times daily</button>
+          <button class="bs-opt" onclick="bsSelect('sugar',3,this)">🧃 Throughout the day (constant sipping)</button>
+        </div>
+        <button class="bs-next-btn" onclick="bsNext(3)" style="margin-top:8px;">Continue →</button>
+      </div>
+      <!-- Q4 -->
+      <div class="bs-card" id="bs-q4" style="display:none;">
+        <div class="bs-q-num">Question 4 of 5</div>
+        <h3 class="bs-q-title">Has your child had any tooth pain, cavities, or fillings?</h3>
+        <p class="bs-q-sub">Past cavities are the single strongest predictor of future ones.</p>
+        <div class="bs-opts" id="bs-history">
+          <button class="bs-opt" onclick="bsSelect('history',0,this)">✅ No — teeth have been fine</button>
+          <button class="bs-opt" onclick="bsSelect('history',2,this)">⚠️ Minor — one or two fillings</button>
+          <button class="bs-opt" onclick="bsSelect('history',4,this)">🚨 Yes — multiple fillings or tooth pain</button>
+          <button class="bs-opt" onclick="bsSelect('history',1,this)">🤔 Not sure — haven't visited recently</button>
+        </div>
+        <button class="bs-next-btn" onclick="bsNext(4)" style="margin-top:8px;">Continue →</button>
+      </div>
+      <!-- Q5 -->
+      <div class="bs-card" id="bs-q5" style="display:none;">
+        <div class="bs-q-num">Question 5 of 5</div>
+        <h3 class="bs-q-title">What matters most to you as a parent?</h3>
+        <p class="bs-q-sub">We'll tailor the recommendation to what you actually care about.</p>
+        <div class="bs-opts" id="bs-goal">
+          <button class="bs-opt" onclick="bsSelect('goal','pain',this)">😢 No more crying at the dentist — prevent pain</button>
+          <button class="bs-opt" onclick="bsSelect('goal','money',this)">💸 Avoid expensive treatment bills later</button>
+          <button class="bs-opt" onclick="bsSelect('goal','confidence',this)">😁 My child's smile and confidence</button>
+          <button class="bs-opt" onclick="bsSelect('goal','all',this)">🏆 All of the above, honestly</button>
+        </div>
+        <button class="bs-next-btn" onclick="bsCalculate()" style="margin-top:8px;">Calculate Risk Score →</button>
+      </div>
+      <!-- Result -->
+      <div class="bs-card" id="bs-result" style="display:none;text-align:center;">
+        <div class="bs-q-num">Your result is ready</div>
+        <h3 class="bs-q-title" id="bs-child-name-heading" style="font-size:1.6rem;">Loading…</h3>
+        <div style="margin:24px auto 20px;max-width:340px;">
+          <div style="position:relative;height:14px;border-radius:99px;background:rgba(255,255,255,0.06);overflow:hidden;"><div id="bs-risk-bar" style="height:100%;border-radius:99px;width:0%;transition:width 1s cubic-bezier(.4,0,.2,1);"></div></div>
+          <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:0.7rem;color:var(--text-3);"><span>Low</span><span>Moderate</span><span>High</span></div>
+        </div>
+        <div id="bs-risk-badge" style="display:inline-block;padding:10px 28px;border-radius:99px;font-family:var(--head);font-size:1.3rem;font-weight:900;letter-spacing:0.04em;margin-bottom:16px;"></div>
+        <p id="bs-risk-desc" style="color:var(--text-2);font-size:0.95rem;line-height:1.65;max-width:460px;margin:0 auto 24px;"></p>
+        <div style="background:rgba(96,188,1,0.06);border:1px solid rgba(96,188,1,0.2);border-radius:14px;padding:22px 24px;">
+          <p style="font-size:0.9rem;color:var(--text-2);margin-bottom:14px;">We've built a personalised prevention plan for <strong id="bs-cta-name" style="color:var(--green);">your child</strong>. Book a free 15-minute assessment to unlock the full protocol — no charges at the appointment.</p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:14px;">
+            <a class="btn-green" href="/book-appointment" style="font-size:0.9rem;padding:13px 24px;">📅 Book Free Assessment →</a>
+            <a class="btn-outline" id="bs-wa-link" href="#" target="_blank" style="font-size:0.9rem;padding:13px 20px;">💬 WhatsApp for Plan</a>
+          </div>
+          <p style="font-size:0.76rem;color:var(--text-3);margin:0;">Or scroll down to see the general plan for your child's risk level ↓</p>
+        </div>
+      </div>
+      <!-- Plan -->
+      <div class="bs-card" id="bs-plan" style="display:none;margin-top:20px;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px;">
+          <div style="width:44px;height:44px;border-radius:50%;background:rgba(96,188,1,0.12);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;">🛡️</div>
+          <div><div style="font-family:var(--head);font-size:1.15rem;font-weight:700;color:var(--text);" id="bs-plan-title">Prevention Plan</div><div style="font-size:0.8rem;color:var(--text-3);">Bite Dental · Dr. Achla Goel · Evidence-Based Protocol</div></div>
+        </div>
+        <div id="bs-plan-items" style="display:flex;flex-direction:column;gap:10px;margin-bottom:22px;"></div>
+        <div style="background:linear-gradient(135deg,rgba(96,188,1,0.12),rgba(96,188,1,0.05));border:1.5px solid rgba(96,188,1,0.3);border-radius:14px;padding:18px 20px;margin-bottom:18px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+            <div><div style="font-family:var(--head);font-size:1.05rem;font-weight:800;color:var(--green);letter-spacing:0.03em;">BiteShield™ Annual Plan</div><div style="font-size:0.83rem;color:var(--text-2);margin-top:3px;">2 fluoride varnish sessions + 1 check-up + priority booking · per child</div></div>
+            <div style="text-align:right;"><div style="font-family:var(--head);font-size:1.7rem;font-weight:900;color:var(--green);">₹1,999<span style="font-size:1rem;">/yr</span></div><div style="font-size:0.72rem;color:var(--text-3);">Less than ₹167/month</div></div>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <button class="bs-next-btn" onclick="bsPrint()" style="flex:1;min-width:160px;margin-top:0;background:transparent;border:1.5px solid rgba(96,188,1,0.4);color:var(--green);">🖨️ Save as PDF</button>
+          <a class="bs-next-btn" id="bs-plan-wa" href="#" target="_blank" style="flex:1;min-width:160px;margin-top:0;text-align:center;text-decoration:none;">💬 Send Plan via WhatsApp</a>
+        </div>
+        <p style="font-size:0.74rem;color:var(--text-3);margin-top:10px;text-align:center;">To save as PDF: click above → choose "Save as PDF" in your print dialog</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.bs-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.12);transition:all .3s;}
+.bs-dot.active{background:var(--green);width:24px;border-radius:4px;}
+.bs-card{background:var(--bg);border:1px solid rgba(255,255,255,0.07);border-radius:20px;padding:32px 28px;}
+.bs-q-num{font-size:0.75rem;font-weight:600;color:var(--green);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;}
+.bs-q-title{font-family:var(--head);font-size:1.35rem;font-weight:800;color:var(--text);margin-bottom:8px;line-height:1.25;}
+.bs-q-sub{font-size:0.88rem;color:var(--text-3);margin-bottom:22px;}
+.bs-label{display:block;font-size:0.8rem;color:var(--text-3);margin-bottom:7px;font-weight:500;}
+.bs-input{width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:12px 14px;color:var(--text);font-size:0.95rem;outline:none;transition:border-color .2s;box-sizing:border-box;}
+.bs-input:focus{border-color:var(--green);}
+.bs-opts{display:flex;flex-direction:column;gap:8px;}
+.bs-opt{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:12px;padding:13px 16px;color:var(--text-2);font-size:0.9rem;text-align:left;cursor:pointer;transition:all .18s;}
+.bs-opt:hover{border-color:rgba(96,188,1,0.4);color:var(--text);}
+.bs-opt.selected{border-color:var(--green);background:rgba(96,188,1,0.1);color:var(--text);}
+.bs-next-btn{display:block;width:100%;margin-top:22px;background:var(--green);color:#07100a;font-family:var(--head);font-size:1rem;font-weight:800;border:none;border-radius:12px;padding:15px 20px;cursor:pointer;letter-spacing:0.03em;transition:opacity .2s;}
+.bs-next-btn:hover{opacity:0.88;}
+.bs-plan-item{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;}
+.bs-plan-item-ico{font-size:1.2rem;flex-shrink:0;margin-top:1px;}
+.bs-plan-item-body strong{display:block;font-size:0.9rem;color:var(--text);margin-bottom:2px;}
+.bs-plan-item-body span{font-size:0.82rem;color:var(--text-3);}
+@media print{
+  nav,.wa-fab,.mob-cta,footer,.cta-band,section:not(#biteshield),#bs-steps,.bs-next-btn{display:none!important;}
+  #biteshield{padding:0!important;}#bs-wizard{max-width:100%!important;}
+  .bs-card{border:none!important;padding:12px 0!important;}
+  body{background:#fff!important;color:#111!important;}
+}
+</style>
+
+<script>
+const bsAnswers={brushing:null,sugar:null,history:null,goal:null};
+function bsSelect(field,val,el){
+  bsAnswers[field]=val;
+  el.closest('.bs-opts').querySelectorAll('.bs-opt').forEach(b=>b.classList.remove('selected'));
+  el.classList.add('selected');
+}
+function bsNext(fromStep){
+  if(fromStep===1){
+    const name=document.getElementById('bs-name').value.trim();
+    const age=document.getElementById('bs-age').value;
+    if(!name||!age){alert("Please enter your child's name and age to continue.");return;}
+  }
+  if(fromStep>=2&&fromStep<=4){
+    const fields=['brushing','sugar','history'];
+    if(bsAnswers[fields[fromStep-2]]===null){alert('Please choose an option to continue.');return;}
+  }
+  document.getElementById('bs-q'+fromStep).style.display='none';
+  document.getElementById('bs-q'+(fromStep+1)).style.display='block';
+  document.querySelectorAll('.bs-dot').forEach((d,i)=>d.classList.toggle('active',i===fromStep));
+  document.getElementById('bs-wizard').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function bsCalculate(){
+  if(bsAnswers.goal===null){alert('Please choose an option to continue.');return;}
+  document.getElementById('bs-q5').style.display='none';
+  const name=document.getElementById('bs-name').value.trim();
+  const ageVal=parseInt(document.getElementById('bs-age').value);
+  const score=bsAnswers.brushing+bsAnswers.sugar+bsAnswers.history;
+  const ageBonus=(ageVal>=3&&ageVal<=12)?1:0;
+  const total=score+ageBonus;
+  let level,colour,barPct,desc;
+  if(total<=2){level='Low Risk';colour='#60BC01';barPct=22;desc=name+' has good dental habits and a relatively low cavity risk right now. A 6-monthly fluoride varnish at each routine check-up is all that\'s needed — simple, preventive, and affordable.';}
+  else if(total<=5){level='Moderate Risk';colour='#F5A623';barPct=57;desc=name+' has a moderate cavity risk — the most common profile we see. A structured prevention plan with fluoride varnish every 6 months, a sealant assessment, and small dietary tweaks can prevent most future cavities before they even start.';}
+  else{level='High Risk';colour='#E84040';barPct=88;desc=name+' is in a higher-risk group — but that\'s exactly why you\'re here. With the right protocol starting now (more frequent varnish, sealants, and a tailored home routine), we can break the cavity cycle. Most parents see dramatic improvement within one year.';}
+  document.getElementById('bs-child-name-heading').textContent=name+"'s Cavity Risk Score";
+  const badge=document.getElementById('bs-risk-badge');
+  badge.textContent=level;badge.style.background=colour+'20';badge.style.color=colour;badge.style.border='1.5px solid '+colour+'60';
+  document.getElementById('bs-risk-desc').textContent=desc;
+  document.getElementById('bs-cta-name').textContent=name;
+  const waMsg=encodeURIComponent('Hi, I just completed the BiteShield risk quiz for my child '+name+' and got a '+level+' result. I\'d like to book the free prevention assessment.');
+  document.getElementById('bs-wa-link').href='https://wa.me/919810664561?text='+waMsg;
+  document.getElementById('bs-result').style.display='block';
+  document.getElementById('bs-wizard').scrollIntoView({behavior:'smooth',block:'start'});
+  setTimeout(()=>{document.getElementById('bs-risk-bar').style.width=barPct+'%';document.getElementById('bs-risk-bar').style.background=colour;},200);
+  setTimeout(()=>{bsBuildPlan(name,level);},1200);
+}
+function bsBuildPlan(name,level){
+  document.getElementById('bs-plan-title').textContent=name+"'s 2026 Prevention Plan";
+  const goal=bsAnswers.goal;
+  const goalLine=goal==='pain'?'Priority: Pain-free appointments':goal==='money'?'Priority: Lowest long-term cost':goal==='confidence'?'Priority: Confident, healthy smile':'Priority: Comprehensive protection';
+  const plans={
+    'Low Risk':[
+      {ico:'🪥',title:'Fluoride Varnish × 2/year',detail:'At each 6-month check-up. Quick, painless, often included in the visit cost.'},
+      {ico:'🔍',title:'Sealant Assessment at age 6–7',detail:'First molars erupt around 6 — we\'ll assess groove depth and seal if indicated.'},
+      {ico:'🏠',title:'Home: Fluoride toothpaste (1000–1450 ppm)',detail:'Pea-sized amount, spit don\'t rinse, twice daily.'},
+      {ico:'🍽️',title:'Limit sugar to mealtimes',detail:'Frequency matters more than quantity. Aim for sugar-free between meals.'}
+    ],
+    'Moderate Risk':[
+      {ico:'🪥',title:'Fluoride Varnish × 2–3/year',detail:'Every 4–6 months depending on check-up findings.'},
+      {ico:'🔒',title:'Fissure Sealants (priority)',detail:'Seal all permanent molars as they erupt. Reduces molar cavity risk by 80%.'},
+      {ico:'📅',title:'6-Month Check-Up Protocol',detail:'X-rays yearly to catch interproximal cavities early.'},
+      {ico:'🏠',title:'Upgrade home routine',detail:'Electric toothbrush + fluoride toothpaste + flossing from age 7.'},
+      {ico:'🍬',title:'Sugar audit',detail:'Aim for no more than 3 sugar exposures per day.'}
+    ],
+    'High Risk':[
+      {ico:'🛡️',title:'Fluoride Varnish × 3–4/year',detail:'Every 3 months for active cavity control — critical for breaking the decay cycle.'},
+      {ico:'🔒',title:'Immediate Sealants',detail:'All erupted permanent molars sealed at first appointment.'},
+      {ico:'📋',title:'Customised Fluoride Protocol',detail:'Dr. Achla Goel may recommend a prescription fluoride gel for home use.'},
+      {ico:'📅',title:'3-Month Review Cycle',detail:'Closer monitoring until risk profile drops. Catch problems at the white-spot stage.'},
+      {ico:'🍽️',title:'Dietary counselling',detail:'We\'ll map your child\'s daily sugar exposures and suggest practical swaps.'}
+    ]
+  };
+  const items=plans[level]||plans['Moderate Risk'];
+  const container=document.getElementById('bs-plan-items');
+  container.innerHTML='';
+  const goalEl=document.createElement('div');
+  goalEl.style.cssText='font-size:0.8rem;color:var(--green);font-weight:600;margin-bottom:6px;';
+  goalEl.textContent=goalLine;container.appendChild(goalEl);
+  items.forEach(item=>{
+    const el=document.createElement('div');
+    el.className='bs-plan-item';
+    el.innerHTML='<div class="bs-plan-item-ico">'+item.ico+'</div><div class="bs-plan-item-body"><strong>'+item.title+'</strong><span>'+item.detail+'</span></div>';
+    container.appendChild(el);
+  });
+  const waMsg=encodeURIComponent("Hi, I'd like to book the BiteShield annual prevention plan for my child "+name+" ("+level+"). Can you share availability?");
+  document.getElementById('bs-plan-wa').href='https://wa.me/919810664561?text='+waMsg;
+  document.getElementById('bs-plan').style.display='block';
+  document.getElementById('bs-plan').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function bsPrint(){window.print();}
+</script>
+
 <div class="cta-band">
   <div class="container">
     <div class="cta-inner">
