@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cavity Wizard — Know Your Child's Cavity Risk</title>
+<meta name="description" content="A simple saliva test tells you exactly how likely your child is to develop tooth decay — weeks before a cavity forms. Sign up for early access in Delhi, Mumbai &amp; Bengaluru.">
+
+<!-- Open Graph -->
+<meta property="og:title"       content="Cavity Wizard — Know Your Child's Cavity Risk Before It Starts">
+<meta property="og:description" content="India's first saliva-based caries risk test. Sign up for early access.">
+<meta property="og:url"         content="https://www.bitedentalclinic.com/cavitywizard">
+<meta property="og:type"        content="website">
+
+<!-- No site nav/footer — standalone page -->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+:root {
+  --cream:      #F7F2E8;
+  --parchment:  #EDE6D3;
+  --green:      #0D3D2E;
+  --mid:        #1A5C44;
+  --lime:       #7DB83A;
+  --lime-pale:  #EAF4D8;
+  --amber:      #D4890A;
+  --red:        #C0392B;
+  --ink:        #0D1A0F;
+  --muted:      #7A7468;
+  --white:      #FFFFFF;
+  --border:     rgba(13,61,46,0.12);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── GRAIN OVERLAY ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 0;
+}
+
+/* ── HERO SECTION ── */
+.hero {
+  background: var(--green);
+  padding: 72px 24px 56px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(125,184,58,0.12) 0%, transparent 65%);
+  top: -200px; left: 50%; transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(125,184,58,0.15);
+  border: 1px solid rgba(125,184,58,0.35);
+  color: var(--lime);
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase;
+  padding: 6px 16px; border-radius: 20px;
+  margin-bottom: 28px;
+  animation: fadeUp 0.6s ease both;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 900; line-height: 1;
+  color: var(--cream);
+  margin-bottom: 8px;
+  animation: fadeUp 0.6s 0.1s ease both;
+}
+.hero-title span { color: var(--lime); }
+
+.hero-tagline {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(15px, 2.5vw, 20px);
+  color: rgba(247,242,232,0.5);
+  margin-bottom: 28px;
+  animation: fadeUp 0.6s 0.2s ease both;
+}
+
+.hero-desc {
+  font-size: 15px; line-height: 1.75;
+  color: rgba(247,242,232,0.65);
+  max-width: 520px; margin: 0 auto 40px;
+  animation: fadeUp 0.6s 0.3s ease both;
+}
+.hero-desc strong { color: var(--lime); }
+
+/* stat pills */
+.hero-stats {
+  display: flex; gap: 12px;
+  justify-content: center; flex-wrap: wrap;
+  animation: fadeUp 0.6s 0.4s ease both;
+}
+.stat-pill {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 12px 18px;
+  text-align: center;
+  min-width: 100px;
+}
+.stat-pill-n {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px; font-weight: 900;
+  color: var(--lime); line-height: 1;
+}
+.stat-pill-l {
+  font-size: 10px; color: rgba(247,242,232,0.4);
+  margin-top: 3px; letter-spacing: 0.5px;
+}
+
+/* ── HOW IT WORKS ── */
+.how {
+  background: var(--parchment);
+  padding: 56px 24px;
+  position: relative; z-index: 1;
+}
+.how-inner { max-width: 680px; margin: 0 auto; }
+.section-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 12px; text-align: center;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px; font-weight: 700;
+  color: var(--green); text-align: center; margin-bottom: 36px;
+}
+
+.steps-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.step-block {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 16px;
+  text-align: center;
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.step-block:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(13,61,46,0.1);
+}
+.step-block::before {
+  content: attr(data-num);
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--green); color: var(--lime);
+  font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  line-height: 24px; text-align: center;
+}
+.step-icon { font-size: 28px; margin-bottom: 10px; margin-top: 6px; }
+.step-title { font-weight: 700; font-size: 13px; color: var(--green); margin-bottom: 6px; }
+.step-body { font-size: 12px; color: var(--muted); line-height: 1.6; }
+.step-time {
+  display: inline-block; margin-top: 10px;
+  font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 600;
+  color: var(--lime); background: var(--lime-pale);
+  padding: 2px 8px; border-radius: 4px;
+}
+
+/* ── FORM SECTION ── */
+.form-section {
+  padding: 64px 24px 80px;
+  position: relative; z-index: 1;
+}
+.form-inner { max-width: 580px; margin: 0 auto; }
+
+.form-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 20px 60px rgba(13,61,46,0.08);
+}
+
+.form-header { margin-bottom: 32px; }
+.form-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px; font-weight: 700;
+  color: var(--green); margin-bottom: 8px;
+}
+.form-subtitle { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+/* field groups */
+.field-group { margin-bottom: 20px; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+label {
+  display: block;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 1px; text-transform: uppercase;
+  color: var(--green); margin-bottom: 7px;
+}
+label .optional {
+  font-weight: 400; color: var(--muted);
+  text-transform: none; letter-spacing: 0;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 9px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: var(--ink);
+  background: var(--cream);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+  appearance: none;
+}
+input:focus, select:focus {
+  border-color: var(--lime);
+  box-shadow: 0 0 0 3px rgba(125,184,58,0.12);
+  background: white;
+}
+select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A7468' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+
+/* ── VAN WESTENDORP SLIDERS ── */
+.vw-block {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 0;
+}
+.vw-intro {
+  font-size: 12px; color: var(--muted); line-height: 1.6;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.vw-intro strong { color: var(--ink); }
+.vw-q {
+  margin-bottom: 18px;
+}
+.vw-q:last-child { margin-bottom: 0; }
+.vw-q-label {
+  display: flex; align-items: flex-start; gap: 10px;
+  margin-bottom: 10px;
+}
+.vw-q-icon {
+  width: 24px; height: 24px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; flex-shrink: 0; margin-top: 1px;
+}
+.vw-q-text { font-size: 13px; color: var(--ink); line-height: 1.5; font-weight: 500; }
+.vw-q-text em { font-style: normal; color: var(--muted); font-size: 11px; display: block; margin-top: 2px; }
+
+/* Slider row — generous tap target for mobile */
+.vw-slider-row {
+  display: flex; align-items: center; gap: 12px;
+}
+
+/* ── MOBILE-FRIENDLY RANGE INPUT ── */
+.vw-slider {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  /* Expanded touch target — invisible padding above/below */
+  padding-block: 12px;
+  margin-block: -12px;
+  background-clip: content-box;
+  /* Prevent page scroll when dragging horizontally on touch */
+  touch-action: pan-y;
+}
+
+/* WebKit thumb (Chrome, Safari, iOS) */
+.vw-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 28px; height: 28px;   /* larger = easier to grab on mobile */
+  border-radius: 50%;
+  background: var(--green);
+  cursor: grab;
+  border: 3px solid white;
+  box-shadow: 0 2px 8px rgba(13,61,46,0.35);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.vw-slider::-webkit-slider-thumb:hover,
+.vw-slider:active::-webkit-slider-thumb {
+  transform: scale(1.15);
+  cursor: grabbing;
+  box-shadow: 0 4px 14px rgba(13,61,46,0.45);
+}
+
+/* Firefox thumb */
+.vw-slider::-moz-range-thumb {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--green);
+  cursor: grab;
+  border: 3px solid white;
+  box-shadow: 0 2px 8px rgba(13,61,46,0.35);
+  transition: transform 0.15s;
+}
+.vw-slider:active::-moz-range-thumb {
+  transform: scale(1.15);
+  cursor: grabbing;
+}
+
+/* Firefox track */
+.vw-slider::-moz-range-track {
+  height: 4px;
+  border-radius: 2px;
+  background: #e5e7eb;
+}
+.vw-slider::-moz-range-progress {
+  height: 4px;
+  border-radius: 2px 0 0 2px;
+  background: var(--lime);
+}
+
+.vw-val {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700;
+  min-width: 72px; text-align: right;
+  transition: color 0.2s;
+}
+.vw-divider { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+
+/* intent selector */
+.intent-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.intent-opt { position: relative; }
+.intent-opt input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+.intent-opt label {
+  display: flex; align-items: center; gap: 14px;
+  border: 1.5px solid var(--border); border-radius: 10px;
+  padding: 13px 16px; cursor: pointer;
+  transition: all 0.18s; background: var(--cream);
+  font-size: 13px; font-weight: 500; color: var(--ink);
+  letter-spacing: 0; text-transform: none;
+  font-family: 'DM Sans', sans-serif;
+}
+.intent-opt label .intent-icon { font-size: 20px; flex-shrink: 0; }
+.intent-opt label .intent-body { flex: 1; }
+.intent-opt label .intent-title { font-weight: 600; color: var(--ink); font-size: 13px; }
+.intent-opt label .intent-sub { font-size: 11px; color: var(--muted); margin-top: 1px; }
+.intent-opt input:checked + label {
+  border-color: var(--lime);
+  background: var(--lime-pale);
+}
+.intent-opt label:hover { border-color: rgba(125,184,58,0.4); background: white; }
+
+/* section divider */
+.form-divider {
+  border: none; border-top: 1px solid var(--border);
+  margin: 28px 0;
+}
+
+/* checkbox */
+.checkbox-row {
+  display: flex; align-items: flex-start; gap: 10px; margin-bottom: 20px;
+}
+.checkbox-row input[type="checkbox"] {
+  width: 18px; height: 18px; flex-shrink: 0;
+  accent-color: var(--lime); margin-top: 1px; cursor: pointer;
+}
+.checkbox-row label {
+  font-size: 12px; color: var(--muted); font-weight: 400;
+  letter-spacing: 0; text-transform: none;
+  font-family: 'DM Sans', sans-serif; cursor: pointer;
+}
+
+/* submit */
+.submit-btn {
+  width: 100%;
+  padding: 16px 24px;
+  background: var(--green);
+  color: var(--cream);
+  border: none; border-radius: 10px;
+  font-family: 'Playfair Display', serif;
+  font-size: 17px; font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  /* Minimum 44px tap target */
+  min-height: 52px;
+}
+.submit-btn:hover { background: var(--mid); transform: translateY(-1px); }
+.submit-btn:active { transform: translateY(0); }
+
+.submit-note {
+  text-align: center; margin-top: 12px;
+  font-size: 11px; color: var(--muted);
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+
+/* ── SUCCESS STATE ── */
+.success-state {
+  display: none;
+  text-align: center; padding: 48px 32px;
+}
+.success-state.visible { display: block; }
+.success-icon { font-size: 52px; margin-bottom: 20px; animation: pop 0.4s ease; }
+.success-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px; font-weight: 700; color: var(--green);
+  margin-bottom: 12px;
+}
+.success-body { font-size: 14px; color: var(--muted); line-height: 1.7; max-width: 400px; margin: 0 auto 28px; }
+.success-data {
+  background: var(--lime-pale); border: 1px solid rgba(125,184,58,0.3);
+  border-radius: 12px; padding: 20px 24px; text-align: left;
+  margin-bottom: 20px;
+}
+.success-data-title {
+  font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--mid); margin-bottom: 12px;
+}
+.success-data-row {
+  display: flex; justify-content: space-between;
+  font-size: 13px; padding: 6px 0;
+  border-bottom: 1px solid rgba(125,184,58,0.15);
+}
+.success-data-row:last-child { border: none; }
+.success-data-row span:first-child { color: var(--muted); }
+.success-data-row span:last-child { font-weight: 600; color: var(--ink); }
+
+/* ── TRUST STRIP ── */
+.trust {
+  background: var(--green);
+  padding: 28px 24px;
+  display: flex; gap: 24px;
+  justify-content: center; flex-wrap: wrap;
+  position: relative; z-index: 1;
+}
+.trust-item {
+  display: flex; align-items: center; gap: 8px;
+  color: rgba(247,242,232,0.6); font-size: 12px;
+}
+.trust-item span { font-size: 16px; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes pop {
+  0%   { transform: scale(0.5); opacity: 0; }
+  70%  { transform: scale(1.15); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 560px) {
+  .steps-row { grid-template-columns: 1fr; }
+  .field-row { grid-template-columns: 1fr; }
+  .form-card { padding: 28px 20px; }
+  .hero { padding: 52px 20px 40px; }
+  /* Wider value label on mobile so it doesn't wrap */
+  .vw-val { min-width: 64px; font-size: 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-pill">🦷 Coming Soon to Delhi · Mumbai · Bengaluru</div>
+  <h1 class="hero-title">Cavity<br><span>Wizard</span></h1>
+  <p class="hero-tagline">Know your child's cavity risk. Before it becomes a cavity.</p>
+  <p class="hero-desc">
+    A simple saliva test tells you exactly how likely your child is to develop tooth decay —
+    <strong>weeks before a cavity forms</strong>. No needles. No X-rays. Just a spit, a swab, and a report.
+  </p>
+  <div class="hero-stats">
+    <div class="stat-pill">
+      <div class="stat-pill-n">5 min</div>
+      <div class="stat-pill-l">At the dentist</div>
+    </div>
+    <div class="stat-pill">
+      <div class="stat-pill-n">8</div>
+      <div class="stat-pill-l">Things measured</div>
+    </div>
+    <div class="stat-pill">
+      <div class="stat-pill-n">48h</div>
+      <div class="stat-pill-l">Full report</div>
+    </div>
+    <div class="stat-pill">
+      <div class="stat-pill-n">60%</div>
+      <div class="stat-pill-l">Indian kids at risk</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HOW IT WORKS ═══ -->
+<section class="how">
+  <div class="how-inner">
+    <div class="section-label">How it works</div>
+    <h2 class="section-title">Three steps. One score. Total clarity.</h2>
+    <div class="steps-row">
+      <div class="step-block" data-num="1">
+        <div class="step-icon">🧊</div>
+        <div class="step-title">Chew &amp; Collect</div>
+        <div class="step-body">Your child chews a piece of paraffin wax for 5 minutes at the dentist. That's the whole collection — no needles, no discomfort.</div>
+        <div class="step-time">At the clinic</div>
+      </div>
+      <div class="step-block" data-num="2">
+        <div class="step-icon">🔬</div>
+        <div class="step-title">Lab Analysis</div>
+        <div class="step-body">The saliva is tested for cavity-causing bacteria levels, acidity, and saliva quality. 8 parameters. Done in a NABL-certified lab.</div>
+        <div class="step-time">Within 48 hours</div>
+      </div>
+      <div class="step-block" data-num="3">
+        <div class="step-icon">📱</div>
+        <div class="step-title">Your Report</div>
+        <div class="step-body">You receive a Cavity Risk Score (1–10) with plain-language explanations and a personalised action plan for your child.</div>
+        <div class="step-time">On your phone</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FORM ═══ -->
+<section class="form-section">
+  <div class="form-inner">
+
+    <div style="text-align:center;margin-bottom:32px;">
+      <div class="section-label">Early Access</div>
+      <h2 class="section-title" style="margin-bottom:10px;">Be first. Get the founding price.</h2>
+      <p style="font-size:14px;color:var(--muted);line-height:1.7;">
+        We're launching in Delhi NCR first. Sign up now and we'll reach out as soon as Cavity Wizard is available at a clinic near you — at our lowest-ever introductory price.
+      </p>
+    </div>
+
+    <div class="form-card">
+      <!-- FORM VIEW -->
+      <div id="formView">
+        <div class="form-header">
+          <div class="form-title">Register Your Interest</div>
+          <div class="form-subtitle">Takes 90 seconds. No payment needed now. We'll confirm your spot and pricing before anything happens.</div>
+        </div>
+
+        <!-- Parent details -->
+        <div class="field-row">
+          <div class="field-group">
+            <label for="parentName">Your Name</label>
+            <input type="text" id="parentName" placeholder="e.g. Priya Sharma" autocomplete="name">
+          </div>
+          <div class="field-group">
+            <label for="phone">WhatsApp Number</label>
+            <input type="tel" id="phone" placeholder="+91 98765 43210" autocomplete="tel">
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="priya@email.com" autocomplete="email">
+        </div>
+
+        <div class="field-row">
+          <div class="field-group">
+            <label for="city">City</label>
+            <select id="city">
+              <option value="">Select city</option>
+              <option>Delhi / NCR</option>
+              <option>Mumbai</option>
+              <option>Bengaluru</option>
+              <option>Pune</option>
+              <option>Chennai</option>
+              <option>Hyderabad</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label for="childAge">Child's Age</label>
+            <select id="childAge">
+              <option value="">Select age</option>
+              <option>Under 3 years</option>
+              <option>3–5 years</option>
+              <option>6–9 years</option>
+              <option>10–12 years</option>
+              <option>13–17 years</option>
+              <option>Multiple children</option>
+            </select>
+          </div>
+        </div>
+
+        <hr class="form-divider">
+
+        <!-- Intent question -->
+        <div class="field-group">
+          <label>How likely are you to book this test? <span class="optional">(helps us plan)</span></label>
+          <div class="intent-options">
+            <div class="intent-opt">
+              <input type="radio" name="intent" id="i1" value="ready">
+              <label for="i1">
+                <span class="intent-icon">🙋</span>
+                <div class="intent-body">
+                  <div class="intent-title">Ready to book</div>
+                  <div class="intent-sub">I want this as soon as it's available near me</div>
+                </div>
+              </label>
+            </div>
+            <div class="intent-opt">
+              <input type="radio" name="intent" id="i2" value="curious">
+              <label for="i2">
+                <span class="intent-icon">🤔</span>
+                <div class="intent-body">
+                  <div class="intent-title">Curious, want to know more first</div>
+                  <div class="intent-sub">Send me details and I'll decide</div>
+                </div>
+              </label>
+            </div>
+            <div class="intent-opt">
+              <input type="radio" name="intent" id="i3" value="dentist">
+              <label for="i3">
+                <span class="intent-icon">🏥</span>
+                <div class="intent-body">
+                  <div class="intent-title">My dentist would need to recommend it</div>
+                  <div class="intent-sub">I'd trust it more with professional guidance</div>
+                </div>
+              </label>
+            </div>
+            <div class="intent-opt">
+              <input type="radio" name="intent" id="i4" value="price">
+              <label for="i4">
+                <span class="intent-icon">💸</span>
+                <div class="intent-body">
+                  <div class="intent-title">Depends on the price</div>
+                  <div class="intent-sub">If the value is right, yes</div>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <hr class="form-divider">
+
+        <!-- VAN WESTENDORP PRICING BLOCK -->
+        <div class="field-group">
+          <label>Help us get the price right <span class="optional">(4 quick sliders)</span></label>
+          <div class="vw-block">
+            <div class="vw-intro">
+              We're deciding what to charge for the Cavity Wizard test. Drag each slider to the price that feels right for <strong>that specific question</strong> — there are no wrong answers and this directly shapes what we charge at launch.
+            </div>
+
+            <!-- Q1: Too cheap / suspicious -->
+            <div class="vw-q">
+              <div class="vw-q-label">
+                <div class="vw-q-icon" style="background:#FEE2E2;color:#991B1B;">😬</div>
+                <div class="vw-q-text">
+                  At what price would this feel <strong>so cheap you'd question if it's legit?</strong>
+                  <em>"Below this, I'd wonder if the lab is actually any good…"</em>
+                </div>
+              </div>
+              <div class="vw-slider-row">
+                <input type="range" class="vw-slider" id="vwQ1" min="499" max="2999" step="100" value="499"
+                  style="background: linear-gradient(to right, var(--lime) 0%, var(--lime) 0%, #e5e7eb 0%, #e5e7eb 100%);"
+                  oninput="updateVW('vwQ1','vwV1',this.value,'#FEE2E2','#991B1B')">
+                <div class="vw-val" id="vwV1" style="color:#991B1B;">₹499</div>
+              </div>
+            </div>
+
+            <div class="vw-divider"></div>
+
+            <!-- Q2: Good value / bargain -->
+            <div class="vw-q">
+              <div class="vw-q-label">
+                <div class="vw-q-icon" style="background:#D1FAE5;color:#065F46;">👍</div>
+                <div class="vw-q-text">
+                  At what price would this feel like <strong>genuinely good value</strong>?
+                  <em>"At this price, I'd feel I'm getting more than I'm paying for."</em>
+                </div>
+              </div>
+              <div class="vw-slider-row">
+                <input type="range" class="vw-slider" id="vwQ2" min="499" max="2999" step="100" value="799"
+                  style="background: linear-gradient(to right, var(--lime) 0%, var(--lime) 12%, #e5e7eb 12%, #e5e7eb 100%);"
+                  oninput="updateVW('vwQ2','vwV2',this.value,'#D1FAE5','#065F46')">
+                <div class="vw-val" id="vwV2" style="color:#065F46;">₹799</div>
+              </div>
+            </div>
+
+            <div class="vw-divider"></div>
+
+            <!-- Q3: Getting expensive but still ok -->
+            <div class="vw-q">
+              <div class="vw-q-label">
+                <div class="vw-q-icon" style="background:#FEF3C7;color:#92400E;">🤔</div>
+                <div class="vw-q-text">
+                  At what price would it start feeling <strong>expensive — but you'd still consider it</strong>?
+                  <em>"I'd pause, but probably still do it for my child."</em>
+                </div>
+              </div>
+              <div class="vw-slider-row">
+                <input type="range" class="vw-slider" id="vwQ3" min="499" max="2999" step="100" value="1299"
+                  style="background: linear-gradient(to right, var(--lime) 0%, var(--lime) 32%, #e5e7eb 32%, #e5e7eb 100%);"
+                  oninput="updateVW('vwQ3','vwV3',this.value,'#FEF3C7','#92400E')">
+                <div class="vw-val" id="vwV3" style="color:#92400E;">₹1,299</div>
+              </div>
+            </div>
+
+            <div class="vw-divider"></div>
+
+            <!-- Q4: Too expensive / walk away -->
+            <div class="vw-q">
+              <div class="vw-q-label">
+                <div class="vw-q-icon" style="background:#F3F4F6;color:#6B7280;">🚫</div>
+                <div class="vw-q-text">
+                  At what price would this be <strong>too expensive — you'd skip it</strong>?
+                  <em>"Above this, I'm out regardless of how good it is."</em>
+                </div>
+              </div>
+              <div class="vw-slider-row">
+                <input type="range" class="vw-slider" id="vwQ4" min="499" max="2999" step="100" value="1999"
+                  style="background: linear-gradient(to right, var(--lime) 0%, var(--lime) 60%, #e5e7eb 60%, #e5e7eb 100%);"
+                  oninput="updateVW('vwQ4','vwV4',this.value,'#F3F4F6','#6B7280')">
+                <div class="vw-val" id="vwV4" style="color:#6B7280;">₹1,999</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Hear about -->
+        <div class="field-group">
+          <label for="source">How did you hear about Cavity Wizard? <span class="optional">(optional)</span></label>
+          <select id="source">
+            <option value="">Select one</option>
+            <option>My dentist / Bite Dental</option>
+            <option>Instagram / Social media</option>
+            <option>Friend or family</option>
+            <option>Google search</option>
+            <option>WhatsApp group</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <hr class="form-divider">
+
+        <div class="checkbox-row">
+          <input type="checkbox" id="consent" checked>
+          <label for="consent">I'm happy for Cavity Wizard to contact me on WhatsApp and email with launch updates, my introductory pricing, and clinic availability. I can unsubscribe anytime.</label>
+        </div>
+
+        <button class="submit-btn" onclick="handleSubmit()">
+          Reserve My Spot 🦷
+        </button>
+
+        <p class="submit-note">
+          🔒 No payment now. No spam. Just your launch notification + founding price.
+        </p>
+      </div><!-- end formView -->
+
+      <!-- SUCCESS VIEW -->
+      <div class="success-state" id="successView">
+        <div class="success-icon">🎉</div>
+        <div class="success-title">You're on the list!</div>
+        <div class="success-body">
+          We'll reach out on WhatsApp as soon as Cavity Wizard is available at a clinic near you — with your exclusive founding member price locked in.
+        </div>
+        <div class="success-data" id="successData">
+          <div class="success-data-title">Your Registration Summary</div>
+        </div>
+        <p style="font-size:12px;color:var(--muted);line-height:1.6;">
+          In the meantime, share this with another parent who'd want to know their child's cavity risk 👇
+        </p>
+        <div style="margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+          <button onclick="shareWA()" style="background:var(--green);color:var(--cream);border:none;border-radius:8px;padding:11px 20px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px;min-height:44px;">
+            📲 Share on WhatsApp
+          </button>
+          <button onclick="copyLink()" style="background:white;color:var(--green);border:1.5px solid var(--border);border-radius:8px;padding:11px 20px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;min-height:44px;">
+            🔗 Copy Link
+          </button>
+        </div>
+      </div>
+
+    </div><!-- end form-card -->
+  </div>
+</section>
+
+<!-- ═══ TRUST STRIP ═══ -->
+<div class="trust">
+  <div class="trust-item"><span>🔬</span> NABL-accredited lab processing</div>
+  <div class="trust-item"><span>🦷</span> Designed with pedodontists</div>
+  <div class="trust-item"><span>📋</span> Based on global clinical protocols</div>
+  <div class="trust-item"><span>🔒</span> Your data is never sold</div>
+</div>
+
+<script>
+  // ── CONFIG: paste your Apps Script URL here after deploying ──────
+  // Steps: Google Sheet → Extensions → Apps Script → paste doPost code → Deploy → Web App
+  // Set "Execute as: Me" and "Who has access: Anyone" → Copy URL below
+  const APPS_SCRIPT_URL = 'PASTE_YOUR_APPS_SCRIPT_URL_HERE';
+  // ─────────────────────────────────────────────────────────────────
+
+  // Van Westendorp slider updater
+  function updateVW(sliderId, valId, value, bg, fg) {
+    const slider = document.getElementById(sliderId);
+    const label  = document.getElementById(valId);
+    const pct    = ((value - 499) / (2999 - 499)) * 100;
+    slider.style.background = `linear-gradient(to right, var(--lime) 0%, var(--lime) ${pct}%, #e5e7eb ${pct}%, #e5e7eb 100%)`;
+    label.textContent = '₹' + parseInt(value).toLocaleString('en-IN');
+    label.style.color = fg;
+  }
+
+  function handleSubmit() {
+    const name   = document.getElementById('parentName').value.trim();
+    const phone  = document.getElementById('phone').value.trim();
+    const email  = document.getElementById('email').value.trim();
+    const city   = document.getElementById('city').value;
+    const age    = document.getElementById('childAge').value;
+    const intent = document.querySelector('input[name="intent"]:checked');
+    const consent= document.getElementById('consent').checked;
+
+    // VW values
+    const vwTooChep  = document.getElementById('vwQ1').value;
+    const vwBargain  = document.getElementById('vwQ2').value;
+    const vwExpensive= document.getElementById('vwQ3').value;
+    const vwTooExp   = document.getElementById('vwQ4').value;
+
+    if (!name)  { alert('Please enter your name.'); return; }
+    if (!phone && !email) { alert('Please enter a WhatsApp number or email so we can reach you.'); return; }
+    if (!city)  { alert('Please select your city.'); return; }
+    if (!consent) { alert('Please accept the contact preference to continue.'); return; }
+
+    // Soft validation: Q1 < Q2 < Q3 < Q4
+    if (parseInt(vwTooChep) >= parseInt(vwBargain)) {
+      alert('Your "too cheap" price should be lower than your "good value" price — please adjust the sliders.');
+      return;
+    }
+
+    const intentLabels = {
+      ready: 'Ready to book', curious: 'Wants more info',
+      dentist: 'Needs dentist rec', price: 'Price-dependent'
+    };
+
+    // Build success summary
+    const data = document.getElementById('successData');
+    const rows = [
+      ['Name', name],
+      ['City', city],
+      ['Child age', age || '—'],
+      ['Intent', intent ? intentLabels[intent.value] : '—'],
+      ['Too cheap threshold', '₹' + parseInt(vwTooChep).toLocaleString('en-IN')],
+      ['Good value price',    '₹' + parseInt(vwBargain).toLocaleString('en-IN')],
+      ['Expensive-but-ok',   '₹' + parseInt(vwExpensive).toLocaleString('en-IN')],
+      ['Walk-away price',    '₹' + parseInt(vwTooExp).toLocaleString('en-IN')],
+    ];
+
+    data.innerHTML = '<div class="success-data-title">Your Registration Summary</div>' +
+      rows.map(([k,v]) => `<div class="success-data-row"><span>${k}</span><span>${v}</span></div>`).join('');
+
+    // Swap views immediately (fire-and-forget UX)
+    document.getElementById('formView').style.display = 'none';
+    document.getElementById('successView').classList.add('visible');
+    document.getElementById('successView').scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    // POST to Google Sheets via Apps Script
+    // mode:'no-cors' required — Apps Script doesn't send CORS headers on POST.
+    // We can't read the response but the data lands in the Sheet fine.
+    if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'PASTE_YOUR_APPS_SCRIPT_URL_HERE') {
+      fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name, phone, email, city, childAge: age,
+          intent: intent?.value,
+          vw: {
+            tooCheap:    vwTooChep,
+            goodValue:   vwBargain,
+            expensiveOk: vwExpensive,
+            walkAway:    vwTooExp
+          }
+        })
+      }).catch(err => console.error('Signup error:', err));
+    }
+  }
+
+  function shareWA() {
+    const text = encodeURIComponent("Did you know 60% of Indian kids have tooth decay risk that shows up BEFORE a cavity? This test checks your child's saliva and gives a Cavity Risk Score. Launching soon — sign up: https://www.bitedentalclinic.com/cavitywizard");
+    window.open('https://wa.me/?text=' + text, '_blank');
+  }
+
+  function copyLink() {
+    navigator.clipboard.writeText('https://www.bitedentalclinic.com/cavitywizard').then(() => {
+      alert('Link copied! Share it with other parents.');
+    });
+  }
+</script>
+
+</body>
+</html>
