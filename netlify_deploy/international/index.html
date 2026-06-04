@@ -114,17 +114,37 @@ h2.section-h{font-size:clamp(2rem,4vw,3rem);font-weight:900;color:var(--text);li
 .stat-l{font-size:0.8rem;color:var(--text-2);margin-top:4px;}
 
 /* ── DOCTORS ── */
-.doctors-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.doctors-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
 .doc-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;transition:box-shadow .2s,transform .2s;}
 .doc-card:hover{box-shadow:0 12px 40px rgba(96,188,1,0.1);transform:translateY(-3px);}
-.doc-avatar{height:200px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--bg-2) 0%,var(--card-2) 100%);position:relative;overflow:hidden;}
-.doc-avatar-initials{width:90px;height:90px;border-radius:50%;background:var(--green-dim);border:2px solid var(--green-line);display:flex;align-items:center;justify-content:center;font-family:var(--head);font-size:2rem;font-weight:900;color:var(--green);}
-.doc-body{padding:22px;}
-.doc-name{font-family:var(--head);font-size:1.4rem;font-weight:900;color:var(--text);line-height:1.1;margin-bottom:4px;}
-.doc-title{font-size:0.8rem;font-weight:600;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;}
-.doc-bio{font-size:0.85rem;color:var(--text-2);line-height:1.65;margin-bottom:16px;}
+.doc-photo{height:220px;overflow:hidden;position:relative;background:var(--bg-2);}
+.doc-photo img{width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform .3s;}
+.doc-card:hover .doc-photo img{transform:scale(1.04);}
+.doc-specialty-chip{position:absolute;bottom:10px;left:10px;background:var(--green);color:#fff;font-size:0.68rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 9px;border-radius:6px;}
+.doc-body{padding:18px;}
+.doc-name{font-family:var(--head);font-size:1.3rem;font-weight:900;color:var(--text);line-height:1.1;margin-bottom:3px;}
+.doc-title{font-size:0.75rem;font-weight:600;color:var(--text-3);margin-bottom:10px;}
+.doc-bio{font-size:0.82rem;color:var(--text-2);line-height:1.65;margin-bottom:14px;}
 .doc-tags{display:flex;flex-wrap:wrap;gap:6px;}
-.doc-tag{font-size:0.72rem;font-weight:600;background:var(--green-dim);color:var(--green);border-radius:6px;padding:3px 9px;}
+.doc-tag{font-size:0.7rem;font-weight:600;background:var(--green-dim);color:var(--green);border-radius:6px;padding:3px 8px;}
+
+/* ── CASE GALLERY ── */
+.gallery-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px;}
+.gf-btn{padding:7px 16px;border-radius:20px;font-size:0.82rem;font-weight:600;border:1px solid var(--border);background:var(--card);color:var(--text-2);cursor:pointer;transition:all .18s;}
+.gf-btn:hover,.gf-btn.active{background:var(--green);color:#fff;border-color:var(--green);}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.gallery-grid .story-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;display:none;}
+.gallery-grid .story-card.visible{display:block;}
+.gallery-grid .story-imgs{height:200px;overflow:hidden;}
+.gallery-grid .story-imgs img{width:100%;height:100%;object-fit:cover;transition:transform .3s;}
+.gallery-grid .story-card:hover .story-imgs img{transform:scale(1.04);}
+.gallery-grid .story-info{padding:16px 18px;}
+.gallery-grid .story-treatment{display:inline-block;font-size:0.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--green);background:var(--green-dim);border-radius:5px;padding:2px 8px;margin-bottom:10px;}
+.gallery-grid .story-quote{font-size:0.82rem;color:var(--text-2);line-height:1.6;font-style:italic;margin-bottom:12px;}
+.gallery-grid .story-meta{display:flex;gap:16px;}
+.gallery-grid .story-meta-item{display:flex;flex-direction:column;}
+.gallery-grid .story-meta-label{font-size:0.65rem;color:var(--text-3);text-transform:uppercase;letter-spacing:1px;}
+.gallery-grid .story-meta-val{font-size:0.82rem;font-weight:700;color:var(--text);}
 
 /* ── TREATMENTS GRID ── */
 .treatments-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
@@ -196,6 +216,7 @@ h2.section-h{font-size:clamp(2rem,4vw,3rem);font-weight:900;color:var(--text);li
   .doctors-grid{grid-template-columns:repeat(2,1fr);}
   .treatments-grid{grid-template-columns:repeat(2,1fr);}
   .facilities-grid{grid-template-columns:repeat(2,1fr);}
+  .gallery-grid{grid-template-columns:repeat(2,1fr);}
   .steps-row{grid-template-columns:repeat(2,1fr);}
   .steps-row::before{display:none;}
   .forms-grid{grid-template-columns:1fr;}
@@ -206,6 +227,7 @@ h2.section-h{font-size:clamp(2rem,4vw,3rem);font-weight:900;color:var(--text);li
   .doctors-grid{grid-template-columns:1fr;}
   .treatments-grid{grid-template-columns:1fr;}
   .facilities-grid{grid-template-columns:1fr;}
+  .gallery-grid{grid-template-columns:1fr;}
   .steps-row{grid-template-columns:1fr;}
   .stats-grid{grid-template-columns:repeat(2,1fr);}
   .field-row{grid-template-columns:1fr;}
@@ -375,56 +397,74 @@ h2.section-h{font-size:clamp(2rem,4vw,3rem);font-weight:900;color:var(--text);li
 
     <div class="doctors-grid">
 
-      <!-- Dr. Shrey -->
+      <!-- Dr. Shrey Dhawan -->
       <div class="doc-card">
-        <div class="doc-avatar">
-          <div class="doc-avatar-initials">SD</div>
+        <div class="doc-photo">
+          <img src="/Resources/Profiles/11.png" alt="Dr. Shrey Dhawan – Founder, Bite Dental Clinic" loading="lazy" />
+          <span class="doc-specialty-chip">Founder &amp; Lead</span>
         </div>
         <div class="doc-body">
           <div class="doc-name">Dr. Shrey Dhawan</div>
-          <div class="doc-title">Founder · MDS Orthodontist &amp; Endodontist</div>
-          <p class="doc-bio">Dr. Shrey founded Bite Dental with one goal — to make specialist-level dentistry accessible. He holds an MDS in Orthodontics and is an Invisalign Platinum Elite provider, one of only a handful in Delhi NCR. He personally oversees every aligner case and complex restorative treatment.</p>
+          <div class="doc-title">BDS · MDS Endodontics, Cosmetics &amp; Laser</div>
+          <p class="doc-bio">Founder of Bite Dental. Specialises in root canal treatments, endodontics, and complex restorative cases. Built this practice on honest, precise dentistry with genuine warmth.</p>
           <div class="doc-tags">
-            <span class="doc-tag">Invisalign Platinum Elite</span>
-            <span class="doc-tag">Clear Aligners</span>
             <span class="doc-tag">Root Canal</span>
-            <span class="doc-tag">Smile Design</span>
+            <span class="doc-tag">Endodontics</span>
+            <span class="doc-tag">Cosmetic Dentistry</span>
           </div>
         </div>
       </div>
 
-      <!-- Dr. Achla -->
+      <!-- Dr. Shamindhi Dhawan -->
       <div class="doc-card">
-        <div class="doc-avatar">
-          <div class="doc-avatar-initials">AD</div>
+        <div class="doc-photo">
+          <img src="/Resources/Profiles/13.png" alt="Dr. Shamindhi Dhawan – Implant Surgeon, Bite Dental Clinic" loading="lazy" />
+          <span class="doc-specialty-chip">Implant Surgeon</span>
         </div>
         <div class="doc-body">
-          <div class="doc-name">Dr. Achla</div>
-          <div class="doc-title">MDS Pedodontist · Children's Dental Specialist</div>
-          <p class="doc-bio">Dr. Achla is our specialist children's dentist, trained specifically in managing young patients — from anxious toddlers to teenagers. She designed the Cavity Wizard protocol and specialises in preventive care, early orthodontic intervention, and making children's dental visits stress-free.</p>
-          <div class="doc-tags">
-            <span class="doc-tag">Kids Dentistry</span>
-            <span class="doc-tag">Cavity Prevention</span>
-            <span class="doc-tag">Early Orthodontics</span>
-            <span class="doc-tag">Anxiety Management</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Implantologist placeholder -->
-      <div class="doc-card">
-        <div class="doc-avatar">
-          <div class="doc-avatar-initials">IM</div>
-        </div>
-        <div class="doc-body">
-          <div class="doc-name">Dr. Implant Specialist</div>
-          <div class="doc-title">MDS Oral &amp; Maxillofacial Surgeon · Implantologist</div>
-          <p class="doc-bio">Our visiting implantologist brings extensive surgical training to every case. Experienced in single-tooth implants, full-arch rehabilitation (All-on-4), bone grafting, and sinus lifts. All implant cases are treatment-planned collaboratively with Dr. Shrey for optimal aesthetic outcomes.</p>
+          <div class="doc-name">Dr. Shamindhi Dhawan</div>
+          <div class="doc-title">Implant &amp; Facial Cosmetic Surgeon</div>
+          <p class="doc-bio">Specialist-level precision for dental implants and facial cosmetic procedures. Her calm, meticulous approach puts even the most nervous patients at ease — and her results speak for themselves.</p>
           <div class="doc-tags">
             <span class="doc-tag">Dental Implants</span>
-            <span class="doc-tag">All-on-4</span>
-            <span class="doc-tag">Bone Grafting</span>
-            <span class="doc-tag">Sinus Lift</span>
+            <span class="doc-tag">Facial Cosmetics</span>
+            <span class="doc-tag">Oral Surgery</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dr. Achla Goel -->
+      <div class="doc-card">
+        <div class="doc-photo">
+          <img src="/Resources/Profiles/Achla_bite_profile.png" alt="Dr. Achla Goel – Pedodontist, Bite Dental Clinic" loading="lazy" />
+          <span class="doc-specialty-chip">Pedodontist</span>
+        </div>
+        <div class="doc-body">
+          <div class="doc-name">Dr. Achla Goel</div>
+          <div class="doc-title">BDS · MDS Pedodontics</div>
+          <p class="doc-bio">Specialist in children's dentistry and preventive care. She believes every child deserves a dental experience so positive they actually look forward to coming back. Designed the Cavity Wizard protocol.</p>
+          <div class="doc-tags">
+            <span class="doc-tag">Kids Dentistry</span>
+            <span class="doc-tag">Preventive Care</span>
+            <span class="doc-tag">Dental Sealants</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dr. Aman Sachdev -->
+      <div class="doc-card">
+        <div class="doc-photo">
+          <img src="/Resources/Profiles/Aman_bite_profile.png" alt="Dr. Aman Sachdev – Orthodontist, Bite Dental Clinic" loading="lazy" />
+          <span class="doc-specialty-chip">Orthodontist</span>
+        </div>
+        <div class="doc-body">
+          <div class="doc-name">Dr. Aman Sachdev</div>
+          <div class="doc-title">BDS · MDS Orthodontics · Invisalign Platinum Elite</div>
+          <p class="doc-bio">One of Delhi-NCR's few Invisalign Platinum Elite providers with 8+ years of experience. Creates beautiful, stable smiles using aligners and braces. Every aligner case is personally managed end-to-end.</p>
+          <div class="doc-tags">
+            <span class="doc-tag">Aligners</span>
+            <span class="doc-tag">Braces</span>
+            <span class="doc-tag">Invisalign Platinum</span>
           </div>
         </div>
       </div>
@@ -587,6 +627,133 @@ h2.section-h{font-size:clamp(2rem,4vw,3rem);font-weight:900;color:var(--text);li
         </div>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- ══ CASE GALLERY ══ -->
+<section style="background:var(--bg-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+  <div class="container">
+    <div class="section-label">Real Results</div>
+    <h2 class="section-h">Before &amp; after — our patients' stories</h2>
+    <p class="section-sub" style="margin-bottom:32px;">Every case treated by the same specialist team you'd see. No filters, no stock photos — real patients from our clinics.</p>
+
+    <div class="gallery-filters">
+      <button class="gf-btn active" data-filter="all">All Cases</button>
+      <button class="gf-btn" data-filter="aligners">Clear Aligners</button>
+      <button class="gf-btn" data-filter="implants">Implants</button>
+      <button class="gf-btn" data-filter="veneers">Veneers</button>
+      <button class="gf-btn" data-filter="restoration">Full Restoration</button>
+    </div>
+
+    <div class="gallery-grid" id="caseGallery">
+
+      <div class="story-card visible" data-treatment="aligners">
+        <div class="story-imgs">
+          <img src="/Resources/smile-stories/Bite_Website_resources/story-01.webp" alt="Before and after clear aligner treatment at Bite Dental" loading="lazy" />
+        </div>
+        <div class="story-info">
+          <span class="story-treatment">Clear Aligners</span>
+          <div class="story-quote">"The change isn't just in my teeth — my whole face looks different. People keep asking if I've done something new."</div>
+          <div class="story-meta">
+            <div class="story-meta-item"><span class="story-meta-label">Duration</span><span class="story-meta-val">12 months</span></div>
+            <div class="story-meta-item"><span class="story-meta-label">Treatment</span><span class="story-meta-val">Spark Aligners</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="story-card visible" data-treatment="aligners">
+        <div class="story-imgs">
+          <img src="/Resources/smile-stories/Bite_Website_resources/story-02.webp" alt="Before and after severe overjet correction with aligners at Bite Dental" loading="lazy" />
+        </div>
+        <div class="story-info">
+          <span class="story-treatment">Clear Aligners</span>
+          <div class="story-quote">"I was told my bite was too complex for aligners. 18 months later it's completely corrected — no surgery, no braces."</div>
+          <div class="story-meta">
+            <div class="story-meta-item"><span class="story-meta-label">Duration</span><span class="story-meta-val">18 months</span></div>
+            <div class="story-meta-item"><span class="story-meta-label">Treatment</span><span class="story-meta-val">Invisalign Comprehensive</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="story-card visible" data-treatment="aligners">
+        <div class="story-imgs">
+          <img src="/Resources/smile-stories/Bite_Website_resources/story-03.webp" alt="Before and after crowded teeth correction with aligners at Bite Dental" loading="lazy" />
+        </div>
+        <div class="story-info">
+          <span class="story-treatment">Clear Aligners</span>
+          <div class="story-quote">"My front teeth were so crowded I couldn't floss them. 10 months in aligners and they're perfectly straight."</div>
+          <div class="story-meta">
+            <div class="story-meta-item"><span class="story-meta-label">Duration</span><span class="story-meta-val">10 months</span></div>
+            <div class="story-meta-item"><span class="story-meta-label">Treatment</span><span class="story-meta-val">Invisalign Comprehensive</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="story-card visible" data-treatment="implants">
+        <div class="story-imgs">
+          <img src="/Resources/smile-stories/Bite_Website_resources/story-04.webp" alt="Before and after dental implants and crowns at Bite Dental" loading="lazy" />
+        </div>
+        <div class="story-info">
+          <span class="story-treatment">Implants + Crowns</span>
+          <div class="story-quote">"I avoided smiling in photos for years. Once it was done I couldn't stop — the result was beyond what I imagined."</div>
+          <div class="story-meta">
+            <div class="story-meta-item"><span class="story-meta-label">Duration</span><span class="story-meta-val">4 months</span></div>
+            <div class="story-meta-item"><span class="story-meta-label">Treatment</span><span class="story-meta-val">Implants + Zirconia Crowns</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="story-card visible" data-treatment="veneers">
+        <div class="story-imgs">
+          <img src="/Resources/smile-stories/Bite_Website_resources/story-05.webp" alt="Before and after porcelain veneers at Bite Dental" loading="lazy" />
+        </div>
+        <div class="story-info">
+          <span class="story-treatment">Porcelain Veneers</span>
+          <div class="story-quote">"I'd been hiding my teeth my whole adult life. Two appointments and it's like I have an entirely new smile."</div>
+          <div class="story-meta">
+            <div class="story-meta-item"><span class="story-meta-label">Duration</span><span class="story-meta-val">2 visits</span></div>
+            <div class="story-meta-item"><span class="story-meta-label">Treatment</span><span class="story-meta-val">Porcelain Veneers (8 teeth)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="story-card visible" data-treatment="implants">
+        <div class="story-imgs">
+          <img src="/Resources/smile-stories/Bite_Website_resources/story-06.webp" alt="Before and after multiple dental implants at Bite Dental" loading="lazy" />
+        </div>
+        <div class="story-info">
+          <span class="story-treatment">Multiple Implants</span>
+          <div class="story-quote">"Multiple missing teeth for years. The implants look completely natural — I can eat and smile without a second thought."</div>
+          <div class="story-meta">
+            <div class="story-meta-item"><span class="story-meta-label">Duration</span><span class="story-meta-val">5 months</span></div>
+            <div class="story-meta-item"><span class="story-meta-label">Treatment</span><span class="story-meta-val">Implants + Zirconia Crowns</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="story-card visible" data-treatment="restoration">
+        <div class="story-imgs">
+          <img src="/Resources/smile-stories/Bite_Website_resources/story-07.webp" alt="Before and after full mouth restoration at Bite Dental" loading="lazy" />
+        </div>
+        <div class="story-info">
+          <span class="story-treatment">Full Mouth Restoration</span>
+          <div class="story-quote">"I'd given up on having a real smile. The team rebuilt everything from scratch. I cried when I saw the result."</div>
+          <div class="story-meta">
+            <div class="story-meta-item"><span class="story-meta-label">Duration</span><span class="story-meta-val">6 months</span></div>
+            <div class="story-meta-item"><span class="story-meta-label">Treatment</span><span class="story-meta-val">Implants + Crowns + Veneers</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center;margin-top:36px;">
+      <p style="font-size:0.88rem;color:var(--text-3);margin-bottom:16px;">Want to see what's possible for your smile? Send us a photo.</p>
+      <a class="btn btn-wa" href="https://wa.me/919810664561?text=Hi%2C%20I%27m%20an%20international%20patient%20and%20I%27d%20like%20to%20share%20a%20photo%20of%20my%20teeth%20to%20get%20an%20estimate." target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.528 5.855L0 24l6.302-1.505A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 01-4.99-1.362l-.358-.213-3.743.893.936-3.635-.234-.374A9.77 9.77 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+        📸 Send your photo — get an instant estimate
+      </a>
     </div>
   </div>
 </section>
@@ -799,6 +966,22 @@ h2.section-h{font-size:clamp(2rem,4vw,3rem);font-weight:900;color:var(--text);li
 function toggleNavDrawer(){
   document.getElementById('navDrawer').classList.toggle('open');
 }
+
+// Case gallery filter
+document.querySelectorAll('.gf-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.gf-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    document.querySelectorAll('#caseGallery .story-card').forEach(card => {
+      if (filter === 'all' || card.dataset.treatment === filter) {
+        card.classList.add('visible');
+      } else {
+        card.classList.remove('visible');
+      }
+    });
+  });
+});
 
 function submitCallback() {
   const name      = document.getElementById('cb-name').value.trim();
