@@ -169,6 +169,32 @@ h2.section-h{font-size:clamp(2rem,4vw,3rem);font-weight:900;color:var(--text);li
 .fac-name{font-family:var(--head);font-size:1.15rem;font-weight:800;color:var(--text);margin-bottom:6px;}
 .fac-desc{font-size:0.82rem;color:var(--text-2);line-height:1.6;}
 
+/* ── ACCOMMODATION ── */
+.stay-tabs{display:flex;gap:8px;margin-bottom:28px;}
+.stay-tab{padding:9px 22px;border-radius:20px;font-size:0.85rem;font-weight:600;border:1px solid var(--border);background:var(--card);color:var(--text-2);cursor:pointer;transition:all .18s;}
+.stay-tab.active{background:var(--green);color:#fff;border-color:var(--green);}
+.stay-panel{display:none;}
+.stay-panel.active{display:block;}
+.stay-filter{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap;}
+.sf-btn{padding:6px 14px;border-radius:16px;font-size:0.78rem;font-weight:600;border:1px solid var(--border);background:transparent;color:var(--text-3);cursor:pointer;transition:all .18s;}
+.sf-btn:hover,.sf-btn.active{border-color:var(--green);color:var(--green);background:var(--green-dim);}
+.hotels-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.hotel-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px;display:flex;flex-direction:column;gap:10px;transition:box-shadow .2s;}
+.hotel-card:hover{box-shadow:0 8px 30px rgba(96,188,1,0.08);}
+.hotel-badge{display:inline-flex;align-items:center;gap:5px;font-size:0.68rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 9px;border-radius:6px;width:fit-content;}
+.hotel-badge.value{background:rgba(96,188,1,0.12);color:var(--green);}
+.hotel-badge.mid{background:rgba(212,137,10,0.12);color:#D4890A;}
+.hotel-badge.luxury{background:rgba(180,130,255,0.12);color:#b482ff;}
+.hotel-name{font-family:var(--head);font-size:1.15rem;font-weight:900;color:var(--text);line-height:1.1;}
+.hotel-dist{font-size:0.78rem;color:var(--green);font-weight:600;}
+.hotel-desc{font-size:0.8rem;color:var(--text-2);line-height:1.6;}
+.hotel-price{font-family:var(--head);font-size:1.1rem;font-weight:800;color:var(--text);}
+.hotel-price span{font-size:0.75rem;font-weight:400;color:var(--text-3);}
+.hotel-link{display:inline-flex;align-items:center;gap:6px;font-size:0.78rem;font-weight:600;color:var(--green);margin-top:2px;}
+.hotel-link:hover{text-decoration:underline;}
+@media(max-width:1024px){.hotels-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){.hotels-grid{grid-template-columns:1fr;}}
+
 /* ── HOW IT WORKS ── */
 .steps-row{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative;}
 .steps-row::before{content:'';position:absolute;top:36px;left:calc(12.5% + 20px);right:calc(12.5% + 20px);height:1px;background:var(--border);z-index:0;}
@@ -758,6 +784,124 @@ h2.section-h{font-size:clamp(2rem,4vw,3rem);font-weight:900;color:var(--text);li
   </div>
 </section>
 
+<!-- ══ ACCOMMODATION ══ -->
+<section>
+  <div class="container">
+    <div class="section-label">Where to Stay</div>
+    <h2 class="section-h">Hotels near both clinics</h2>
+    <p class="section-sub" style="margin-bottom:28px;">Hand-picked across three budgets — all within easy reach of whichever clinic you visit. Most international patients stay 5–10 days, so location and comfort matter.</p>
+
+    <!-- Location tabs -->
+    <div class="stay-tabs">
+      <button class="stay-tab active" onclick="switchStayTab('delhi',this)">📍 West Delhi (Meera Bagh)</button>
+      <button class="stay-tab" onclick="switchStayTab('gurugram',this)">📍 Gurugram (Sector 51)</button>
+    </div>
+
+    <!-- West Delhi panel -->
+    <div class="stay-panel active" id="stay-delhi">
+      <div class="stay-filter">
+        <button class="sf-btn active" onclick="filterHotels('delhi','all',this)">All</button>
+        <button class="sf-btn" onclick="filterHotels('delhi','value',this)">🏷️ Best Value</button>
+        <button class="sf-btn" onclick="filterHotels('delhi','mid',this)">⭐ Mid-range</button>
+        <button class="sf-btn" onclick="filterHotels('delhi','luxury',this)">💎 Luxury</button>
+      </div>
+      <div class="hotels-grid">
+
+        <div class="hotel-card" data-tier="value">
+          <div class="hotel-badge value">🏷️ Best Value</div>
+          <div class="hotel-name">Saltstayz Premier, Paschim Vihar</div>
+          <div class="hotel-dist">~5 min drive to clinic</div>
+          <p class="hotel-desc">Clean, well-reviewed boutique property with rooftop dining. Solid mid-budget choice for longer stays — great reviews for cleanliness and staff. Free WiFi, room service.</p>
+          <div class="hotel-price">from $28 <span>/ night</span></div>
+          <a class="hotel-link" href="https://www.booking.com/search.en-gb.html?ss=Saltstayz+Premier+Paschim+Vihar" target="_blank" rel="noopener">View on Booking.com →</a>
+        </div>
+
+        <div class="hotel-card" data-tier="value">
+          <div class="hotel-badge value">🏷️ Best Value</div>
+          <div class="hotel-name">Hotel Silverine, Paschim Vihar</div>
+          <div class="hotel-dist">~7 min drive to clinic</div>
+          <p class="hotel-desc">Comfortable 3-star option in Paschim Vihar with restaurant, 24hr room service, and free parking. Popular with domestic medical visitors. Quiet neighbourhood setting.</p>
+          <div class="hotel-price">from $35 <span>/ night</span></div>
+          <a class="hotel-link" href="https://www.booking.com/search.en-gb.html?ss=Hotel+Paschim+Vihar+Delhi" target="_blank" rel="noopener">View on Booking.com →</a>
+        </div>
+
+        <div class="hotel-card" data-tier="mid">
+          <div class="hotel-badge mid">⭐ Mid-range</div>
+          <div class="hotel-name">Radisson Blu, Paschim Vihar</div>
+          <div class="hotel-dist">~8 min drive to clinic · near Peera Garhi Metro</div>
+          <p class="hotel-desc">The best full-service hotel in West Delhi. International brand, reliable quality, multiple dining options, pool, and gym. Rated 4.3★ on 44,000+ reviews. A safe, comfortable base for a multi-day treatment trip.</p>
+          <div class="hotel-price">from $70 <span>/ night</span></div>
+          <a class="hotel-link" href="https://www.radissonhotels.com/en-us/hotels/radisson-blu-new-delhi-paschim-vihar" target="_blank" rel="noopener">View on Radisson.com →</a>
+        </div>
+
+        <div class="hotel-card" data-tier="luxury">
+          <div class="hotel-badge luxury">💎 Luxury</div>
+          <div class="hotel-name">The Westin Dwarka, New Delhi</div>
+          <div class="hotel-dist">~20 min drive · near IGI Airport corridor</div>
+          <p class="hotel-desc">5-star Westin in Dwarka — closest international luxury option to the West Delhi clinic. Airport transfers easy, full spa, pool, and Heavenly Bed guarantee. Ideal if flying into IGI.</p>
+          <div class="hotel-price">from $130 <span>/ night</span></div>
+          <a class="hotel-link" href="https://www.marriott.com/en-us/hotels/deld w-the-westin-dwarka-new-delhi/overview/" target="_blank" rel="noopener">View on Marriott.com →</a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Gurugram panel -->
+    <div class="stay-panel" id="stay-gurugram">
+      <div class="stay-filter">
+        <button class="sf-btn active" onclick="filterHotels('gurugram','all',this)">All</button>
+        <button class="sf-btn" onclick="filterHotels('gurugram','value',this)">🏷️ Best Value</button>
+        <button class="sf-btn" onclick="filterHotels('gurugram','mid',this)">⭐ Mid-range</button>
+        <button class="sf-btn" onclick="filterHotels('gurugram','luxury',this)">💎 Luxury</button>
+      </div>
+      <div class="hotels-grid">
+
+        <div class="hotel-card" data-tier="value">
+          <div class="hotel-badge value">🏷️ Best Value</div>
+          <div class="hotel-name">The Hoften Sukh Vasa, Sector 51</div>
+          <div class="hotel-dist">~5 min drive · Golf Course Ext Road</div>
+          <p class="hotel-desc">Well-reviewed 3-star property right on Golf Course Extension Road. Free WiFi, on-site café, 24hr front desk. The smartest budget pick for Gurugram — walkable to the clinic area and good Zomato delivery options.</p>
+          <div class="hotel-price">from $45 <span>/ night</span></div>
+          <a class="hotel-link" href="https://www.booking.com/hotel/in/sukh-vasa-gurugram-by-morpho.html" target="_blank" rel="noopener">View on Booking.com →</a>
+        </div>
+
+        <div class="hotel-card" data-tier="mid">
+          <div class="hotel-badge mid">⭐ Mid-range</div>
+          <div class="hotel-name">The Westin Gurgaon</div>
+          <div class="hotel-dist">~15 min drive · MG Road</div>
+          <p class="hotel-desc">One of the best mid-luxury hotels in Gurugram. Heavenly Spa, multiple restaurants, pool, and the reliability of a Marriott property. Popular with business travellers and medical tourists — excellent concierge support.</p>
+          <div class="hotel-price">from $130 <span>/ night</span></div>
+          <a class="hotel-link" href="https://www.marriott.com/en-us/hotels/delwi-the-westin-gurgaon-new-delhi/overview/" target="_blank" rel="noopener">View on Marriott.com →</a>
+        </div>
+
+        <div class="hotel-card" data-tier="luxury">
+          <div class="hotel-badge luxury">💎 Luxury</div>
+          <div class="hotel-name">The Oberoi, Gurgaon</div>
+          <div class="hotel-dist">~12 min drive · DLF Cyber City</div>
+          <p class="hotel-desc">India's finest — World's Leading Luxury Hotel (World Travel Awards). 15 min from IGI Airport, walking distance to Cyber City. Impeccable service, world-class spa, and suites with private pools. The pinnacle of Delhi NCR hospitality.</p>
+          <div class="hotel-price">from $250 <span>/ night</span></div>
+          <a class="hotel-link" href="https://www.oberoihotels.com/hotels-in-gurgaon/" target="_blank" rel="noopener">View on OberoiHotels.com →</a>
+        </div>
+
+        <div class="hotel-card" data-tier="luxury">
+          <div class="hotel-badge luxury">💎 Luxury</div>
+          <div class="hotel-name">The Leela Ambience Gurugram</div>
+          <div class="hotel-dist">~18 min drive · NH-48</div>
+          <p class="hotel-desc">Set before a 1,000-acre forest, The Leela offers a genuinely tranquil recovery environment — unusual for a city hotel. Full spa, multiple pools, and the attentive service that makes post-treatment rest feel effortless.</p>
+          <div class="hotel-price">from $200 <span>/ night</span></div>
+          <a class="hotel-link" href="https://www.theleela.com/en_us/hotels-in-gurugram/the-leela-ambience-gurugram-hotel-and-residences/" target="_blank" rel="noopener">View on TheLeela.com →</a>
+        </div>
+
+      </div>
+    </div>
+
+    <div style="margin-top:24px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:18px 22px;font-size:0.82rem;color:var(--text-2);display:flex;gap:12px;align-items:flex-start;">
+      <span style="font-size:1.3rem;flex-shrink:0;">💬</span>
+      <span>Need help choosing? WhatsApp us and we'll recommend the best option based on your budget, which clinic you're visiting, and your travel dates — we know the area well.</span>
+    </div>
+  </div>
+</section>
+
 <!-- ══ HOW TO PLAN ══ -->
 <section style="background:var(--bg-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
   <div class="container">
@@ -965,6 +1109,24 @@ h2.section-h{font-size:clamp(2rem,4vw,3rem);font-weight:900;color:var(--text);li
 <script>
 function toggleNavDrawer(){
   document.getElementById('navDrawer').classList.toggle('open');
+}
+
+// Accommodation tabs
+function switchStayTab(loc, btn) {
+  document.querySelectorAll('.stay-tab').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.stay-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('stay-' + loc).classList.add('active');
+}
+
+// Accommodation tier filter
+function filterHotels(loc, tier, btn) {
+  const panel = document.getElementById('stay-' + loc);
+  panel.querySelectorAll('.sf-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  panel.querySelectorAll('.hotel-card').forEach(card => {
+    card.style.display = (tier === 'all' || card.dataset.tier === tier) ? '' : 'none';
+  });
 }
 
 // Case gallery filter
