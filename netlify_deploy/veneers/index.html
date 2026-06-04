@@ -291,10 +291,39 @@
     <li><a href="/dental-implants">Implants</a></li>
     <li><a href="/crowns">Crowns</a></li>
     <li><a href="/veneers" class="active">Veneers</a></li>
-    <li><a href="/international" style="color:#60BC01;">✈️ International Patients</a></li>
+    <li><a href="/international" style="color:#60BC01;">✈️ International</a></li>
     <li><a href="/blog">Blog</a></li>
   </ul>
-  <a class="nav-cta" href="/book-appointment">Book Free Consult</a>
+  <a class="nav-cta" href="/book-appointment" style="display:none;" id="navDesktopCta">Book Free Consult</a>
+  <button class="nav-hamburger" id="navHamburger" onclick="this.classList.toggle('open');document.getElementById('navDrawer').classList.toggle('open');">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-drawer" id="navDrawer">
+    <span class="drawer-section-label">Treatments</span>
+    <a href="/clear-aligners">Clear Aligners</a>
+    <a href="/dental-implants">Dental Implants</a>
+    <a href="/veneers" style="color:var(--green);">Veneers &amp; Smile Design</a>
+    <a href="/kids-dentistry">Kids Dentistry</a>
+    <a href="/root-canal">Root Canal</a>
+    <a href="/teeth-whitening">Teeth Whitening</a>
+    <a href="/braces-aligners">Braces &amp; Aligners</a>
+    <a href="/crowns">Crowns &amp; Bridges</a>
+    <a href="/fluoride">Fluoride &amp; Sealants</a>
+    <a href="/emergency-dentist" style="color:#ff6b6b;">🚨 Emergency Dentist</a>
+    <div class="drawer-divider"></div>
+    <a href="/about">About Us</a>
+    <a href="/international" style="color:#60BC01;">✈️ International Patients</a>
+    <a href="/blog">Blog</a>
+    <div class="drawer-divider"></div>
+    <span class="drawer-section-label">Locations</span>
+    <a href="/meera-bagh">Meera Bagh, West Delhi</a>
+    <a href="/gurugram">Gurugram (Sector 51)</a>
+    <div class="drawer-divider"></div>
+    <div class="nav-drawer-cta">
+      <a class="btn-nav-wa" href="https://wa.me/919810664561?text=Hi%2C+I%27m+interested+in+veneers.+Can+I+get+a+free+consultation%3F" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:6px;">WhatsApp</a>
+      <a class="btn-nav-book" href="/book-appointment" style="display:flex;align-items:center;justify-content:center;">Book Now →</a>
+    </div>
+  </div>
 </nav>
 
 <!-- HERO -->
