@@ -142,7 +142,6 @@ ${published ? `<meta property="article:published_time" content="${published}">\n
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/site-chrome.css">
 <link rel="stylesheet" href="/blog/blog.css">
 ${ld}
 </head>`;
@@ -156,8 +155,7 @@ const FOOT = `<!--SITE-FOOTER-->
   <a class="mob-wa" data-track="whatsapp" href="${WA('919810664561', "Hi Bite Dental, I'd like to book a consultation.")}" target="_blank" rel="noopener">Book on WhatsApp</a>
   <a class="mob-call" data-track="call" href="tel:${TEL_GUR}">Call</a>
 </div>
-<script src="/js/track.js" defer></script>
-<script src="/js/site-chrome.js" defer></script>`;
+<script src="/js/track.js" defer></script>`;
 
 function ctaBlock(p) {
   const where = p.location;

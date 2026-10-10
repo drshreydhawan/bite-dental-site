@@ -12,8 +12,11 @@ const ROOT = path.join(__dirname, '..');
 const header = fs.readFileSync(path.join(__dirname, 'partials', 'header.html'), 'utf8').trim();
 const footer = fs.readFileSync(path.join(__dirname, 'partials', 'footer.html'), 'utf8').trim();
 const HS = '<!--SITE-HEADER-->', HE = '<!--/SITE-HEADER-->', FS = '<!--SITE-FOOTER-->', FE = '<!--/SITE-FOOTER-->';
-const CSS = '<link rel="stylesheet" href="/css/site-chrome.css">';
-const JS = '<script src="/js/site-chrome.js" defer></script>';
+const crypto = require('crypto');
+const ver = (f) => crypto.createHash('md5').update(fs.readFileSync(path.join(ROOT, f))).digest('hex').slice(0, 8);
+const CSS_V = ver('css/site-chrome.css'), JS_V = ver('js/site-chrome.js');
+const CSS = `<link rel="stylesheet" href="/css/site-chrome.css?v=${CSS_V}">`;
+const JS = `<script src="/js/site-chrome.js?v=${JS_V}" defer></script>`;
 
 function pages() {
   const out = [];
@@ -74,8 +77,10 @@ for (const f of pages()) {
   h = migrateFooter(h);
   h = h.replace(new RegExp(`${HS}[\\s\\S]*?${HE}`), () => `${HS}\n${header}\n${HE}`);
   h = h.replace(new RegExp(`${FS}[\\s\\S]*?${FE}`), () => `${FS}\n${footer}\n${FE}`);
-  if (!h.includes('/css/site-chrome.css')) h = h.replace('</head>', `${CSS}\n</head>`);
-  if (!h.includes('/js/site-chrome.js')) h = h.replace('</body>', `${JS}\n</body>`);
+  // (re)write the asset tags with a content hash so browsers never use a stale copy
+  h = h.replace(/<link rel="stylesheet" href="\/css\/site-chrome\.css(\?v=[^"]*)?">/g, '').replace(/<script src="\/js\/site-chrome\.js(\?v=[^"]*)?" defer><\/script>\n?/g, '');
+  h = h.replace('</head>', `${CSS}\n</head>`);
+  h = h.replace('</body>', `${JS}\n</body>`);
   if (h !== before) { fs.writeFileSync(f, h); n++; }
 }
 console.log(`Site chrome: header + footer applied to ${pages().length} pages (${n} changed)`);
