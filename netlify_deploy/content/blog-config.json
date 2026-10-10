@@ -1,23 +1,83 @@
 {
   "authors": {
-    "shrey":     { "name": "Dr. Shrey Dhawan",    "role": "MDS Endodontist, Founder of Bite Dental Clinic", "bio": "Leads root canal, cosmetic and laser treatments in West Delhi and Gurugram.", "url": "/about" },
-    "shamindhi": { "name": "Dr. Shamindhi Dhawan", "role": "Implant & Facial Cosmetic Surgeon", "bio": "Leads dental implant care at Bite Dental Clinic.", "url": "/about" },
-    "achla":     { "name": "Dr. Achla Goel",      "role": "MDS Pedodontics (Kids' Dentist)", "bio": "Looks after children's dental care at Bite Dental Clinic.", "url": "/about" },
-    "aman":      { "name": "Dr. Aman Sachdev",    "role": "MDS Orthodontist", "bio": "Leads braces and clear-aligner treatment at Bite Dental Clinic.", "url": "/about" },
-    "team":      { "name": "Bite Dental Team",    "role": "Specialist-led dental care in West Delhi & Gurugram", "bio": "" }
+    "shrey": {
+      "name": "Dr. Shrey Dhawan",
+      "role": "Co-founder · MDS Endodontist & implant dentist",
+      "bio": "Leads root canal, implant, cosmetic and laser treatments in West Delhi and Gurugram.",
+      "url": "/about"
+    },
+    "shamindhi": {
+      "name": "Dr. Shamindhi Dhawan",
+      "role": "Co-founder · Implant & Facial Cosmetic Surgeon",
+      "bio": "Leads dental implant and facial cosmetic care at Bite Dental Clinic.",
+      "url": "/about"
+    },
+    "achla": {
+      "name": "Dr. Achla Goel",
+      "role": "MDS Pedodontics (Kids' Dentist)",
+      "bio": "Looks after children's dental care at Bite Dental Clinic.",
+      "url": "/about"
+    },
+    "aman": {
+      "name": "Dr. Aman Sachdev",
+      "role": "MDS Orthodontist",
+      "bio": "Leads braces and clear-aligner treatment at Bite Dental Clinic.",
+      "url": "/about"
+    },
+    "team": {
+      "name": "Bite Dental Team",
+      "role": "Specialist-led dental care in West Delhi & Gurugram",
+      "bio": ""
+    }
   },
   "tags": {
-    "Root Canal":            { "href": "/root-canal",        "label": "Root canal treatment" },
-    "Kids Dentistry":        { "href": "/kids-dentistry",    "label": "Kids dentistry" },
-    "Cosmetic Dentistry":    { "href": "/veneers",           "label": "Veneers & smile design" },
-    "Teeth Whitening":       { "href": "/teeth-whitening",   "label": "Teeth whitening" },
-    "Orthodontics":          { "href": "/braces-aligners",   "label": "Braces & aligners" },
-    "Clear Aligners":        { "href": "/clear-aligners",    "label": "Clear aligners" },
-    "Dental Implants":       { "href": "/dental-implants",   "label": "Dental implants" },
-    "Crowns & Bridges":      { "href": "/crowns",            "label": "Crowns & bridges" },
-    "Preventive Care":       { "href": "/fluoride",          "label": "Fluoride & fissure sealants" },
-    "Emergency":             { "href": "/emergency-dentist", "label": "Emergency dentist" },
-    "International Patients":{ "href": "/international",     "label": "Dental care for international patients" },
-    "Oral Health":           { "href": "/book-appointment",  "label": "A free consultation" }
+    "Root Canal": {
+      "href": "/root-canal",
+      "label": "Root canal treatment"
+    },
+    "Kids Dentistry": {
+      "href": "/kids-dentistry",
+      "label": "Kids dentistry"
+    },
+    "Cosmetic Dentistry": {
+      "href": "/veneers",
+      "label": "Veneers & smile design"
+    },
+    "Teeth Whitening": {
+      "href": "/teeth-whitening",
+      "label": "Teeth whitening"
+    },
+    "Orthodontics": {
+      "href": "/braces-aligners",
+      "label": "Braces & aligners"
+    },
+    "Clear Aligners": {
+      "href": "/clear-aligners",
+      "label": "Clear aligners"
+    },
+    "Dental Implants": {
+      "href": "/dental-implants",
+      "label": "Dental implants"
+    },
+    "Crowns & Bridges": {
+      "href": "/crowns",
+      "label": "Crowns & bridges"
+    },
+    "Preventive Care": {
+      "href": "/fluoride",
+      "label": "Fluoride & fissure sealants"
+    },
+    "Emergency": {
+      "href": "/emergency-dentist",
+      "label": "Emergency dentist"
+    },
+    "International Patients": {
+      "href": "/international",
+      "label": "Dental care for international patients"
+    },
+    "Oral Health": {
+      "href": "/book-appointment",
+      "label": "A free consultation"
+    }
   }
 }

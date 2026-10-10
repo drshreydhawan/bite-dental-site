@@ -76,4 +76,4 @@ If you have mild surface staining and are budget-constrained? A good OTC strip +
 
 ---
 
-*Dr. Shrey Dhawan, BDS, is the founder of Bite Dental Clinic. Book a free whitening consultation at our Delhi or Gurugram location.*
+*Dr. Shrey Dhawan (MDS) is a co-founder of Bite Dental Clinic. Book a free whitening consultation at our Delhi or Gurugram location.*
