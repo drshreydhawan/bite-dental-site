@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Submit a Blog Post | Bite Dental</title>
+<link rel="icon" href="/Resources/bite_logo_160.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--g:#60BC01;--g2:#79C935;--bg:#07100A;--bg2:#0d170f;--bg3:#111a13;--bd:rgba(96,188,1,.2);--tx:#eaf2ea;--tx2:#b3c5b3;--tx3:#7f937f;--red:#ff8a80}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font:16px/1.6 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--g)}
+.top{display:flex;align-items:center;gap:12px;padding:14px 24px;border-bottom:1px solid var(--bd);background:rgba(7,16,10,.95)}
+.top img{width:40px;height:40px;border-radius:9px}
+.top b{font:800 1.5rem/1 'Barlow Condensed',sans-serif}.top b span{color:var(--g)}
+.top small{margin-left:auto;color:var(--tx3);font-size:.8rem}
+.wrap{max-width:860px;margin:0 auto;padding:36px 20px 80px}
+h1{font:800 clamp(2rem,5vw,2.8rem)/1.05 'Barlow Condensed',sans-serif;margin-bottom:8px}
+.lead{color:var(--tx2);margin-bottom:26px}
+.flow{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px;font-size:.82rem}
+.flow span{background:rgba(96,188,1,.1);border:1px solid var(--bd);border-radius:999px;padding:5px 13px;color:var(--tx2)}
+.flow span.on{background:var(--g);color:#06120a;border-color:var(--g);font-weight:700}
+.card{background:var(--bg3);border:1px solid var(--bd);border-radius:16px;padding:24px;margin-bottom:18px}
+.card h2{font:800 1.3rem/1.1 'Barlow Condensed',sans-serif;letter-spacing:.03em;margin-bottom:16px;color:var(--g)}
+label{display:block;font-weight:600;font-size:.9rem;margin:16px 0 6px}
+label:first-of-type{margin-top:0}
+.hint{display:block;font-weight:400;color:var(--tx3);font-size:.8rem;margin-top:2px}
+input[type=text],input[type=password],select,textarea{width:100%;background:#0a120c;color:var(--tx);border:1px solid rgba(96,188,1,.25);border-radius:10px;padding:12px 14px;font:inherit}
+textarea{min-height:120px;resize:vertical}
+#body{min-height:380px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.92rem;line-height:1.6}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--g);outline-offset:1px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:640px){.row{grid-template-columns:1fr}}
+.count{font-size:.78rem;color:var(--tx3);text-align:right;margin-top:4px}.count.bad{color:var(--red)}.count.ok{color:var(--g)}
+.drop{border:1.5px dashed rgba(96,188,1,.4);border-radius:12px;padding:20px;text-align:center;color:var(--tx2);cursor:pointer;background:#0a120c}
+.drop:hover{border-color:var(--g)}
+.drop img{max-width:100%;max-height:200px;border-radius:8px;margin-top:12px;display:none}
+details{margin-top:14px;font-size:.88rem;color:var(--tx2)}summary{cursor:pointer;color:var(--g);font-weight:600}
+details pre{background:#0a120c;border:1px solid var(--bd);border-radius:10px;padding:14px;margin-top:10px;overflow:auto;font-size:.82rem;color:var(--tx);white-space:pre-wrap}
+.rules{font-size:.88rem;color:var(--tx2);padding-left:18px}.rules li{margin:5px 0}.rules b{color:var(--tx)}
+.chk{display:flex;gap:12px;align-items:flex-start;font-weight:400;font-size:.9rem;color:var(--tx2);margin:0}
+.chk input{width:20px;height:20px;margin-top:3px;accent-color:var(--g);flex-shrink:0}
+button.go{width:100%;margin-top:6px;background:var(--g);color:#06120a;border:0;border-radius:12px;padding:16px;font:800 1.05rem 'Inter',sans-serif;cursor:pointer}
+button.go:hover{background:var(--g2)}button.go:disabled{opacity:.55;cursor:wait}
+.msg{border-radius:12px;padding:14px 16px;margin-top:16px;font-size:.95rem;display:none}
+.msg.err{display:block;background:rgba(255,138,128,.1);border:1px solid rgba(255,138,128,.5);color:#ffc9c4}
+.msg.done{display:block;background:rgba(96,188,1,.12);border:1px solid var(--g);color:var(--tx)}
+</style>
+</head>
+<body>
+<div class="top"><img src="/Resources/bite_logo_160.png" alt="" width="40" height="40"><b>Bite <span>Dental</span></b><small>Blog submissions · private page</small></div>
+<main class="wrap">
+  <h1>Submit a blog post</h1>
+  <p class="lead">Write your article below. It is sent to the owner for review. <strong>Nothing goes live until it is approved.</strong></p>
+  <div class="flow" aria-hidden="true"><span class="on">1 · You write &amp; submit</span><span>2 · Owner reviews</span><span>3 · Published on the blog</span></div>
+
+  <form id="f" novalidate>
+    <div class="card">
+      <h2>1 · Who are you?</h2>
+      <div class="row">
+        <div><label for="password">Team password</label><input id="password" type="password" autocomplete="current-password" required></div>
+        <div><label for="name">Your name</label><input id="name" type="text" autocomplete="name" maxlength="60" required></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>2 · About the article</h2>
+      <label for="title">Title <span class="hint">What a patient would type into Google. e.g. “Root Canal Cost in Delhi: What You Actually Pay”. Under 60 characters is best.</span></label>
+      <input id="title" type="text" maxlength="110" required>
+      <div class="count" id="tcount"></div>
+      <div class="row">
+        <div><label for="tag">Category</label>
+          <select id="tag" required><option value="">Choose…</option>
+            <option>Root Canal</option><option>Dental Implants</option><option>Clear Aligners</option><option>Orthodontics</option><option>Cosmetic Dentistry</option><option>Teeth Whitening</option><option>Crowns &amp; Bridges</option><option>Kids Dentistry</option><option>Preventive Care</option><option>Emergency</option><option>International Patients</option><option>Oral Health</option></select></div>
+        <div><label for="author">Written / reviewed by <span class="hint">Only pick a doctor who has actually reviewed it.</span></label>
+          <select id="author"><option value="team">Bite Dental Team</option><option value="shrey">Dr. Shrey Dhawan (Endodontics)</option><option value="shamindhi">Dr. Shamindhi Dhawan (Implants)</option><option value="achla">Dr. Achla Goel (Kids dentistry)</option><option value="aman">Dr. Aman Sachdev (Orthodontics)</option></select></div>
+      </div>
+      <label for="location">Which clinic should the booking buttons point to?</label>
+      <select id="location"><option value="both">Both clinics</option><option value="delhi">Meera Bagh, Delhi only</option><option value="gurugram">Sector 51, Gurugram only</option></select>
+      <label for="excerpt">Summary shown on Google <span class="hint">70–165 characters. Answer the patient’s question in plain words.</span></label>
+      <textarea id="excerpt" maxlength="400" style="min-height:84px"></textarea>
+      <div class="count" id="ecount"></div>
+    </div>
+
+    <div class="card">
+      <h2>3 · Main image (optional but recommended)</h2>
+      <div class="drop" id="drop" tabindex="0" role="button" aria-label="Choose an image">Click to choose a JPG, PNG or WebP photo<br><small>We shrink it automatically. Use only images we own or have written consent for.</small><img id="prev" alt="Preview"></div>
+      <input id="file" type="file" accept="image/jpeg,image/png,image/webp" hidden>
+      <label for="imageAlt">Describe the image <span class="hint">e.g. “Dentist explaining a root canal X-ray to a patient”</span></label>
+      <input id="imageAlt" type="text" maxlength="160">
+    </div>
+
+    <div class="card">
+      <h2>4 · The article</h2>
+      <label for="body">Write here <span class="hint">Aim for 800+ words. Use <b>##</b> for each section heading. Don’t repeat the title.</span></label>
+      <textarea id="body"></textarea>
+      <div class="count" id="bcount"></div>
+      <details><summary>Formatting cheat sheet</summary>
+<pre>## A section heading
+### A smaller heading
+
+Normal paragraph. **Bold text** and *italic text*.
+
+- Bullet point
+- Another bullet
+
+1. Numbered step
+2. Next step
+
+[Link text](/root-canal)      ← link to our pages like this
+
+| Tooth | What it means |
+|---|---|
+| Front tooth | Usually simplest |</pre></details>
+    </div>
+
+    <div class="card">
+      <h2>Before you submit</h2>
+      <ul class="rules">
+        <li><b>Prices:</b> use only the approved price list. Say “starts from”.</li>
+        <li><b>Never write:</b> “best dentist”, “100% painless”, “guaranteed”, “cure”, “#1”.</li>
+        <li><b>No patient names or photos</b> unless you have their written consent.</li>
+        <li><b>Approved numbers:</b> 3,000+ implants · 1,400+ reviews across Google, Practo &amp; Justdial · 15+ years.</li>
+      </ul>
+      <label class="chk" style="margin-top:16px"><input id="confirm" type="checkbox"> <span>I have read the rules above, and this article contains no patient details or unapproved claims.</span></label>
+    </div>
+
+    <button class="go" id="go" type="submit">Send for review</button>
+    <div class="msg" id="msg" role="status"></div>
+  </form>
+</main>
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  var imgData=null;
+  function counter(el,out,min,max,unit){
+    function u(){var n=el.value.trim().length;out.textContent=n+' '+unit+(min?' (aim for '+min+'–'+max+')':'');out.className='count '+((min&&(n<min||n>max))?'bad':(n?'ok':''));}
+    el.addEventListener('input',u);u();
+  }
+  counter($('title'),$('tcount'),0,60,'characters (best under 60)');
+  counter($('excerpt'),$('ecount'),70,165,'characters');
+  $('body').addEventListener('input',function(){var w=this.value.trim().split(/\s+/).filter(Boolean).length;$('bcount').textContent=w+' words (aim for 800+)';$('bcount').className='count '+(w>=800?'ok':(w?'bad':''));});
+  $('bcount').textContent='0 words (aim for 800+)';
+  $('drop').addEventListener('click',function(){$('file').click()});
+  $('drop').addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();$('file').click()}});
+  $('file').addEventListener('change',function(){
+    var f=this.files[0];if(!f)return;
+    var img=new Image(),url=URL.createObjectURL(f);
+    img.onload=function(){
+      var max=1400,s=Math.min(1,max/img.width),c=document.createElement('canvas');
+      c.width=Math.round(img.width*s);c.height=Math.round(img.height*s);
+      c.getContext('2d').drawImage(img,0,0,c.width,c.height);
+      var q=0.82;
+      (function enc(){c.toBlob(function(b){
+        if(b.size>1500000&&q>0.4){q-=0.12;return enc();}
+        var r=new FileReader();r.onload=function(){imgData=r.result.split(',')[1];$('prev').src=r.result;$('prev').style.display='block';};r.readAsDataURL(b);
+      },'image/jpeg',q);})();
+      URL.revokeObjectURL(url);
+    };
+    img.onerror=function(){imgData=null;show('err','That file could not be read as an image.');};
+    img.src=url;
+  });
+  function show(kind,text){var m=$('msg');m.className='msg '+kind;m.textContent=text;m.scrollIntoView({behavior:'smooth',block:'center'});}
+  $('f').addEventListener('submit',function(e){
+    e.preventDefault();
+    var body={password:$('password').value,name:$('name').value,title:$('title').value,tag:$('tag').value,author:$('author').value,location:$('location').value,excerpt:$('excerpt').value,imageAlt:$('imageAlt').value,body:$('body').value,confirm:$('confirm').checked};
+    if(imgData)body.image={data:imgData};
+    if(!body.password){return show('err','Please enter the team password.');}
+    var btn=$('go');btn.disabled=true;btn.textContent='Sending…';$('msg').className='msg';
+    fetch('/api/submit-post',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
+      .then(function(r){return r.json().catch(function(){return{ok:false,message:'Unexpected reply from the server.'}})})
+      .then(function(j){
+        if(j.ok){show('done',j.message);$('f').reset();imgData=null;$('prev').style.display='none';}
+        else show('err',j.message||'Something went wrong.');
+      })
+      .catch(function(){show('err','No connection. Please check your internet and try again.');})
+      .then(function(){btn.disabled=false;btn.textContent='Send for review';});
+  });
+})();
+</script>
+</body>
+</html>

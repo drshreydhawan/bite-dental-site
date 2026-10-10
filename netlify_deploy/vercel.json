@@ -2,18 +2,208 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/appointment",      "destination": "/book-appointment", "statusCode": 301 },
-    { "source": "/appointment/(.*)", "destination": "/book-appointment", "statusCode": 301 },
-    { "source": "/booking",          "destination": "/book-appointment", "statusCode": 301 }
+    {
+      "source": "/appointment",
+      "destination": "/book-appointment",
+      "statusCode": 301
+    },
+    {
+      "source": "/appointment/(.*)",
+      "destination": "/book-appointment",
+      "statusCode": 301
+    },
+    {
+      "source": "/booking",
+      "destination": "/book-appointment",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/post.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "slug",
+          "value": "(?<slug>.+)"
+        }
+      ],
+      "destination": "/blog/:slug",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/post.html",
+      "destination": "/blog",
+      "statusCode": 301
+    },
+    {
+      "source": "/rootcanals",
+      "destination": "/root-canal",
+      "statusCode": 301
+    },
+    {
+      "source": "/single-visit-rct",
+      "destination": "/root-canal",
+      "statusCode": 301
+    },
+    {
+      "source": "/post/stop-tooth-pain-fast-secrets-single-visit-rct-revealed",
+      "destination": "/blog/root-canal-single-visit-truth",
+      "statusCode": 301
+    },
+    {
+      "source": "/post/root-canal-treatment-not-the-nightmare-you-think",
+      "destination": "/blog/root-canal-single-visit-truth",
+      "statusCode": 301
+    },
+    {
+      "source": "/post/understanding-cavities-causes-prevention-and-treatment-at-bite-dental-clinic",
+      "destination": "/blog/understanding-cavities-causes-prevention-treatment",
+      "statusCode": 301
+    },
+    {
+      "source": "/post/painless-destist-gurugram-future-dentalcare",
+      "destination": "/gurugram",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog-kids-first-visit.html",
+      "destination": "/blog/kids-dentist-gurugram-first-dental-visit",
+      "statusCode": 301
+    },
+    {
+      "source": "/bleaching",
+      "destination": "/teeth-whitening",
+      "statusCode": 301
+    },
+    {
+      "source": "/whitening-bleaching",
+      "destination": "/teeth-whitening",
+      "statusCode": 301
+    },
+    {
+      "source": "/nightbleaching",
+      "destination": "/teeth-whitening",
+      "statusCode": 301
+    },
+    {
+      "source": "/dentalimplants",
+      "destination": "/dental-implants",
+      "statusCode": 301
+    },
+    {
+      "source": "/implants",
+      "destination": "/dental-implants",
+      "statusCode": 301
+    },
+    {
+      "source": "/painlessimplants",
+      "destination": "/dental-implants",
+      "statusCode": 301
+    },
+    {
+      "source": "/aligners",
+      "destination": "/clear-aligners",
+      "statusCode": 301
+    },
+    {
+      "source": "/pedodontics",
+      "destination": "/kids-dentistry",
+      "statusCode": 301
+    },
+    {
+      "source": "/childdentistry",
+      "destination": "/kids-dentistry",
+      "statusCode": 301
+    },
+    {
+      "source": "/aboutus",
+      "destination": "/about",
+      "statusCode": 301
+    },
+    {
+      "source": "/team",
+      "destination": "/about",
+      "statusCode": 301
+    },
+    {
+      "source": "/facilities",
+      "destination": "/about",
+      "statusCode": 301
+    },
+    {
+      "source": "/profile/drshreydhawan/profile",
+      "destination": "/about",
+      "statusCode": 301
+    },
+    {
+      "source": "/meerabagh",
+      "destination": "/meera-bagh",
+      "statusCode": 301
+    },
+    {
+      "source": "/veneers.html",
+      "destination": "/veneers",
+      "statusCode": 301
+    },
+    {
+      "source": "/post/:slug*",
+      "destination": "/blog",
+      "statusCode": 301
+    }
   ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Frame-Options",        "value": "SAMEORIGIN" },
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy",        "value": "strict-origin-when-cross-origin" }
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    },
+    {
+      "source": "/admin(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
+      ]
+    },
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
+      ]
+    },
+    {
+      "source": "/write(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
       ]
     }
-  ]
+  ],
+  "buildCommand": "node scripts/build-blog.cjs && node scripts/build-chrome.cjs",
+  "outputDirectory": "."
 }

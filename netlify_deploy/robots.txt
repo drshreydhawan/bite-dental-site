@@ -4,8 +4,10 @@
 User-agent: *
 Allow: /
 Disallow: /admin/
+Disallow: /write/
+Disallow: /api/
 Disallow: /private/
-Disallow: /*.json$
+
 Disallow: /*?*sort=
 Disallow: /*?*page=
 

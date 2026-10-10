@@ -41,99 +41,101 @@
 
   <!-- JSON-LD Schema: MedicalClinic + FAQPage + EmergencyService -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": ["MedicalOrganization","EmergencyService","Dentist"],
-        "@id": "https://www.bitedentalclinic.com/emergency-dentist#clinic",
-        "name": "Bite Dental Clinic — Emergency Dental Care",
-        "description": "Same-day emergency dental appointments in West Delhi and Gurugram. Toothache, broken tooth, knocked-out tooth, swelling, lost crown — seen today.",
-        "url": "https://www.bitedentalclinic.com/emergency-dentist",
-        "telephone": "+91-9810664561",
-        "openingHours": ["Mo-Sa 10:00-19:00"],
-        "image": "https://static.wixstatic.com/media/fe82ed_93334d8bf0274ef48b65d4f2dcf4ff69~mv2.png",
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "reviewCount": "500",
-          "bestRating": "5"
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": [
+        "MedicalOrganization",
+        "EmergencyService",
+        "Dentist"
+      ],
+      "@id": "https://www.bitedentalclinic.com/emergency-dentist#clinic",
+      "name": "Bite Dental Clinic — Emergency Dental Care",
+      "description": "Same-day emergency dental appointments in West Delhi and Gurugram. Toothache, broken tooth, knocked-out tooth, swelling, lost crown — seen today.",
+      "url": "https://www.bitedentalclinic.com/emergency-dentist",
+      "telephone": "+91-9810664561",
+      "openingHours": [
+        "Mo-Sa 10:00-19:00"
+      ],
+      "image": "https://static.wixstatic.com/media/fe82ed_93334d8bf0274ef48b65d4f2dcf4ff69~mv2.png",
+      "location": [
+        {
+          "@type": "MedicalClinic",
+          "name": "Bite Dental Clinic — Meera Bagh, West Delhi",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "A-52, Meera Bagh (A Block), near Jainar Hospital",
+            "addressLocality": "New Delhi",
+            "addressRegion": "Delhi",
+            "postalCode": "110087",
+            "addressCountry": "IN"
+          },
+          "telephone": "+91-7533951611"
         },
-        "location": [
-          {
-            "@type": "MedicalClinic",
-            "name": "Bite Dental Clinic — Meera Bagh, West Delhi",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "A52, Meera Bagh, A Block (left from Jainar Hospital)",
-              "addressLocality": "West Delhi",
-              "addressRegion": "Delhi",
-              "addressCountry": "IN"
-            },
-            "telephone": "+91-7533951611"
+        {
+          "@type": "MedicalClinic",
+          "name": "Bite Dental Clinic — Sector 51, Gurugram",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "MedHarbour Hospital, 1st Floor, Room 222, Sector 51",
+            "addressLocality": "Gurugram",
+            "addressRegion": "Haryana",
+            "postalCode": "122003",
+            "addressCountry": "IN"
           },
-          {
-            "@type": "MedicalClinic",
-            "name": "Bite Dental Clinic — Sector 51, Gurugram",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "222, Sector 51, opposite Amity International School",
-              "addressLocality": "Gurugram",
-              "addressRegion": "Haryana",
-              "addressCountry": "IN"
-            },
-            "telephone": "+91-9810664561"
+          "telephone": "+91-9810664561"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What counts as a dental emergency?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A dental emergency is any situation causing severe pain, swelling, bleeding, or risk of losing a tooth. This includes: severe toothache or abscess, broken or knocked-out tooth, lost crown or filling causing pain, facial swelling, post-extraction bleeding that won't stop, or any dental trauma from an accident. If you're in doubt, call or WhatsApp us — we will tell you if it needs to be seen today."
           }
-        ]
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "What counts as a dental emergency?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "A dental emergency is any situation causing severe pain, swelling, bleeding, or risk of losing a tooth. This includes: severe toothache or abscess, broken or knocked-out tooth, lost crown or filling causing pain, facial swelling, post-extraction bleeding that won't stop, or any dental trauma from an accident. If you're in doubt, call or WhatsApp us — we will tell you if it needs to be seen today."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Can you really see me the same day for a dental emergency?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes. We keep emergency slots open every day (Mon–Sat). WhatsApp +91 98106 64561 or call us and tell us what's happening. We will confirm your appointment slot the same day. In acute situations — swelling, knocked-out tooth, uncontrolled bleeding — please contact us immediately as time-sensitivity matters."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What if my dental emergency happens after clinic hours?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Our clinics are open Mon–Sat 10am–7pm. If your emergency occurs outside these hours, WhatsApp us at +91 98106 64561 — for life-threatening swelling or facial infections, go to the nearest hospital emergency department immediately. For pain management overnight: OTC pain relief (ibuprofen/paracetamol), cold compress on the cheek, and avoid hot food or drinks. Contact us first thing the next morning for a same-day appointment."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "How much does emergency dental treatment cost?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Emergency consultation at Bite Dental is charged at our standard consultation fee. Treatment costs depend on what's needed — a lost filling costs far less than a root canal. We are transparent about pricing before we start any treatment, and 0% EMI is available. We will never surprise you with a bill. Call or WhatsApp to ask before you come in."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "My tooth got knocked out — what do I do right now?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Act within 30 minutes for the best chance of saving it. 1. Pick the tooth up by the crown — do NOT touch the root. 2. Rinse gently with clean water if dirty — do not scrub. 3. Try to place it back in the socket immediately if possible. 4. If not, store it in milk, saliva, or saline — not dry, not in water. 5. Call or WhatsApp us immediately: +91 98106 64561. 6. Get to our clinic within 30 minutes if at all possible. After 60 minutes, reimplantation success drops significantly."
-            }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you really see me the same day for a dental emergency?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. We keep emergency slots open every day (Mon–Sat). WhatsApp +91 98106 64561 or call us and tell us what's happening. We will confirm your appointment slot the same day. In acute situations — swelling, knocked-out tooth, uncontrolled bleeding — please contact us immediately as time-sensitivity matters."
           }
-        ]
-      }
-    ]
-  }
-  </script>
+        },
+        {
+          "@type": "Question",
+          "name": "What if my dental emergency happens after clinic hours?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our clinics are open Mon–Sat 10am–7pm. If your emergency occurs outside these hours, WhatsApp us at +91 98106 64561 — for life-threatening swelling or facial infections, go to the nearest hospital emergency department immediately. For pain management overnight: OTC pain relief (ibuprofen/paracetamol), cold compress on the cheek, and avoid hot food or drinks. Contact us first thing the next morning for a same-day appointment."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does emergency dental treatment cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Emergency consultation at Bite Dental is charged at our standard consultation fee. Treatment costs depend on what's needed — a lost filling costs far less than a root canal. We are transparent about pricing before we start any treatment, and 0% EMI is available. We will never surprise you with a bill. Call or WhatsApp to ask before you come in."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "My tooth got knocked out — what do I do right now?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Act within 30 minutes for the best chance of saving it. 1. Pick the tooth up by the crown — do NOT touch the root. 2. Rinse gently with clean water if dirty — do not scrub. 3. Try to place it back in the socket immediately if possible. 4. If not, store it in milk, saliva, or saline — not dry, not in water. 5. Call or WhatsApp us immediately: +91 98106 64561. 6. Get to our clinic within 30 minutes if at all possible. After 60 minutes, reimplantation success drops significantly."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
 
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -397,6 +399,7 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
 @media(max-width:480px){.btn-nav-book{font-size:0.76rem;padding:8px 11px;}}
 
 </style>
+<link rel="stylesheet" href="/css/site-chrome.css">
 </head>
 <body>
 
@@ -412,90 +415,90 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
 
 <!-- ─── NAV ─── -->
 
-<nav class="nav">
-  <div class="container nav-i">
-    <a class="nav-logo" href="/" aria-label="Bite Dental Clinic">
-      <img src="/Resources/bite_logo.webp" alt="Bite Dental Clinic" height="38" loading="eager" style="border-radius:8px;" />
-    </a>
+<!--SITE-HEADER-->
+<header class="sh" id="siteHeader">
+  <div class="sh-in">
+    <a class="sh-logo" href="/" aria-label="Bite Dental Clinic, home"><img src="/Resources/bite_logo_160.png" alt="Bite Dental Clinic" width="44" height="44"><span class="sh-wordmark">Bite <b>Dental</b></span></a>
 
-    <ul class="nav-links">
-      <li><a href="/clear-aligners">Aligners</a></li>
-      <li><a href="/dental-implants">Implants</a></li>
-      <li><a href="/kids-dentistry">Kids</a></li>
-      <li><a href="/veneers">Veneers</a></li>
-      <li class="nav-dropdown">
-        <a class="nav-drop-toggle" href="#" onclick="return false;">More ▾</a>
-        <ul class="nav-drop-menu">
-          <li><a href="/root-canal">Root Canal</a></li>
-          <li><a href="/teeth-whitening">Teeth Whitening</a></li>
-          <li><a href="/braces-aligners">Braces &amp; Aligners</a></li>
-          <li><a href="/crowns">Crowns &amp; Bridges</a></li>
-          <li><a href="/fluoride">Fluoride &amp; Sealants</a></li>
-          <li class="nav-drop-divider"></li>
-          <li><a href="/emergency-dentist" style="color:#ff6b6b;">🚨 Emergency</a></li>
-          <li class="nav-drop-divider"></li>
-          <li><a href="/international" style="color:#60BC01;">✈️ International Patients</a></li>
-          <li><a href="/about">About Us</a></li>
-          <li><a href="/blog">Blog</a></li>
-        </ul>
-      </li>
-      <li class="nav-dropdown">
-        <a class="nav-drop-toggle" href="#" onclick="return false;">Locations ▾</a>
-        <ul class="nav-drop-menu">
-          <li><a href="/meera-bagh">Meera Bagh, West Delhi</a></li>
-          <li><a href="/gurugram">Gurugram (Sector 51)</a></li>
-        </ul>
-      </li>
-    </ul>
+    <nav class="sh-nav" aria-label="Main">
+      <ul class="sh-list">
+        <li class="sh-dd">
+          <button class="sh-dd-btn" type="button" aria-expanded="false" aria-haspopup="true">Treatments <i aria-hidden="true"></i></button>
+          <div class="sh-menu sh-mega">
+            <div class="sh-col"><span class="sh-label">Specialist care</span>
+              <a href="/root-canal">Root Canal Treatment</a>
+              <a href="/dental-implants">Dental Implants</a>
+              <a href="/crowns">Crowns &amp; Bridges</a>
+              <a href="/kids-dentistry">Kids Dentistry</a>
+            </div>
+            <div class="sh-col"><span class="sh-label">Smile &amp; alignment</span>
+              <a href="/clear-aligners">Clear Aligners</a>
+              <a href="/braces-aligners">Braces</a>
+              <a href="/veneers">Veneers &amp; Smile Design</a>
+              <a href="/teeth-whitening">Teeth Whitening</a>
+            </div>
+            <div class="sh-col"><span class="sh-label">Prevention &amp; urgent</span>
+              <a href="/fluoride">Fluoride &amp; Sealants</a>
+              <a class="sh-urgent" href="/emergency-dentist">Emergency Dentist</a>
+            </div>
+          </div>
+        </li>
+        <li class="sh-dd">
+          <button class="sh-dd-btn" type="button" aria-expanded="false" aria-haspopup="true">Locations <i aria-hidden="true"></i></button>
+          <div class="sh-menu sh-loc">
+            <a href="/meera-bagh"><strong>Meera Bagh, West Delhi</strong><small>A-52, near Jainar Hospital</small></a>
+            <a href="/gurugram"><strong>Gurugram, Sector 51</strong><small>MedHarbour Hospital, Room 222</small></a>
+          </div>
+        </li>
+        <li><a href="/about">Our doctors</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/international">International</a></li>
+      </ul>
+    </nav>
 
-    <div class="nav-cta">
-      <a class="btn-nav-wa" href="https://wa.me/919810664561?text=Hi%2C+I+have+a+dental+emergency+and+need+to+be+seen+today" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="#2ecc71"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        WhatsApp
-      </a>
-      <a class="btn-nav-book" href="/book-appointment">Book Free Consult →</a>
+    <div class="sh-cta">
+      <a class="sh-btn sh-ghost" data-track="whatsapp" href="https://wa.me/919810664561?text=Hi%20Bite%20Dental%2C%20I%27d%20like%20to%20book%20a%20consultation" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.8a9.87 9.87 0 01-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 01-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 012.89 6.99c0 5.45-4.44 9.88-9.89 9.88M20.5 3.49A11.8 11.8 0 0012.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 005.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.17-3.48-8.42"/></svg>WhatsApp</a>
+      <a class="sh-btn sh-solid" href="/book-appointment">Book free consult</a>
     </div>
 
-    <button class="nav-hamburger" id="navHamburger" onclick="toggleNavDrawer()" aria-label="Open menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="sh-burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="siteDrawer"><span></span><span></span><span></span></button>
   </div>
 
-  <!-- Mobile drawer -->
-  <div class="nav-drawer" id="navDrawer">
-    <span class="drawer-section-label">Treatments</span>
-    <a href="/clear-aligners">Clear Aligners</a>
-    <a href="/dental-implants">Dental Implants</a>
-    <a href="/kids-dentistry">Kids Dentistry</a>
-    <a href="/veneers">Veneers &amp; Smile Design</a>
-    <a href="/root-canal">Root Canal</a>
-    <a href="/teeth-whitening">Teeth Whitening</a>
-    <a href="/braces-aligners">Braces &amp; Aligners</a>
-    <a href="/crowns">Crowns &amp; Bridges</a>
-    <a href="/fluoride">Fluoride &amp; Sealants</a>
-    <a href="/emergency-dentist" style="color:#ff6b6b;">🚨 Emergency Dentist</a>
-    <div class="drawer-divider"></div>
-    <a href="/about">About Us</a>
-    <a href="/blog">Blog</a>
-    <a href="/international" style="color:#60BC01;">✈️ International Patients</a>
-    <div class="drawer-divider"></div>
-    <span class="drawer-section-label">Locations</span>
-    <a href="/meera-bagh">Meera Bagh, West Delhi</a>
-    <a href="/gurugram">Gurugram (Sector 51)</a>
-    <div class="drawer-divider"></div>
-    <div class="nav-drawer-cta">
-      <a class="btn-nav-wa" href="https://wa.me/919810664561?text=Hi%2C+I+have+a+dental+emergency+and+need+to+be+seen+today" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:6px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="#2ecc71"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> WhatsApp</a>
-      <a class="btn-nav-book" href="/book-appointment" style="display:flex;align-items:center;justify-content:center;">Book Now →</a>
+  <div class="sh-drawer" id="siteDrawer">
+    <div class="sh-dr-in">
+      <span class="sh-label">Treatments</span>
+      <a href="/root-canal">Root Canal Treatment</a>
+      <a href="/dental-implants">Dental Implants</a>
+      <a href="/clear-aligners">Clear Aligners</a>
+      <a href="/braces-aligners">Braces</a>
+      <a href="/veneers">Veneers &amp; Smile Design</a>
+      <a href="/teeth-whitening">Teeth Whitening</a>
+      <a href="/crowns">Crowns &amp; Bridges</a>
+      <a href="/kids-dentistry">Kids Dentistry</a>
+      <a href="/fluoride">Fluoride &amp; Sealants</a>
+      <a class="sh-urgent" href="/emergency-dentist">Emergency Dentist</a>
+      <span class="sh-label">Clinics</span>
+      <a href="/meera-bagh">Meera Bagh, West Delhi</a>
+      <a href="/gurugram">Gurugram, Sector 51</a>
+      <span class="sh-label">More</span>
+      <a href="/about">Our doctors</a>
+      <a href="/blog">Blog</a>
+      <a href="/international">International patients</a>
+      <div class="sh-dr-cta">
+        <a class="sh-btn sh-ghost" data-track="whatsapp" href="https://wa.me/919810664561?text=Hi%20Bite%20Dental%2C%20I%27d%20like%20to%20book%20a%20consultation" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="sh-btn sh-solid" href="/book-appointment">Book free consult</a>
+      </div>
     </div>
   </div>
-</nav>
+</header>
+<!--/SITE-HEADER-->
 <!-- ─── HERO ─── -->
 <section class="hero" id="top">
   <div class="hero-bg"></div>
   <div class="container">
     <div class="hero-inner">
       <div class="hero-rating-pill">
-        <span class="stars">★★★★★</span> <b>4.9</b> <span style="color:var(--text-3)">· Google · 1500+ patients</span>
+        <span class="stars">★★★★★</span> <b>4.9</b> <span style="color:var(--text-3)">· Google · 1,400+ Patient Reviews</span>
       </div>
       <h1 class="hero-h1">Dental Emergency?<br/><em>We See You Today.</em></h1>
       <p class="hero-sub">Tooth pain, broken tooth, lost filling, swelling — same-day appointments available at both clinics. Don't wait. Pain this bad deserves immediate attention.</p>
@@ -538,7 +541,7 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
     <div class="tdiv"></div>
     <div class="tstat"><div class="num">4.9★</div><div class="lbl">Google Rating</div></div>
     <div class="tdiv"></div>
-    <div class="tstat"><div class="num">1500+</div><div class="lbl">Patients Treated</div></div>
+    <div class="tstat"><div class="num">1,400+</div><div class="lbl">Patient Reviews</div></div>
     <div class="tdiv"></div>
     <div class="tstat"><div class="num">2 Clinics</div><div class="lbl">Delhi & Gurugram</div></div>
     <div class="tdiv"></div>
@@ -803,7 +806,7 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
       <div class="loc-card">
         <div class="loc-badge">📍 West Delhi</div>
         <div class="loc-name">Meera Bagh Clinic</div>
-        <div class="loc-addr">A52, Meera Bagh, A Block<br/>(Left from Jainar Hospital, Peeragarhi)</div>
+        <div class="loc-addr">A-52, Meera Bagh, A Block<br/>(Left from Jainar Hospital, Peeragarhi)</div>
         <div class="loc-detail-row">
           <div class="loc-detail">📞 <strong><a href="tel:+917533951611" style="color:var(--white);">+91 75339 51611</a></strong></div>
           <div class="loc-detail">💬 <strong><a href="https://wa.me/919810664561?text=Hi%2C+I+have+a+dental+emergency+at+Meera+Bagh." target="_blank" rel="noopener" style="color:#25D366;">WhatsApp for Emergency Slot</a></strong></div>
@@ -849,7 +852,7 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
     <div class="sec-head center">
       <span class="tag">Why Patients Choose Bite</span>
       <h2 class="sh">When it hurts, you need <span>fast and right.</span></h2>
-      <p class="sub">Not just available — genuinely equipped. Here's why over 1500 patients trusted us with their dental emergencies.</p>
+      <p class="sub">Not just available — genuinely equipped. Here's why 1,400+ patient reviews trust us with their dental emergencies.</p>
     </div>
     <div class="why-grid">
       <div class="why-card">
@@ -879,7 +882,7 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
       </div>
       <div class="why-card">
         <div class="why-icon">⭐</div>
-        <div class="why-title">4.9★ · 1500+ Patients</div>
+        <div class="why-title">4.9★ · 1,400+ Patient Reviews</div>
         <div class="why-text">Across 500+ Google reviews, patients consistently highlight speed, pain-free care, and a doctor who actually listens.</div>
       </div>
     </div>
@@ -952,49 +955,34 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:58px 0 
 </div>
 
 <!-- ─── FOOTER ─── -->
-<footer>
-  <div class="container">
-    <div class="footer-g">
-      <div class="f-brand">
-        <img src="https://static.wixstatic.com/media/fe82ed_93334d8bf0274ef48b65d4f2dcf4ff69~mv2.png" alt="Bite Dental Clinic" height="34" />
-        <p>Same-day emergency dental care. 4.9★ Google. 1500+ patients. West Delhi & Gurugram.</p>
-        <a href="tel:+917533951611" style="display:block;margin-bottom:4px;">📞 Delhi: +91 75339 51611</a>
-        <a href="tel:+919810664561" style="display:block;margin-bottom:10px;">📞 Gurugram: +91 98106 64561</a>
-        <a href="https://wa.me/919810664561?text=Hi%2C+I+have+a+dental+emergency.+Please+help." target="_blank" rel="noopener" style="background:#25D366;color:#000;display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;font-size:0.85rem;font-weight:700;">💬 WhatsApp Emergency</a>
-      </div>
-      <div class="f-col">
-        <h5>Treatments</h5>
-        <ul>
-          <li><a href="/emergency-dentist">Emergency Dentistry</a></li>
-          <li><a href="/dental-implants">Dental Implants</a></li>
-          <li><a href="/clear-aligners">Clear Aligners</a></li>
-          <li><a href="/crowns">Crowns</a></li>
-          <li><a href="/kids-dentistry">Kids Dentistry</a></li>
-          <li><a href="/#treatments">Root Canal</a></li>
-          <li><a href="/#treatments">Smile Design</a></li>
-        </ul>
-      </div>
-      <div class="f-col">
-        <h5>Clinics</h5>
-        <ul>
-          <li><a href="/meera-bagh">West Delhi — Meera Bagh</a></li>
-          <li><a href="/gurugram">Gurugram — Sector 51</a></li>
-        </ul>
-      </div>
-      <div class="f-col">
-        <h5>Connect</h5>
-        <ul>
-          <li><a href="https://wa.me/919810664561?text=Hi%2C+I+have+a+dental+emergency." target="_blank">WhatsApp Emergency</a></li>
-          <li><a href="/book-appointment" target="_blank">Book Appointment</a></li>
-          <li><a href="https://www.instagram.com/bitedentalclinics" target="_blank">Instagram</a></li>
-        </ul>
-      </div>
+<!--SITE-FOOTER-->
+<div class="sf" role="contentinfo">
+  <div class="sf-in">
+    <div class="sf-brand">
+      <a class="sh-logo" href="/" aria-label="Bite Dental Clinic, home"><img src="/Resources/bite_logo_160.png" alt="" width="44" height="44" loading="lazy"><span class="sh-wordmark">Bite <b>Dental</b></span></a>
+      <p>Specialist-led dentistry in West Delhi and Gurugram. Advanced care, done gently.</p>
+      <p class="sf-social"><a href="https://www.instagram.com/bitedentalclinics" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.facebook.com/bitedental" target="_blank" rel="noopener">Facebook</a></p>
     </div>
-    <div class="footer-bot">
-      <p>© 2025 Bite Dental Clinic. All rights reserved. | West Delhi & Gurugram, India</p>
+    <div class="sf-col"><h3>Treatments</h3>
+      <a href="/root-canal">Root Canal</a><a href="/dental-implants">Dental Implants</a><a href="/clear-aligners">Clear Aligners</a><a href="/braces-aligners">Braces</a><a href="/veneers">Veneers &amp; Smile Design</a><a href="/teeth-whitening">Teeth Whitening</a><a href="/crowns">Crowns &amp; Bridges</a><a href="/kids-dentistry">Kids Dentistry</a><a href="/fluoride">Fluoride &amp; Sealants</a><a href="/emergency-dentist">Emergency Dentist</a>
+    </div>
+    <div class="sf-col"><h3>Meera Bagh, West Delhi</h3>
+      <p>A-52, Meera Bagh<br>near Jainar Hospital<br>New Delhi 110087</p>
+      <a href="tel:+917533951611">+91 75339 51611</a>
+      <a href="/meera-bagh">Hours &amp; directions</a>
+    </div>
+    <div class="sf-col"><h3>Gurugram, Sector 51</h3>
+      <p>MedHarbour Hospital, 1st Floor, Room 222<br>Sector 51, Gurugram 122003</p>
+      <a href="tel:+919810664561">+91 98106 64561</a>
+      <a href="/gurugram">Hours &amp; directions</a>
+    </div>
+    <div class="sf-col"><h3>Explore</h3>
+      <a href="/about">Our doctors</a><a href="/blog">Dental blog</a><a href="/international">International patients</a><a href="/book-appointment">Book a consultation</a>
     </div>
   </div>
-</footer>
+  <div class="sf-base"><span>© 2026 Bite Dental Clinic. Open Monday to Saturday, 10 am to 8 pm.</span><span>Information on this site is general and does not replace a dental examination.</span></div>
+</div>
+<!--/SITE-FOOTER-->
 
 <!-- ─── PULSING WHATSAPP FAB ─── -->
 <a class="wa-fab" href="https://wa.me/919810664561?text=Hi%2C+I+have+a+dental+emergency.+Please+help." target="_blank" rel="noopener" aria-label="WhatsApp Dental Emergency">
@@ -1041,5 +1029,7 @@ function toggleFa(btn){
   window.addEventListener('resize',setNavTop);
 })();
 </script>
+<script src="/js/track.js" defer></script>
+<script src="/js/site-chrome.js" defer></script>
 </body>
 </html>

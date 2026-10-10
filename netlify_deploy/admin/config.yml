@@ -1,30 +1,73 @@
+# Blog editor configuration (Decap CMS)  — see docs/BLOG_GUIDE.md
+# NOTE: if the website code is ever moved to its own repo (so the site folder is
+# the repo root), change  netlify_deploy/content/blog  ->  content/blog  and
+# netlify_deploy/Resources/blog  ->  Resources/blog  below.
 backend:
   name: github
   repo: drshreydhawan/bite-dental-site
   branch: main
-  auth_type: pkce
-  app_id: REPLACE_WITH_OAUTH_CLIENT_ID
+  base_url: https://www.bitedentalclinic.com
+  auth_endpoint: api/auth
+  commit_messages:
+    create: "Blog: add “{{slug}}”"
+    update: "Blog: update “{{slug}}”"
+    delete: "Blog: delete “{{slug}}”"
+    uploadMedia: "Blog: upload image {{path}}"
+    deleteMedia: "Blog: delete image {{path}}"
 
-media_folder: "Resources/blog-images"
-public_folder: "/Resources/blog-images"
+# Posts go  Draft -> In review -> Ready -> Published.  Nothing goes live until the
+# owner (or a reviewer) moves it to Ready and publishes it.
+publish_mode: editorial_workflow
+site_url: https://www.bitedentalclinic.com
+display_url: https://www.bitedentalclinic.com/blog
+logo_url: https://www.bitedentalclinic.com/Resources/bite_logo.png
+locale: en
+
+media_folder: netlify_deploy/Resources/blog
+public_folder: /Resources/blog
 
 collections:
-  - name: "blog"
-    label: "Blog Posts"
-    files:
-      - label: "All Blog Posts"
-        name: "blog_posts"
-        file: "content/blog-posts.json"
-        fields:
-          - label: "Posts"
-            name: "posts"
-            widget: "list"
-            summary: "{{fields.title}}"
-            fields:
-              - { label: "Slug (URL-friendly, e.g. understanding-cavities)", name: "slug", widget: "string" }
-              - { label: "Title", name: "title", widget: "string" }
-              - { label: "Tag / Category", name: "tag", widget: "string" }
-              - { label: "Date", name: "date", widget: "datetime", format: "MMMM D, YYYY", date_format: "MMMM D, YYYY", time_format: false }
-              - { label: "Excerpt (1-2 sentences for homepage card)", name: "excerpt", widget: "text" }
-              - { label: "Cover Image URL", name: "image", widget: "string", required: false, hint: "Paste a URL, or upload via the media button" }
-              - { label: "Full Post Content", name: "content", widget: "markdown" }
+  - name: blog
+    label: Blog posts
+    label_singular: Blog post
+    folder: netlify_deploy/content/blog
+    extension: md
+    format: frontmatter
+    create: true
+    slug: "{{fields.url_slug}}"
+    identifier_field: title
+    summary: "{{title}} · {{tag}} · {{date}}"
+    sortable_fields: ["date", "title", "tag"]
+    fields:
+      - { label: Title, name: title, widget: string, hint: "The headline. Under 60 characters shows fully on Google. Include what the patient is searching for, e.g. “Root Canal Cost in Delhi”." }
+      - { label: Web address ending, name: url_slug, widget: string, pattern: ['^[a-z0-9]+(-[a-z0-9]+)*$', "Only lowercase letters, numbers and hyphens, e.g. root-canal-cost-delhi"], hint: "Becomes bitedentalclinic.com/blog/THIS. Short, lowercase, hyphens. Do not change it after publishing." }
+      - { label: Publish date, name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: Last updated (optional), name: updated, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, required: false, hint: "Set this whenever you materially edit an old post." }
+      - label: Category
+        name: tag
+        widget: select
+        options: ["Root Canal", "Dental Implants", "Clear Aligners", "Orthodontics", "Cosmetic Dentistry", "Teeth Whitening", "Crowns & Bridges", "Kids Dentistry", "Preventive Care", "Emergency", "International Patients", "Oral Health"]
+        hint: "Decides which treatment page is linked at the bottom of the post."
+      - label: Written / reviewed by
+        name: author
+        widget: select
+        options:
+          - { label: "Dr. Shrey Dhawan (Endodontics)", value: shrey }
+          - { label: "Dr. Shamindhi Dhawan (Implants)", value: shamindhi }
+          - { label: "Dr. Achla Goel (Kids dentistry)", value: achla }
+          - { label: "Dr. Aman Sachdev (Orthodontics)", value: aman }
+          - { label: "Bite Dental Team", value: team }
+        default: team
+        hint: "Health content ranks better with a named, qualified clinician. Only pick a doctor who has actually reviewed the article."
+      - label: Which clinic should the buttons point to?
+        name: location
+        widget: select
+        options: [{ label: "Both clinics", value: both }, { label: "Meera Bagh, Delhi only", value: delhi }, { label: "Sector 51, Gurugram only", value: gurugram }]
+        default: both
+      - { label: Summary (shown on Google), name: excerpt, widget: text, pattern: ['^[\s\S]{70,165}$', "Please write 70–165 characters"], hint: "120–160 characters. Answer the question the patient is asking, in plain words." }
+      - { label: Main image, name: image, widget: image, required: false, hint: "Landscape (about 1200×630). Compress it first at squoosh.app so it is under 300 KB. Use only images we own or have patient consent to publish." }
+      - { label: Image description (for accessibility & Google), name: image_alt, widget: string, required: false }
+      - { label: "Google title override (optional)", name: seo_title, widget: string, required: false, hint: "Only if the title is over 60 characters." }
+      - { label: "Google summary override (optional)", name: seo_description, widget: text, required: false }
+      - { label: Draft (hide from website), name: draft, widget: boolean, default: false }
+      - { label: Article, name: body, widget: markdown, hint: "Use Heading 2 for sections, Heading 3 for sub-sections. Do not use Heading 1. Aim for 800+ words." }
