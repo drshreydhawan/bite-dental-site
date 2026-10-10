@@ -1,7 +1,0 @@
-# This repo holds ONLY the website (netlify_deploy/) and its docs.
-# Business files live in the private repo bite-dental-business (git dir: .git-business).
-/*
-!/netlify_deploy/
-!/docs/
-!/.gitignore
-.DS_Store
