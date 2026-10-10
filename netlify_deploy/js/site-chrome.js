@@ -39,3 +39,26 @@
     }
   });
 })();
+/* Shared action bar: clinic chooser for "Call", and clinic-aware numbers on the clinic pages. */
+(function () {
+  var bar = document.getElementById('siteActions');
+  if (!bar) return;
+  var call = bar.querySelector('.bdx-call');
+  call.addEventListener('click', function (e) {
+    e.stopPropagation();
+    var open = !bar.classList.contains('open');
+    bar.classList.toggle('open', open); call.setAttribute('aria-expanded', String(open));
+  });
+  document.addEventListener('click', function (e) { if (!bar.contains(e.target)) { bar.classList.remove('open'); call.setAttribute('aria-expanded', 'false'); } });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') bar.classList.remove('open'); });
+  if (/^\/book-appointment/.test(location.pathname)) { bar.classList.add('no-book'); }
+  if (/^\/meera-bagh/.test(location.pathname)) {
+    var wa = bar.querySelector('[data-wa]');
+    wa.href = 'https://wa.me/917533951611?text=' + encodeURIComponent("Hi Team Bite, I'd like to book an appointment at Meera Bagh. Please share the earliest slots.");
+    var first = bar.querySelector('.bdx-sheet a'); // Delhi already first
+  }
+  if (/^\/gurugram/.test(location.pathname)) {
+    var sheet = bar.querySelector('.bdx-sheet'); sheet.insertBefore(sheet.lastElementChild, sheet.firstElementChild);
+    bar.querySelector('[data-wa]').href = 'https://wa.me/919810664561?text=' + encodeURIComponent("Hi Team Bite, I'd like to book an appointment at Gurugram. Please share the earliest slots.");
+  }
+})();

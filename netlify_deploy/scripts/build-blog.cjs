@@ -151,10 +151,6 @@ const NAV = '<!--SITE-HEADER-->\n<!--/SITE-HEADER-->';
 
 const FOOT = `<!--SITE-FOOTER-->
 <!--/SITE-FOOTER-->
-<div class="mob-cta">
-  <a class="mob-wa" data-track="whatsapp" href="${WA('919810664561', "Hi Bite Dental, I'd like to book a consultation.")}" target="_blank" rel="noopener">Book on WhatsApp</a>
-  <a class="mob-call" data-track="call" href="tel:${TEL_GUR}">Call</a>
-</div>
 <script src="/js/track.js" defer></script>`;
 
 function ctaBlock(p) {

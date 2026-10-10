@@ -11,6 +11,8 @@ const path = require('path');
 const ROOT = path.join(__dirname, '..');
 const header = fs.readFileSync(path.join(__dirname, 'partials', 'header.html'), 'utf8').trim();
 const footer = fs.readFileSync(path.join(__dirname, 'partials', 'footer.html'), 'utf8').trim();
+const headTags = fs.readFileSync(path.join(__dirname, 'partials', 'head.html'), 'utf8').trim();
+const VIEWPORT = '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">';
 const HS = '<!--SITE-HEADER-->', HE = '<!--/SITE-HEADER-->', FS = '<!--SITE-FOOTER-->', FE = '<!--/SITE-FOOTER-->';
 const crypto = require('crypto');
 const ver = (f) => crypto.createHash('md5').update(fs.readFileSync(path.join(ROOT, f))).digest('hex').slice(0, 8);
@@ -77,6 +79,10 @@ for (const f of pages()) {
   h = migrateFooter(h);
   h = h.replace(new RegExp(`${HS}[\\s\\S]*?${HE}`), () => `${HS}\n${header}\n${HE}`);
   h = h.replace(new RegExp(`${FS}[\\s\\S]*?${FE}`), () => `${FS}\n${footer}\n${FE}`);
+  // phone/OS settings: one viewport tag (with notch support) + icons/theme colour
+  h = h.replace(/<meta\s+name="viewport"[^>]*>/gi, '').replace(/<!--SITE-HEAD-->[\s\S]*?<!--\/SITE-HEAD-->\n?/, '');
+  h = h.replace(/<link rel="icon"[^>]*>\n?/gi, '').replace(/<meta name="theme-color"[^>]*>\n?/gi, '');
+  h = h.replace(/(<meta charset="[^"]*"\s*\/?>)/i, `$1\n${VIEWPORT}\n<!--SITE-HEAD-->\n${headTags}\n<!--/SITE-HEAD-->`);
   // (re)write the asset tags with a content hash so browsers never use a stale copy
   h = h.replace(/<link rel="stylesheet" href="\/css\/site-chrome\.css(\?v=[^"]*)?">/g, '').replace(/<script src="\/js\/site-chrome\.js(\?v=[^"]*)?" defer><\/script>\n?/g, '');
   h = h.replace('</head>', `${CSS}\n</head>`);
