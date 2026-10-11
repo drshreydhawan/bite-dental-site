@@ -28,7 +28,7 @@ The earlier the habit stops, the better the chance that teeth move back by thems
 
 ## Is a pacifier better than a thumb?
 
-A pacifier can cause similar effects. The advantage is that it can be taken away, whereas a thumb cannot. Many dentists suggest weaning from a pacifier by around age two to three. Orthodontic pacifiers are not a guarantee against problems.
+A pacifier can cause similar effects. The advantage is that it can be taken away, whereas a thumb cannot. Many dentists suggest weaning from a pacifier by around age two to three. Orthodontic-shaped pacifiers can still affect teeth if used for long.
 
 ## Gentle ways to help your child stop
 
