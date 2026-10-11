@@ -3,6 +3,7 @@ title: "Bleeding Gums: Is It Gum Disease, and What Should You Do?"
 date: 2026-10-11
 tag: "Preventive Care"
 author: shrey
+seo_title: "Bleeding Gums: Causes and What to Do"
 excerpt: "Bleeding when you brush is common, but it is not something to ignore. Learn what causes it, how gum disease progresses, and what actually helps."
 image: "/Resources/blog/bleeding-gums-gum-disease-guide.webp"
 image_alt: "Illustration comparing healthy gums with inflamed gums"

@@ -3,6 +3,7 @@ title: "Veneers vs. Crowns vs. Bonding: Which Fits Your Teeth?"
 date: 2026-10-11
 tag: "Cosmetic Dentistry"
 author: shamindhi
+seo_title: "Veneers vs Crowns vs Bonding Explained"
 excerpt: "Three ways to reshape or restore a tooth, and when each makes sense. A plain-language guide to help you ask the right questions."
 image: "/Resources/blog/veneers-vs-crowns-vs-bonding.webp"
 image_alt: "Illustration comparing a veneer, a crown and tooth bonding on a tooth"

@@ -3,6 +3,7 @@ title: "Bad Breath: What Is Causing It and How to Fix It"
 date: 2026-10-11
 tag: "Preventive Care"
 author: shrey
+seo_title: "Bad Breath: Causes and How to Fix It"
 excerpt: "Most bad breath starts in the mouth, not the stomach. Here are the common causes, simple habits that help, and when to get it checked."
 image: "/Resources/blog/bad-breath-causes-and-fixes.webp"
 image_alt: "Illustration of a tongue and teeth showing common sources of bad breath"

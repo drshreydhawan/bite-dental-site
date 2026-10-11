@@ -67,7 +67,8 @@ function parsePost(file) {
 
 function lint(p) {
   const seoTitle = p.seoTitle || p.title;
-  if (seoTitle.length > 60) note('WARN', p.slug, `title is ${seoTitle.length} chars; Google cuts off after ~60 (set seo_title)`);
+  const shown = /Bite Dental/i.test(seoTitle) ? seoTitle.length : seoTitle.length + 13;
+  if (shown > 60) note('WARN', p.slug, `page title is ${shown} chars incl. " | Bite Dental"; Google cuts off after ~60 (set a shorter seo_title, max 47)`);
   const d = p.seoDesc || p.excerpt || '';
   if (!d) note('WARN', p.slug, 'no excerpt — add a 120-160 character summary');
   else if (d.length < 70 || d.length > 165) note('WARN', p.slug, `summary is ${d.length} chars; aim for 120-160`);

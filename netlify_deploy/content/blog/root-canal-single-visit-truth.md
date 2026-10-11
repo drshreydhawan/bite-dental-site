@@ -3,6 +3,7 @@ title: "Can a Root Canal Really Be Done in One Day? The Truth"
 date: 2026-03-09
 tag: "Root Canal"
 author: shrey
+seo_title: "Single-Visit Root Canal: The Truth"
 excerpt: "The old \"three-appointment\" root canal is history. Our endodontics specialist explains how most cases are resolved in a single comfortable visit."
 image: "/Resources/blog/root-canal-single-visit-truth.jpg"
 image_alt: "Can a Root Canal Really Be Done in One Day? The Truth"

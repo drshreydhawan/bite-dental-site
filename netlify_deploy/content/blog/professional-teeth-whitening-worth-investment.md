@@ -3,6 +3,7 @@ title: "Professional Teeth Whitening: Is It Worth the Investment?"
 date: 2026-03-11
 tag: "Cosmetic Dentistry"
 author: shrey
+seo_title: "Professional Teeth Whitening: Is It Worth It?"
 excerpt: "Dr. Shrey Dhawan breaks down what professional whitening actually costs, what results to expect, and whether it's right for you."
 image: "/Resources/blog/professional-teeth-whitening-worth-investment.jpg"
 image_alt: "Professional Teeth Whitening: Is It Worth the Investment?"

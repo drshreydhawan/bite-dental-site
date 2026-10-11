@@ -3,6 +3,7 @@ title: "Tooth Sensitivity: Why It Happens and What Actually Helps"
 date: 2026-10-11
 tag: "Preventive Care"
 author: shrey
+seo_title: "Tooth Sensitivity: Causes and Relief"
 excerpt: "That sharp zing from cold water or ice cream has a cause. Find out the common triggers, what you can do at home, and when sensitivity needs a dentist."
 image: "/Resources/blog/tooth-sensitivity-causes-and-relief.webp"
 image_alt: "Illustration of a tooth with exposed dentine reacting to cold and hot"

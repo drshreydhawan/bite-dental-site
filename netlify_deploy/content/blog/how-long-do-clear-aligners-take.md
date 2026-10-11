@@ -3,6 +3,7 @@ title: "How Long Do Clear Aligners Take? A Realistic Timeline"
 date: 2026-10-11
 tag: "Orthodontics"
 author: aman
+seo_title: "How Long Do Clear Aligners Take?"
 excerpt: "Treatment time depends on your teeth, not the brand. Here is what shapes the timeline, what a typical journey looks like, and how to avoid delays."
 image: "/Resources/blog/how-long-do-clear-aligners-take.webp"
 image_alt: "Illustration of a clear aligner treatment timeline from consultation to retainers"

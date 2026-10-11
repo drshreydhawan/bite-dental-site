@@ -3,6 +3,7 @@ title: "Braces vs. Aligners: Which One Is Right for You in Gurugram?"
 date: 2026-03-05
 tag: "Orthodontics"
 author: aman
+seo_title: "Braces vs Aligners in Gurugram"
 excerpt: "Explore how Invisalign and clear aligners compare to traditional braces — and how to know which is the right fit for your smile journey."
 image: "/Resources/orthodontics/braces-frontal-1.webp"
 image_alt: "Before and after of a braces treatment result at Bite Dental"

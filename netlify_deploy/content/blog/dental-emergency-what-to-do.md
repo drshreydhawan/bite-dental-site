@@ -3,6 +3,7 @@ title: "Dental Emergency: What to Do Before You Reach the Clinic"
 date: 2026-10-11
 tag: "Emergency"
 author: shrey
+seo_title: "Dental Emergency: What to Do First"
 excerpt: "Knocked-out tooth, broken tooth, severe toothache or swelling: simple first steps that protect the tooth and when to go straight to a dentist or hospital."
 image: "/Resources/blog/dental-emergency-what-to-do.webp"
 image_alt: "Illustration of a dental emergency first-aid checklist"

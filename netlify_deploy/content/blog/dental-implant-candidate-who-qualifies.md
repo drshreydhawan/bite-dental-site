@@ -3,6 +3,7 @@ title: "Am I a Candidate for a Dental Implant? What We Check First"
 date: 2026-10-11
 tag: "Dental Implants"
 author: shamindhi
+seo_title: "Dental Implant Candidate: What We Check First"
 excerpt: "Bone, gums, health and habits: the four things we look at before recommending an implant, and what your options are if you are not quite ready."
 image: "/Resources/blog/dental-implant-candidate-who-qualifies.webp"
 image_alt: "Illustration of a dental implant with a checklist of bone, gums, health and habits"

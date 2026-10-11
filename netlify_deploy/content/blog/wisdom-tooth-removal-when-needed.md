@@ -3,6 +3,7 @@ title: "Wisdom Tooth Removal: When It Is Needed and When It Is Not"
 date: 2026-10-11
 tag: "Oral Health"
 author: shamindhi
+seo_title: "Wisdom Tooth Removal: When It Is Needed"
 excerpt: "Not every wisdom tooth needs to come out. Here are the signs that mean it is time to see a dentist, how removal works, and what recovery usually looks like."
 image: "/Resources/blog/wisdom-tooth-removal-when-needed.webp"
 image_alt: "Illustration of an impacted wisdom tooth with the signs that suggest removal"

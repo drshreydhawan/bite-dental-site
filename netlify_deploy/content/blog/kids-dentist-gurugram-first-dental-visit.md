@@ -3,10 +3,10 @@ title: "Kids Dentist Gurugram: Preparing Your Child for Their First Visit"
 date: 2026-03-13
 tag: "Kids Dentistry"
 author: achla
+seo_title: "Kids Dentist Gurugram: First Dental Visit"
 excerpt: "A child's first dental visit can feel daunting. Here's how to make it a positive, fear-free experience from day one."
 image: "/Resources/blog/kids-dentist-gurugram-first-dental-visit.jpg"
 image_alt: "Kids Dentist Gurugram: Preparing Your Child for Their First Visit"
-seo_title: "Kids Dentist Gurugram: Your Child's First Dental Visit"
 draft: false
 ---
 ## The First Visit: Earlier Than You Think

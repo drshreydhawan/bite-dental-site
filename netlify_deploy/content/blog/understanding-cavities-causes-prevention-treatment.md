@@ -3,6 +3,7 @@ title: "Understanding Cavities: Causes, Prevention & Treatment"
 date: 2026-03-18
 tag: "Preventive Care"
 author: shrey
+seo_title: "Cavities: Causes, Prevention and Treatment"
 excerpt: "Cavities are one of the most common dental problems worldwide. Learn the causes, our prevention tips, and the treatments we offer."
 image: "/Resources/blog/understanding-cavities-causes-prevention-treatment.jpg"
 image_alt: "Understanding Cavities: Causes, Prevention & Treatment"

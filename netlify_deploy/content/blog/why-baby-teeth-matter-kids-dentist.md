@@ -3,6 +3,7 @@ title: "Why Baby Teeth Matter, Even Though They Fall Out"
 date: 2026-10-11
 tag: "Kids Dentistry"
 author: achla
+seo_title: "Why Baby Teeth Matter for Your Child"
 excerpt: "Baby teeth hold space for adult teeth, help speech and chewing, and affect how your child feels about the dentist. Here is how to look after them."
 image: "/Resources/blog/why-baby-teeth-matter-kids-dentist.webp"
 image_alt: "Illustration of a friendly tooth mascot beside a child's baby teeth"
