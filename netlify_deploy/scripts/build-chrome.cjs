@@ -24,7 +24,7 @@ function pages() {
   const out = [];
   const walk = (dir, depth) => {
     for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
-      if (!e.isDirectory() || ['Resources', 'scripts', 'css', 'js', 'content', 'api', 'admin', 'write', 'node_modules'].includes(e.name)) continue;
+      if (!e.isDirectory() || ['Resources', 'scripts', 'css', 'js', 'content', 'api', 'admin', 'write', 'linktree', 'node_modules'].includes(e.name)) continue;
       const f = path.join(dir, e.name, 'index.html');
       if (fs.existsSync(f)) out.push(f);
       if (depth < 2) walk(path.join(dir, e.name), depth + 1);
