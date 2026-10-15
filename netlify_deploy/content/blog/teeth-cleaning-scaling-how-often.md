@@ -58,7 +58,7 @@ If you want whiter teeth, see our [teeth whitening page](/teeth-whitening). If y
 ## After a clean
 
 - Mild gum tenderness or sensitivity for a day or two is common.
-- Brush gently and keep cleaning between your teeth.
+- Brush gently and keep cleaning between your teeth (see [how to floss properly](/how-to-floss)).
 - Avoid very hot or cold food if your teeth feel sensitive.
 - If bleeding or soreness continues beyond a few days, let us know.
 

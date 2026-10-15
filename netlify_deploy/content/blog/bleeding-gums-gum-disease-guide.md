@@ -38,7 +38,7 @@ Gum disease is often painless in its early stages, which is why people leave it 
 ## What you can do at home
 
 - **Brush twice a day** with a soft brush at a 45-degree angle to the gumline, using small gentle circles.
-- **Clean between your teeth** daily with floss or interdental brushes. This is where most gum disease starts.
+- **Clean between your teeth** daily with floss or interdental brushes. This is where most gum disease starts. New to it? Our [step-by-step flossing guide with videos](/how-to-floss) shows how.
 - **Keep going if it bleeds** a little at first. Gums usually improve within one to two weeks of proper cleaning.
 - **Stop tobacco** if you can. It is one of the biggest risk factors.
 - **Do not rely on mouthwash alone.** It does not remove plaque.
